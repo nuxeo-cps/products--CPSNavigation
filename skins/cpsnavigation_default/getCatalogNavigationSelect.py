@@ -127,12 +127,12 @@ if display_mode == 'search':
         del query['scope']
         kw['query'] = query
 
-
-if widget.preprocess_method:
-    meth = getattr(self, render_method, None)
+preprocess_method = widget.preprocess_method
+if preprocess_method:
+    meth = getattr(widget, preprocess_method, None)
     if meth is None:
         raise RuntimeError("Unknown preprocess method %s" %
-                           widget.preprocess_method)
+                           preprocess_method)
     kw = meth(kw)
 
 # nav process init
