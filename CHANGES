@@ -3,7 +3,9 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Possible to pass batch_size argument to script getNavigation (before, was
+  always set to 15)
+- Adding Navigation for CPS Indirect Directory
 Bug fixes:
 ~~~~~~~~~~
 -
