@@ -87,13 +87,12 @@
 </tal:block>
 </div>
 </td><td valign="top" width="33%" class="odd">
+  <div tal:condition="listing_info/current">
   <a accesskey="U" tal:condition="listing_info/parent_uid"
     tal:attributes="href python:'%s?%s'%(request['URL0'],
     mq(current_uid=listing_info['parent_uid'], input_id=input_id, title=title));">
     <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
-
-  <div tal:condition="listing_info/current">
   <h4><input name="uids:list" type="checkbox" class="noborder"
         tal:attributes="value listing_info/current_uid">
   <tal:block content="listing_info/current/title_or_id|nothing" /></h4>
