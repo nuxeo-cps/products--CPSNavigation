@@ -8,7 +8,8 @@ New features:
 - Adding Navigation for CPS Indirect Directory
 Bug fixes:
 ~~~~~~~~~~
--
+- In catalog navigation, when item had a blank title, no text was provided
+  to define the item (now gives the id)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
