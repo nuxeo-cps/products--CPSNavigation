@@ -15,7 +15,7 @@ if finder == 'cps':
     nav = CPSNavigation(root_uid=root_uid,
                         current_uid=current_uid,
                         context=context,
-                        include_root=0,
+                        include_root=1,
                         no_leaves=1,
                         # filter_tree_ptypes=('Workspace',),
                         # filter_listing_ptypes=('Link',),
