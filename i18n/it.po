@@ -1,3 +1,9 @@
+#.   <span content="python:test(res['status_form'] ==
+#.       'valid', 'cpsnav_search_result', 'cpsnav_content')" class="legend">Search result</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "Search result"
+msgstr ""
+
 #.   <input value="button_reset" class="context" name="search_reset" type="submit" />
 #.   <input value="button_reset" class="context" name="option_reset" type="submit" />
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
@@ -7,6 +13,35 @@ msgstr ""
 #.   <span>here</span>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_current_uid"
+msgstr ""
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='option'));
+#.       class python:test(res['display_mode'] == 'option', 'selected', nothing);">Options</a>
+#.   <span class="legend">option</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_option"
+msgstr ""
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='search'));
+#.       class python:test(res['display_mode'] == 'search', 'selected', nothing);">Search</a>
+#.   <span class="legend">Search</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search"
+msgstr ""
+
+#.   <div condition="python:res['status_form'] == 'invalid'" class="message">invalid search</div>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search_invalid"
+msgstr ""
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(request.form, display_mode='tree'));
+#.       class python:test(res['display_mode'] == 'tree', 'selected', nothing);">Navigation</a>
+#.   <span class="legend">navigation</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_tree"
 msgstr ""
 
 #.   <th width="33%" class="even">label_detail</th>
@@ -73,4 +108,10 @@ msgid "cpsnav_search_scope_current_location"
 msgstr ""
 
 msgid "cpsnav_option_current_uid"
+msgstr ""
+
+msgid "cpsnav_content"
+msgstr ""
+
+msgid "cpsnav_search_result"
 msgstr ""

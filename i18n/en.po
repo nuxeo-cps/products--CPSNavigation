@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-04-28 17:52default\n"
-"PO-Revision-Date: 2004-04-28 17:53+0200\n"
+"POT-Creation-Date: 2004-04-29 11:12default\n"
+"PO-Revision-Date: 2004-04-29 11:15+0200\n"
 "Last-Translator: ben <ben@nuxeo.com>\n"
 "Language-Team: ben\n"
 "MIME-Version: 1.0\n"
@@ -19,16 +19,51 @@ msgstr ""
 "Domain: default\n"
 "X-Generator: KBabel 1.0.1\n"
 
+#.   <span content="python:test(res['status_form'] ==
+#.       'valid', 'cpsnav_search_result', 'cpsnav_content')" class="legend">Search result</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "Search result"
+msgstr ""
+
 #.   <input value="button_reset" class="context" name="search_reset" type="submit" />
 #.   <input value="button_reset" class="context" name="option_reset" type="submit" />
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
-msgstr ""
+msgstr "Reset"
 
 #.   <span>here</span>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_current_uid"
 msgstr "Current folder"
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='option'));
+#.       class python:test(res['display_mode'] == 'option', 'selected', nothing);">Options</a>
+#.   <span class="legend">option</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_option"
+msgstr "Options"
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='search'));
+#.       class python:test(res['display_mode'] == 'search', 'selected', nothing);">Search</a>
+#.   <span class="legend">Search</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search"
+msgstr "Search"
+
+#.   <div condition="python:res['status_form'] == 'invalid'" class="message">invalid search</div>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search_invalid"
+msgstr "Invalid query !"
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(request.form, display_mode='tree'));
+#.       class python:test(res['display_mode'] == 'tree', 'selected', nothing);">Navigation</a>
+#.   <span class="legend">navigation</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_tree"
+msgstr "Navigation"
 
 #.   <th width="33%" class="even">label_detail</th>
 #: from ../skins/cpsnavigation_default/navigation_lib.pt
@@ -95,4 +130,10 @@ msgstr "current folder"
 
 msgid "cpsnav_option_current_uid"
 msgstr "Default current folder"
+
+msgid "cpsnav_content"
+msgstr "Folder content"
+
+msgid "cpsnav_search_result"
+msgstr "Search result"
 

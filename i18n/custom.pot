@@ -65,3 +65,9 @@ msgstr ""
 msgid "cpsnav_current_uid"
 msgstr ""
 
+msgid "cpsnav_content"
+msgstr ""
+
+msgid "cpsnav_search_result"
+msgstr ""
+
