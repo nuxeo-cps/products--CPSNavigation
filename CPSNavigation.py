@@ -103,10 +103,10 @@ class CPSNavigation(ZODBNavigation):
 
     def _isNode(self, obj):
         if type(obj) is DictType:
-            # here obj is portal_tree node asume thats a node
+            # here obj is portal_tree node, assume it's a node
             return 1
 
-        # here we handle objects the same way as cpsdefault filterContents
+        # here we handle object the same way as cpsdefault filterContents
         display_in_listing = 0
         if getattr(obj, 'portal_type'):
             ti = getattr(obj.portal_types, obj.portal_type, None)
