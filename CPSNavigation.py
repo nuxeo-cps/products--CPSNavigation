@@ -166,7 +166,7 @@ class CPSNavigation(ZODBNavigation):
         status=''
         if query.get('review_state'):
             status = query['review_state']
-            wtool = context.portal_workflow
+            wtool = self.context.portal_workflow
             del query['review_state']
 
         # search and get documents brains
