@@ -1,4 +1,23 @@
 *******************************************
+** CPSNavigation V0.3.0 [R1 build 2004/02/11-14:34 by ben]
+
+ZODB Requires:
+~~~~~~~~~~~~~~
+- require cpsdefault po
+New features:
+~~~~~~~~~~~~~
+- search mode first implementation
+- adding an installer
+- new CPSDirectoryNavigation
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- rename truncate in truncString
+- using 2 skins devel and default
+
+*******************************************
 ** CPSNavigation V0.2.0 [R1 build 2004/01/21-11:42 by ben]
 
 ZODB Requires:
