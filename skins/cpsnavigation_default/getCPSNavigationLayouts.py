@@ -21,7 +21,7 @@ navigation_search_layout = {
                 'is_i18n': 1,
                 'label_edit': 'label_title',
                 'display_width': 25,
-                'size_max': 100,
+                'size_max': 200,
                 },
             },
 ##         'Description': {

@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- Changed title size limitation from 100 characters to 200.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
