@@ -166,6 +166,9 @@ class CatalogNavigation(BaseNavigation):
                 if 'filter_tree_ptypes' in self._param_ids and \
                        self.filter_tree_ptypes:
                     query['portal_type'] = self.filter_tree_ptypes
+                if 'filter_tree_language' in self._param_ids and (
+                        self.filter_tree_language):
+                    query['Language'] = self.filter_tree_language
 
         # handle sorting
         if not query.has_key('sort-on'):
