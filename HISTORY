@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.10.3 [R1 build 2004/09/10-10:11 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- fix: CatalogNavigation Search raise ParseError for invalid search like '*'
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSNavigation V0.10.2 [R1 build 2004/09/08-11:54 by anahide]
 
 Requires:
