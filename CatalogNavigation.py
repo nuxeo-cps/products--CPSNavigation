@@ -146,7 +146,7 @@ class CatalogNavigation(BaseNavigation):
         query = {'path': pathes_to_explore}
         query['relative_path_depth'] = {'query': (depth_min, depth_max),
                                         'range': 'min:max'}
-        query['sort-on'] = 'container_path'
+        query['sort-on'] = 'relative_path'
         self.query = query
         brains = self._search(mode='tree')
         # extract roots
