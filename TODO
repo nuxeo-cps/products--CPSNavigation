@@ -1,9 +1,8 @@
 - popup
+   o CPS
 - LDAPDirectoryNavigation
    o unit test
    o more check
-- VocabularyNavigation
-   o assuming that a key=path ?
 - ConfNavigation
    o rename into ConfigNavigation ?
 - CPSNavigation
@@ -12,3 +11,7 @@
    o check what's append if current not part of the root tree ?
 - ZODBNavigation
    o check aq_base
+- VocabularyNavigation
+   o assuming that a key=path ?
+- BaseNavigation
+   o expand all
