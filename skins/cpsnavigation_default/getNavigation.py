@@ -57,7 +57,7 @@ elif finder == 'ldap':
         context=context,
         dir_name=dir_name,
         # include_root=0,
-        batch_size=5,
+        batch_size=15,
         batch_start=b_start,
         )
 
