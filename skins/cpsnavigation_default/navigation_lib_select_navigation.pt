@@ -77,7 +77,7 @@
 
   <tal:block repeat="item listing">
     <div>
-      &nbsp;&nbsp;<metal:block use-macro="python:path('here/navigation_lib_render_listing_itme_%s/macros/render_listing_item_%s'%(type,type))" />
+      &nbsp;&nbsp;<metal:block use-macro="python:path('here/navigation_lib_render_listing_item_%s/macros/render_listing_item_%s'%(type,type))" />
     </div>
   </tal:block>
   <metal:block use-macro="here/navigation_lib_batch_nav/macros/batch_nav" />
