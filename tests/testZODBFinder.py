@@ -12,14 +12,15 @@ installProduct('CMFCore', quiet=1)
 installProduct('CMFDefault', quiet=1)
 installProduct('MailHost', quiet=1)
 
-class TestZODBNavigation(ZopeTestCase):
+class TestZODBFinder(ZopeTestCase):
 
     def afterSetUp(self):
         from Products.CMFDefault.Portal import manage_addCMFSite
         id='testsite'
         manage_addCMFSite(self.app, id)
         self.portal = self.app[id]
-        self.nav = ZODBNavigation(root=self.portal)
+        self.nav = ZODBNavigation(root=self.portal,
+                                  current=self.portal)
 
     def test_interface(self):
         verifyClass(IFinder, ZODBNavigation)
@@ -58,7 +59,7 @@ class TestZODBNavigation(ZopeTestCase):
 
 
 def test_suite():
-    return unittest.makeSuite(TestZODBNavigation)
+    return unittest.makeSuite(TestZODBFinder)
 
 if __name__ == "__main__":
     unittest.main(defaultTest='test_suite')

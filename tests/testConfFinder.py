@@ -6,10 +6,10 @@ from Testing.ZopeTestCase import ZopeLite
 from Interface.Verify import verifyClass
 from Products.CPSNavigation.ConfNavigation import ConfNavigation, \
      DummyClass as DC
-from Products.CPSNavigation.interfaces.INavigation import INavigation
+from Products.CPSNavigation.interfaces.IFinder import IFinder
 
 
-class TestConfNavigation(unittest.TestCase):
+class TestConfFinder(unittest.TestCase):
     def setUp(self):
         # setup a tree like this
         # root/
@@ -31,7 +31,8 @@ contents=leaf_3
 [node_3]
 contents=leaf_4|leaf_5
         """
-        self.nav = ConfNavigation(root=DC('root'),
+        self.nav = ConfNavigation(root_uid='root',
+                                  current_uid='root',
                                   file_content=file_content)
 
     def test_interface(self):
@@ -125,7 +126,7 @@ contents=leaf_4|leaf_5
 
 
 def test_suite():
-    return unittest.makeSuite(TestConfNavigation)
+    return unittest.makeSuite(TestConfFinder)
 
 if __name__ == "__main__":
     unittest.main(defaultTest='test_suite')
