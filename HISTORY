@@ -1,0 +1,17 @@
+*******************************************
+** CPSNavigation V0.1.0 [R1 build 2004/01/21-10:33 by ben]
+
+ZODB Requires:
+~~~~~~~~~~~~~~
+- to use this product you have to add a new skin
+  CPSNavigation/skins
+New features:
+~~~~~~~~~~~~~
+- first pkg
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
