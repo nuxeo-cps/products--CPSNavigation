@@ -82,6 +82,8 @@ class BaseNavigation:
         return res
 
     def _exploreNode(self, obj, level, is_last_child, path, flat_tree):
+        if not obj:
+            return
         obj_uid = self._getUid(obj)
         node = {'uid': obj_uid,
                 'object': obj,
@@ -223,7 +225,12 @@ class BaseNavigation:
                       'previous': previous,
                       'next': next,
                       }
-        return res, batch_info
+        parent_uid = self._getParentUid(self.current_uid)
+        listing_info = {'current': self.current,
+                        'current_uid': self.current_uid,
+                        'parent': self._getObject(parent_uid),
+                        'parent_uid': parent_uid}
+        return res, listing_info, batch_info
 
     def _filter(self, objs, mode='tree'):
         """Filter the objects according to init parameters.
