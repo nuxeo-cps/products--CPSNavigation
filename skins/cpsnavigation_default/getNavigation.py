@@ -1,4 +1,4 @@
-##parameters=finder, root_uid, REQUEST=None
+##parameters=finder, root_uid, filter_tree_ptypes=None, filter_listing_ptypes=None, REQUEST=None
 # $Id$
 from Products.CPSNavigation.ConfNavigation import ConfNavigation
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
@@ -19,8 +19,8 @@ if finder == 'cps':
                         context=context,
                         include_root=1,
                         no_leaves=1,
-                        # filter_tree_ptypes=('Workspace',),
-                        # filter_listing_ptypes=('Link',),
+                        filter_tree_ptypes=filter_tree_ptypes,
+                        filter_listing_ptypes=filter_listing_ptypes,
                         sort_listing_by='title',
                         sort_listing_direction='asc',
                         batch_size=15,
