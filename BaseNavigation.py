@@ -34,10 +34,12 @@ class BaseNavigation:
     no_nodes = 0
     batch_size = 15
     batch_orphan = 0
+    batch_item_max = 100
     include_root = 1
     expand_all = 0
     debug = 1
     search = 0
+    allow_empty_search = 0
     query_uid = ''
     request_form = {}
 
@@ -200,8 +202,17 @@ class BaseNavigation:
         # this is just a port of cpsdefault getBatch..
         length = len(res)
         batch_start = self.request_form.get('b_start', 0)
-        res = Batch(res, self.batch_size, batch_start, self.batch_orphan)
-        nb_pages = length / float(self.batch_size)
+        if not self.batch_item_max or self.batch_item_max > length:
+            res = Batch(res, self.batch_size, batch_start, self.batch_orphan)
+            batch_length = length
+        else:
+            batch_length = self.batch_item_max
+            if batch_start > batch_length:
+                batch_start = 0
+            res = Batch(res[:batch_length],
+                        self.batch_size, batch_start, self.batch_orphan)
+
+        nb_pages = batch_length / float(self.batch_size)
         if type(nb_pages) is not IntType and nb_pages > 1:
             nb_pages = int(nb_pages) + 1
         else:
