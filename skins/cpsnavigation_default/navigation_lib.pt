@@ -47,7 +47,7 @@
 <!-- ============================================================ -->
 <!-- folder -->
 <metal:block define-macro="render_node_folder">
-  <tal:block replace="node/object/title_or_id" />
+  <tal:block replace="structure node/object/short_title" />
 </metal:block>
 
 <metal:block define-macro="render_listing_header_multi_select_folder">
@@ -102,8 +102,8 @@
 <!-- ============================================================ -->
 <!-- ldap -->
 <metal:block define-macro="render_node_ldap">
-  <tal:block replace="python: node['object'].get(display_attr, ['%s not
-found!'% display_attr])[0]" />
+  <tal:block replace="python:
+here.truncate(node['object'].get(display_attr, ['%s not found!'% display_attr])[0])" />
 </metal:block>
 
 <metal:block define-macro="render_listing_header_ldap"
