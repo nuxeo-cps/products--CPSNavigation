@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- fix: CatalogNavigation Search raise ParseError for invalid search like '*'
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
