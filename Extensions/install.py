@@ -32,26 +32,26 @@ Howto use the CPSNavigation installer :
  - then click on the test tab of this external method
 """
 
-from Products.CPSDefault.Installer import BaseInstaller
-
+from Products.CPSInstaller.CPSInstaller import CPSInstaller
 from zLOG import LOG, INFO, DEBUG
 
-class CPSNavigationInstaller(BaseInstaller):
+class CPSNavigationInstaller(CPSInstaller):
 
-    SKINS = (
-        ('cpsnavigation_default',
-         'Products/CPSNavigation/skins/cpsnavigation_default'),
-        ('cpsnavigation_devel',
-         'Products/CPSNavigation/skins/cpsnavigation_devel'),
-        )
+    SKINS = {'cpsnavigation_default': 'Products/CPSNavigation/skins/cpsnavigation_default',
+             'cpsnavigation_devel': 'Products/CPSNavigation/skins/cpsnavigation_devel',
+             }
 
     def install(self):
         self.log("Starting CPSNavigation install")
-        self.setupSkins(self.SKINS)
+        self.verifySkins(self.SKINS)
+        self.resetSkinCache()
+        self.verifySchemas(self.portal.getCPSNavigationSchemas())
+        self.verifyLayouts(self.portal.getCPSNavigationLayouts())
+        self.verifyVocabularies(self.portal.getCPSNavigationVocabularies())
         self.setupTranslations()
         self.log("End of specific CPSNavigation install")
 
 def install(self):
-    installer = CPSNavigationInstaller(self)
+    installer = CPSNavigationInstaller(self, 'CPSNavigation')
     installer.install()
     return installer.logResult()
