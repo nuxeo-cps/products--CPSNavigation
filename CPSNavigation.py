@@ -137,14 +137,14 @@ class CPSNavigation(ZODBNavigation):
 
     ### override Navigation
     def _filter(self, objs, mode='tree'):
-        if mode == 'listing' and self.search:
-            return objs
-        return ZODBNavigation._filter(self, objs, mode)
+        if mode == 'listing' and not self.search:
+            return ZODBNavigation._filter(self, objs, mode)
+        return objs
 
     def _sort(self, objs, mode='tree'):
-        if mode == 'listing' and self.search:
-            return objs
-        return ZODBNavigation._filter(self, objs, mode)
+        if mode == 'listing' and not self.search:
+            return ZODBNavigation._filter(self, objs, mode)
+        return objs
 
     def _buildQuery(self, query_in, portal_path):
         query = {}
