@@ -30,7 +30,7 @@ from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.CMFCore.utils import _getAuthenticatedUser, _checkPermission
 from Products.CMFCore.CMFCorePermissions import AccessInactivePortalContent
 from DateTime import DateTime
-
+from Products.ZCTextIndex.ParseTree import ParseError
 
 class CatalogNavigation(BaseNavigation):
     """Implement Finder interface using the portal_catalog."""
@@ -299,7 +299,10 @@ class CatalogNavigation(BaseNavigation):
             return []
 
         chrono_start = time()
-        brains = ZCatalog.searchResults(self.ctool, None, **query)
+        try:
+            brains = ZCatalog.searchResults(self.ctool, None, **query)
+        except ParseError:
+            brains = []
         chrono_stop = time()
 
         LOG('CatalogNavigation._search', DEBUG, 'end\n'
