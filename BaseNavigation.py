@@ -32,12 +32,13 @@ class BaseNavigation:
     no_leaves = 0
     no_nodes = 0
     batch_size = 15
-    batch_start = 0
     batch_orphan = 0
     include_root = 1
     expand_all = 0
-
     debug = 1
+    search = 0
+    query_uid = ''
+    request_form = {}
 
     def __init__(self, **kw):
         """Init the navigation.
@@ -86,6 +87,8 @@ class BaseNavigation:
         if not obj:
             return
         obj_uid = self._getUid(obj)
+        if not obj_uid:
+            return
         node = {'uid': obj_uid,
                 'object': obj,
                 'level': level,
@@ -187,20 +190,20 @@ class BaseNavigation:
 
     def getListing(self):
         """Return a Listing structure and batch information."""
-        res = self._getChildren(self.current, no_leaves=self.no_leaves,
-                                no_nodes=self.no_nodes, mode='listing')
+        res = self._searchItems()
         res = self._filter(res, mode='listing')
         res = self._sort(res, mode='listing')
         # XXX batching should be refactored
         # this is just a port of cpsdefault getBatch..
         length = len(res)
-        res = Batch(res, self.batch_size, self.batch_start, self.batch_orphan)
+        batch_start = self.request_form.get('b_start', 0)
+        res = Batch(res, self.batch_size, batch_start, self.batch_orphan)
         nb_pages = length / float(self.batch_size)
         if type(nb_pages) is not IntType and nb_pages > 1:
             nb_pages = int(nb_pages) + 1
         else:
             nb_pages = 0
-        stop = self.batch_start + self.batch_size
+        stop = batch_start + self.batch_size
         if stop > length:
             stop = length
         current = [0, 1]
@@ -208,7 +211,7 @@ class BaseNavigation:
         j = 0
         for i in range(nb_pages):
             pages.append(j)
-            if self.batch_start == j:
+            if batch_start == j:
                 current = [i + 1, j]
             j += self.batch_size
         if current[0] > 1:
@@ -222,7 +225,7 @@ class BaseNavigation:
 
         batch_info = {'nb_pages': nb_pages,
                       'pages': pages,
-                      'start': self.batch_start + 1,
+                      'start': batch_start + 1,
                       'stop': stop,
                       'length': length,
                       'previous': previous,
@@ -238,6 +241,9 @@ class BaseNavigation:
         if not self.include_root and self.current_uid == self.root_uid:
             hide_current = 1
 
+        if self.request_form.get('search'):
+            parent_uid = parent = None
+            hide_current = 1
 
         listing_info = {'current': self.current,
                         'current_uid': self.current_uid,
@@ -245,6 +251,27 @@ class BaseNavigation:
                         'parent_uid': parent_uid,
                         'hide_current': hide_current}
         return res, listing_info, batch_info
+
+    def _searchItems(self):
+        """Return current children if not in search mode."""
+        if self.request_form.get('search'):
+            return self._search()
+
+        return self._getChildren(self.current, no_leaves=self.no_leaves,
+                                 no_nodes=self.no_nodes, mode='listing')
+
+    def _search(self):
+        """Default search is done on uid in the current children.
+
+        This method should be overriden in Navigation implementation."""
+        res = self._getChildren(self.current, no_leaves=self.no_leaves,
+                                no_nodes=self.no_nodes, mode='listing')
+        q_uid = self.request_form.get('query_uid')
+        LOG('XXXX', DEBUG, 'searching %s' % q_uid)
+        if q_uid:
+            res = [r for r in res if self._getUid(r).find(q_uid) >= 0]
+
+        return res
 
     def _filter(self, objs, mode='tree'):
         """Filter the objects according to init parameters.
@@ -315,4 +342,3 @@ class BaseNavigation:
         dump = ([], {})
         self._exploreNodeForDump(self.root, 0, dump)
         return dump
-
