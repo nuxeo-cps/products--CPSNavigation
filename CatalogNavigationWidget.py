@@ -35,39 +35,38 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
 
     _properties = CPSURLWidget._properties + (
         {'id': 'render_method', 'type': 'string', 'mode': 'w',
-         'label': 'widget render method'},
+         'label': 'Widget render method'},
         {'id': 'popup_title', 'type': 'string', 'mode': 'w',
-         'label': 'Title of the popup'},
+         'label': 'Popup title'},
         {'id': 'popup_description', 'type': 'string', 'mode': 'w',
-         'label': 'A description of the popup'},
-        {'id': 'popup_view_macro_path', 'type': 'string', 'mode': 'w',
-         'label': 'macro to display an item in the popup'},
-        {'id': 'popup_edit_macro_path', 'type': 'string', 'mode': 'w',
-         'label': 'macro to display an item in the document from the popup'},
+         'label': 'Popup description'},
         {'id': 'layout_search', 'type': 'string', 'mode': 'w',
-         'label': 'Layout for searching'},
+         'label': 'Layout for search'},
         {'id': 'schema_search', 'type': 'string', 'mode': 'w',
-         'label': 'Schema for searching'},
+         'label': 'Schema for search'},
+        {'id': 'is_editable_option', 'type': 'boolean', 'mode': 'w',
+         'label': 'Allow configuration options'},
         {'id': 'layout_option', 'type': 'string', 'mode': 'w',
          'label': 'Layout for configuration options'},
         {'id': 'schema_option', 'type': 'string', 'mode': 'w',
          'label': 'Schema for configuration options'},
-        {'id': 'is_editable_option', 'type': 'boolean', 'mode': 'w',
-         'label': 'Enable to edit option'},
+        {'id': 'popup_view_macro_path', 'type': 'string', 'mode': 'w',
+         'label': 'Macro to display an item in the popup'},
+        {'id': 'popup_edit_macro_path', 'type': 'string', 'mode': 'w',
+         'label': 'Macro to display an item in the document from the popup'},
         {'id': 'preprocess_method', 'type': 'string', 'mode': 'w',
-         'label': 'this enable to use a method to customize args passed'
-         'to CatalogNavigation'},
+         'label': 'Method to customize CatalogNavigation arguments'},
         )
     render_method = 'widget_catalognavigationselect_render'
     popup_title = ''
     popup_description = ''
-    popup_view_macro_path = 'here/catalognavigation_lib/macros/popup_item_view'
-    popup_edit_macro_path = 'here/catalognavigation_lib/macros/popup_item_edit'
     layout_search = 'navigation_search'
     schema_search = 'navigation_search'
+    is_editable_option = 0
     layout_option = 'navigation_option'
     schema_option = 'navigation_option'
-    is_editable_option = 0
+    popup_view_macro_path = 'here/catalognavigation_lib/macros/popup_item_view'
+    popup_edit_macro_path = 'here/catalognavigation_lib/macros/popup_item_edit'
     preprocess_method = ''
 
     def prepare(self, datastructure, **kw):
