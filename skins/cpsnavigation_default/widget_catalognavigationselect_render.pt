@@ -1,0 +1,33 @@
+<tal:block define="mode options/mode;
+                   value options/value;
+                   obj options/obj;
+                   html_id here/getHtmlWidgetId;
+                   widget_id here/getId;
+                   layout_id here/aq_parent/getId">
+<tal:block condition="value">
+  <tal:block define="info obj/getContentInfo">
+    <metal:block use-macro="python:path(here.view_macro_path)" />
+  </tal:block>
+</tal:block>
+<tal:block condition="python: mode == 'edit'">
+  <tal:block define="widget_path here/absolute_url">
+  <span tal:attributes="id html_id">
+  <input type="hidden" tal:condition="value"
+    tal:attributes="name html_id;value value;" />
+<script type="text/javascript">
+  <!--
+     function popup_catalognav_select(inputId, layoutId, widgetId) {
+       var args;
+       args='?input_id='+inputId+'&layout_id='+layoutId+'&widget_id='+widgetId;
+       popup = window.open('popup_catalognavigationselect_form'+args, 'Catalognav_Select', 'toolbar=0, scrollbars=1, location=0, statusbar=0, menubar=0, resizable=1, dependent=1, width=712, height=480');
+       if(!popup.opener)
+         popup.opener = window;
+       return false;
+   }
+  //-->
+</script></span>
+<button type="button"
+  tal:attributes="onclick string:popup_catalognav_select('${html_id}','${layout_id}','${widget_id}');">...</button><br />
+</tal:block>
+</tal:block>
+</tal:block>

@@ -1,0 +1,23 @@
+<!-- macros expect to have an 'item' define which should be a brain -->
+
+<metal:block define-macro="render_listing_item_simple">
+  <tal:block content="item/Title" />
+</metal:block>
+
+
+<metal:block define-macro="item_view2">
+  <img tal:replace="structure python:here.getImgTag(item['getIcon'],
+    base_url=base_url)"> HOHO !!
+  <a tal:attributes="title item/Description"><strong tal:content="item/Title" /></a>
+</metal:block>
+
+<metal:block define-macro="item_view">
+<strong tal:content="item/relative_path" />
+</metal:block>
+
+<metal:block define-macro="popup_item_view">
+  <img tal:replace="structure python:here.getImgTag(item['getIcon'],
+    base_url=base_url)">
+  <a tal:attributes="title item/Description"><strong
+tal:content="item/Title" /></a>
+</metal:block>
