@@ -43,6 +43,7 @@ class BaseNavigation:
     allow_empty_search = 0
     query_uid = ''
     request_form = {}
+    hide_current_from_listing = 0
 
     def __init__(self, **kw):
         """Init the navigation.
@@ -198,6 +199,9 @@ class BaseNavigation:
         LOG('BaseNavigation.getTree', DEBUG, 'end\n'
             '\ttime elapsed %7.3fs\n' % (
              chrono_stop - chrono_start))
+        if getattr(self, '_search_count', None):
+            LOG('BaseNavigation.getTree', DEBUG, 'in %s _search' %
+                self._search_count)
         return tree
 
     def getListing(self):
@@ -260,7 +264,9 @@ class BaseNavigation:
         else:
             parent_uid = self._getParentUid(self.current_uid)
             parent = self._getObject(parent_uid)
-        if not self.include_root and self.current_uid == self.root_uid:
+
+        if self.hide_current_from_listing or \
+               not self.include_root and self.current_uid == self.root_uid:
             hide_current = 1
 
         if self.search or self.request_form.get('search'):
@@ -271,7 +277,8 @@ class BaseNavigation:
                         'current_uid': self.current_uid,
                         'parent': parent,
                         'parent_uid': parent_uid,
-                        'hide_current': hide_current}
+                        'hide_current': hide_current,
+                        }
 
         chrono_stop = time()
         LOG('BaseNavigation.getListing', DEBUG, 'end\n'
