@@ -65,8 +65,8 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
     is_editable_option = 0
     layout_option = 'navigation_option'
     schema_option = 'navigation_option'
-    popup_view_macro_path = 'here/catalognavigation_lib/macros/popup_item_view'
-    popup_edit_macro_path = 'here/catalognavigation_lib/macros/popup_item_edit'
+    popup_view_macro_path = 'here/catalognavigation_lib_popup_item_view/macros/popup_item_view'
+    popup_edit_macro_path = 'here/catalognavigation_lib_popup_item_edit/macros/popup_item_edit'
     preprocess_method = ''
 
     def prepare(self, datastructure, **kw):
