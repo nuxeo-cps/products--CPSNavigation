@@ -70,7 +70,7 @@ if not widget.is_editable_option and display_mode == 'option':
     display_mode = None # prevent option edition
 res['title'] = widget.popup_title
 res['description'] = widget.popup_description
-res['view_macro_path'] = widget.view_macro_path
+res['popup_edit_macro_path'] = widget.popup_edit_macro_path
 res['popup_view_macro_path'] = widget.popup_view_macro_path
 res['is_editable_option'] = widget.is_editable_option
 res['input_id'] = input_id
