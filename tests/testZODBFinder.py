@@ -18,7 +18,8 @@ class TestZODBFinder(ZopeTestCase):
         id = 'testsite'
         manage_addCMFSite(self.app, id)
         self.portal = self.app[id]
-        self.nav = ZODBNavigation(root=self.portal, current=self.portal)
+        self.nav = ZODBNavigation(
+            context=self.portal, root=self.portal, current=self.portal)
 
     def test_interface(self):
         verifyClass(IFinder, ZODBNavigation)
