@@ -3,12 +3,15 @@
                    tree python:res[0];
                    listing python:res[1];
                    batch_info python:res[2];
-                   mq nocall:modules/ZTUtils/make_query
+                   mq nocall:modules/ZTUtils/make_query;
+                   current_uid request/current_uid|string:sections;
                    ">
 <metal:block use-macro="here/main_template/macros/master">
 <metal:block fill-slot="body">
 <h1>Current Tree</h1>
-<table width="100%"><tr><td valign="top">
+<table width="100%"><tr><td valign="top" width="70%">
+<table width="100%" border="1" cellpadding="5">
+<tr><td width="50%" valign="top">
 <div class="box" style="white-space: nowrap;">
 <tal:block repeat="node tree">
   <tal:block repeat="line node/lines"
@@ -18,30 +21,65 @@
                          test(node['state'] == 'closed', '+', '-'))" />
   <a tal:attributes="
     class python:test(node['is_current'], 'selected', nothing);
-    href python:base_url + node['object']['rpath']+'/test_cps_navigation';"
+    href python:'%s?%s'%(base_url+'test_cps_navigation',
+      mq(current_uid=node['object']['rpath']));"
     tal:content="node/object/title_or_id" /><br>
 </tal:block>
 </div>
-</td><td valign="top">
-  <div align="right"
-     tal:condition="python: batch_info['nb_pages'] > 1">
-       <span i18n:translate="">
-          Objects: <tal:block replace="batch_info/start"
-          i18n:name="batch_start" /> - <tal:block replace="batch_info/stop"
-          i18n:name="batch_limit" /> of <tal:block replace="batch_info/length"
-          i18n:name="batch_length" />
-        </span>
-  </div>
-  <tal:block repeat="item listing">
-    <div>
-      <span tal:content="item/id" /> (<span tal:content="item/title_or_id" />)
-    </div>
-    <!-- tal:block define="info python:here.getContentInfo(item, level=1);">
-      <metal:block use-macro="here/content_lib/macros/info_detail" />
-    </tal:block -->
-  </tal:block>
-
+</td><td valign="top" width="50%">
+  <h3 tal:content="string:XXXX CURRENT TITLE" />
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />
+
+  <form action="manageSelection" method="GET" tal:condition="listing">
+  <tal:block repeat="item listing">
+    <div tal:define="doc item/getContent;
+      item_desc doc/description;
+      item_uid python: item.absolute_url(relative=1);">
+      <input name="uids:list" type="checkbox"
+        tal:attributes="value item_uid">
+      <img tal:replace="structure python:here.getImgTag(item.getIcon(),
+        base_url=base_url)">&nbsp;
+      <a href="" tal:attributes="title item_desc;
+        href python:'%s?%s'%(base_url+'test_cps_navigation',
+          mq(current_uid=item_uid));">
+        <tal:block replace="item/title_or_id" />
+      </a>
+    </div>
+  </tal:block>
+  <hr>
+  <input type="hidden" name="current_uid"
+    tal:attributes="value current_uid">
+  <input type="submit" class="standalone"
+    name="add_items_to_selection"
+    value="button_select" i18n:attributes="value">
+  </form>
+
+  <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
+</td></tr></table>
+<td valign="top" with="30%"
+  tal:define="items python:here.manageSelection(REQUEST=request,
+    mode='get', type='folder')">
+  <h3 tal:content="string:XXXX Selected" />
+
+  <form action="manageSelection" method="GET" tal:condition="items">
+  <tal:block repeat="item items">
+    <div>
+      <input name="selected_uids:list" type="checkbox"
+        tal:attributes="value item/uid">
+      <img tal:replace="structure item/img_tag">&nbsp;
+      <tal:block replace="item/title_or_id" />
+    </div>
+  </tal:block>
+  <hr>
+  <input type="hidden" name="type" value="folder">
+  <input type="hidden" name="current_uid"
+    tal:attributes="value current_uid">
+  <input type="submit" class="destructive" value="button_delete"
+    name="del_items_from_selection"
+    i18n:attributes="value">
+  <input type="submit" class="standalone" value="button_update"
+    i18n:attributes="value">
+  </form>
 
 </td></tr></table>
 </metal:block>

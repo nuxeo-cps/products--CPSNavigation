@@ -1,4 +1,5 @@
 ##parameters=finder='cps', REQUEST=None
+# $Id$
 from Products.CPSNavigation.ConfNavigation import ConfNavigation
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
@@ -8,8 +9,10 @@ from Products.CPSNavigation.LDAPDirectoryNavigation import \
 b_start = REQUEST.get('b_start', 0)
 
 if finder == 'cps':
-    current_uid = context.portal_url.getRelativeContentURL(context)
-    nav = CPSNavigation(root_uid='sections',
+    root_uid = 'sections'
+    current_uid = REQUEST.get('current_uid', root_uid)
+    # current_uid = context.portal_url.getRelativeContentURL(context)
+    nav = CPSNavigation(root_uid=root_uid,
                         current_uid=current_uid,
                         context=context,
                         include_root=0,
@@ -17,8 +20,8 @@ if finder == 'cps':
                         # filter_tree_ptypes=('Workspace',),
                         # filter_listing_ptypes=('Link',),
                         sort_listing_by='title',
-                        sort_listing_direction='desc',
-                        batch_size=5,
+                        sort_listing_direction='asc',
+                        batch_size=20,
                         batch_start=b_start,
                         )
     # XXX try to get another tree and concatenate ?
