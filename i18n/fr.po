@@ -34,7 +34,7 @@ msgstr "Revenir a la configuration par defaut"
 #.   <span>here</span>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_current_uid"
-msgstr "Dossier courrant"
+msgstr "Dossier courant"
 
 #.   <a attributes="href python:'%s?%s' % (
 #.       request['URL'], mq(display_mode='option'));
@@ -126,10 +126,10 @@ msgid "cpsnav_search_scope_entire_site"
 msgstr "le site entier"
 
 msgid "cpsnav_search_scope_current_location"
-msgstr "dans le dossier courrant"
+msgstr "dans le dossier courant"
 
 msgid "cpsnav_option_current_uid"
-msgstr "Dossier courrant par défaut"
+msgstr "Dossier courant par défaut"
 
 msgid "cpsnav_content"
 msgstr "Contenu du dossier"
