@@ -35,6 +35,10 @@ from CPSNavigation import CPSNavigation
 allow_class(CPSNavigation)
 ModuleSecurityInfo('Products.CPSNavigation').declarePublic('CPSNavigation')
 
+from CatalogNavigation import CatalogNavigation
+allow_class(CatalogNavigation)
+ModuleSecurityInfo('Products.CPSNavigation').declarePublic('CatalogNavigation')
+
 from LDAPDirectoryNavigation import LDAPDirectoryNavigation
 allow_class(LDAPDirectoryNavigation)
 ModuleSecurityInfo('Products.CPSNavigation').declarePublic(
