@@ -17,7 +17,7 @@
 # $Id$
 """A ZODB Navigation
 """
-from Acquisition import aq_parent, aq_inner
+from Acquisition import aq_base, aq_parent, aq_inner
 from DateTime import DateTime
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
@@ -48,14 +48,14 @@ class ZODBNavigation(BaseNavigation):
         return obj.absolute_url(1)
 
     def _isNode(self, obj):
-        return obj.isPrincipiaFolderish
+        return aq_base(obj).isPrincipiaFolderish
 
     def _hasChildren(self, obj, no_nodes=0, no_leaves=0):
         # Such an ineficient way
         return not not len(self._getChildren(obj, no_nodes, no_leaves))
 
     def _getChildren(self, obj, no_nodes=0, no_leaves=0, mode='tree'):
-        children = obj.objectValues()
+        children = aq_base(obj).objectValues()
         if no_nodes:
             children = [child for child in children if not self._isNode(child)]
         if no_leaves:
@@ -90,7 +90,7 @@ class ZODBNavigation(BaseNavigation):
             if mode == 'tree':
                 # conditional filtering
                 if 'filter_tree_ptypes' in self._param_ids:
-                    portal_type = getattr(obj, 'portal_type', None)
+                    portal_type = getattr(aq_base(obj), 'portal_type', None)
                     if portal_type not in self.filter_tree_ptypes:
                         continue
             elif mode == 'listing':
