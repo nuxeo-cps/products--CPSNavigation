@@ -59,7 +59,8 @@ class BaseNavigation:
             kw['current_uid'] = self._getUid(kw['current'])
         elif kw.get('current_uid'):
             kw['current'] = self._getObject(kw['current_uid'])
-        else:
+
+        if not kw.get('current') or not kw.get('current_uid'):
             kw['current'] = kw['root']
             kw['current_uid'] = kw['root_uid']
 

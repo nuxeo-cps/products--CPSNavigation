@@ -6,7 +6,8 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- popup with invalid current_uid raise unsubscriptable object
+  now fall back to root if current is invalid
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
