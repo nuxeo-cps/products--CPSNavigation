@@ -63,8 +63,11 @@ class ZODBNavigation(BaseNavigation):
 
         return children
 
-    def _getParent(self, obj):
-        return aq_parent(aq_inner(obj))
+    def _getParentUid(self, uid):
+        obj = self._getObject(uid)
+        parent = aq_parent(aq_inner(obj))
+        # XXX perhaps we should use _filter to check is parent is viewable
+        return self._getUid(parent)
 
     ### override Navigation
     def _filter(self, objs, mode='tree'):

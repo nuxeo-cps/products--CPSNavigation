@@ -94,15 +94,13 @@ class ConfNavigation(BaseNavigation):
 
         return children
 
-    def _getParent(self, obj):
+    def _getParentUid(self, uid):
+        obj = self._getObject(uid)
         sections = self._parser.sections()
         for section in sections:
             for child in self._getChildren(DummyClass(section), no_leaves=0):
                 if child == obj:
-                    return self._dummyfy(section)
-        if obj.getId() not in sections:
-            raise KeyError, obj.getId()
-        # obj is the root
+                    return section
         return None
 
     ### Private

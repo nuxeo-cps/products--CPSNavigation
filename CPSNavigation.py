@@ -86,14 +86,11 @@ class CPSNavigation(ZODBNavigation):
             lobj = self.context.unrestrictedTraverse(self._getUid(obj))
         return ZODBNavigation._getChildren(self, lobj, no_nodes, no_leaves)
 
-    def _getParent(self, obj):
-        """obj is a portal_tree node."""
-        uid = self._getUid(obj)
-        return self._getObject('/'.join(uid.split('/')[:-1]))
+    def _getParentUid(self, uid):
+        return '/'.join(uid.split('/')[:-1])
 
     ### override Navigation
     def _filter(self, objs, mode='tree'):
         if mode == 'tree':
             return objs
-        LOG('XXXXX', DEBUG, 'filter' + str(objs))
         return ZODBNavigation._filter(self, objs, mode)
