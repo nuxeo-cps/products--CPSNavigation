@@ -6,7 +6,9 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- CatalogNavigationSelectWidget did not have a validate method.
+- item_view macro in catalognavigation_lib.pt was not accessing to relative
+  path correctly
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
