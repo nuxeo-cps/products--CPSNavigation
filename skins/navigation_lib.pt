@@ -60,6 +60,7 @@
               selection python:here.manageSelection(REQUEST=request,
               type='folder');
 ">
+<form action="" method="post">
 <br><center>
 <table bgcolor="#333333" width="95%" cellspacing="0" cellpadding="0"><tr><td>
 <table width="100%" cellspacing="1" cellpadding="5">
@@ -89,7 +90,7 @@
     <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
 
-  <form action="" method="post" tal:condition="listing_info/current">
+  <div tal:condition="listing_info/current">
   <h4><input name="uids:list" type="checkbox" class="noborder"
         tal:attributes="value listing_info/current_uid">
   <tal:block content="listing_info/current/title_or_id|nothing" /></h4>
@@ -112,15 +113,14 @@
   </tal:block>
   <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
   <br>
-  <input type="hidden" name="current_uid"
-    tal:attributes="value current_uid">
   <input type="submit" class="standalone"
     name="add_items_to_selection"
     value="button_select" i18n:attributes="value">
-  </form>
+  </div>
 
 </td><td valign="top" with="33%" class="odd">
-  <form action="" method="post" tal:condition="selection">
+  <div tal:condition="selection">
+  <div id="divselection">
   <tal:block repeat="item selection">
     <div>
       <input name="selected_uids:list" type="checkbox" class="noborder"
@@ -129,6 +129,7 @@
       <tal:block replace="item/title_or_id" />
     </div>
   </tal:block>
+  </div>
   <br>
   <input type="hidden" name="type" value="folder">
   <input type="hidden" name="current_uid"
@@ -140,9 +141,10 @@
   <input type="submit" class="standalone" value="button_update"
     i18n:attributes="value">
   </metal:block>
-  </form>
+  </div>
 
 </td></tr></table>
 </td></tr></table>
 </center>
+</form>
 </metal:block>
