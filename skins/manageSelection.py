@@ -10,9 +10,18 @@ def getMapFromUid(uid, type):
         return {'uid': uid,
                 'title_or_id': obj.title_or_id,
                 'img_tag': context.getImgTag(obj.getIcon())}
+    elif type == 'ldap':
+        title = uid
+        vocabulary_name = REQUEST.get('vocabulary')
+        if vocabulary_name:
+            vocabulary = getattr(context.portal_vocabularies, vocabulary_name)
+            title = vocabulary.get(uid, uid)
+        return {'uid': uid,
+                'title': title}
 
 type = kw.get('type', 'folder')
-session_key = 'CPS_SELECTION_%s' % type
+root_uid = kw.get('root_uid', 'sections')
+session_key = 'CPS_SELECTION_%s_%s' % (type, root_uid)
 selection = REQUEST.SESSION.get(session_key, [])
 
 if kw.has_key('del_items_from_selection'):
