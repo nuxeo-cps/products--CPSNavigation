@@ -1,4 +1,4 @@
-##parameters=finder, root_uid, filter_tree_ptypes=None, filter_listing_ptypes=None, REQUEST=None
+##parameters=finder, root_uid, prefix=None, filter_tree_ptypes=None, filter_listing_ptypes=None, REQUEST=None
 # $Id$
 from Products.CPSNavigation.ConfNavigation import ConfNavigation
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
@@ -16,6 +16,7 @@ if finder == 'cps':
     # current_uid = context.portal_url.getRelativeContentURL(context)
     nav = CPSNavigation(root_uid=root_uid,
                         current_uid=current_uid,
+                        prefix=prefix,
                         context=context,
                         include_root=1,
                         no_leaves=1,
