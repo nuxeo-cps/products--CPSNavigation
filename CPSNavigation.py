@@ -19,7 +19,6 @@
 """
 
 from types import DictType
-from Products.CMFCore.utils import getToolByName, _getAuthenticatedUser
 from types import StringType
 from ZODBNavigation import ZODBNavigation
 from Acquisition import aq_base, aq_parent, aq_inner
@@ -27,6 +26,9 @@ from zLOG import LOG, DEBUG
 from time import time
 from types import IntType
 from interfaces.IFinder import IFinder
+from Products.CMFCore.utils import getToolByName, _getAuthenticatedUser
+from Products.CPSUtil.text import truncateText
+
 
 class CPSNavigation(ZODBNavigation):
     """Implement Finder interface for a CPS.
@@ -56,6 +58,9 @@ class CPSNavigation(ZODBNavigation):
             prefix=prefix,
             filter=1)
 
+        # XXX: use TranlsationService instead of Localizer?
+        self.locale = kw['context'].Localizer.get_selected_language()
+
         ZODBNavigation.__init__(self, **kw)
         self._cps_tree_fixture()
 
@@ -82,13 +87,32 @@ class CPSNavigation(ZODBNavigation):
             # force root hidding
             self.include_root = 0
 
+    def _localizeNode(self, node):
+        """Update title and description according to current locale
+        """
+        locale = self.locale
+        if node.has_key('l10n_titles') and \
+               node['l10n_titles'].has_key(locale):
+            node['title'] = node['l10n_titles'][locale]
+            if node['title']:
+                title_or_id = node['title']
+            else:
+                title_or_id = node['id']
+            node['title_or_id'] = title_or_id
+            node['short_title'] = truncateText(title_or_id)
+        if node.has_key('l10n_descriptions') and \
+               node['l10n_descriptions'].has_key(locale):
+            node['description'] = node['l10n_descriptions'][locale]
+        return node
+
+
 
     ### Finder interface
     def _getObject(self, uid):
         """uid is an rpath, return a portal_tree node."""
         for n in self._cps_tree:
             if n['rpath'] == uid:
-                return n
+                return self._localizeNode(n)
         if hasattr(self, 'root_uid') and self.root_uid == uid:
             return getattr(self, 'root', None)
         return None
@@ -133,11 +157,11 @@ class CPSNavigation(ZODBNavigation):
             if not obj['nb_children']:
                 return []
             if obj.has_key('children'): # only fake root has children key
-                return [x for x in self._cps_tree if \
+                return [self._localizeNode(x) for x in self._cps_tree if \
                         x['rpath'] in obj['children']]
             children_prefix = obj['rpath'] + '/'
             children_depth = obj['depth'] + 1
-            return [x for x in self._cps_tree if \
+            return [self._localizeNode(x) for x in self._cps_tree if \
                     x['depth'] == children_depth and \
                     x['rpath'].startswith(children_prefix)]
 
