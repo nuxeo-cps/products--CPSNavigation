@@ -20,7 +20,7 @@
 from Interface import Interface
 
 
-class Finder(Interface):
+class IFinder(Interface):
     """
     General interface to implement a Finder.
 
