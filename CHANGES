@@ -5,6 +5,7 @@ New features:
 ~~~~~~~~~~~~~
 - search mode first implementation
 - adding an installer
+- new CPSDirectoryNavigation
 Bug fixes:
 ~~~~~~~~~~
 -
