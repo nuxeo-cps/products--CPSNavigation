@@ -47,7 +47,7 @@
 <!-- ============================================================ -->
 <!-- this is a nav/detail/selection table you should define
   a root_uid which is a cps tree name like workspaces or sections -->
-<metal:block define-macro="folder_navigation"
+<metal:block define-macro="cps_navigation"
   tal:define="input_id request/input_id|nothing;
               root_uid root_uid|nothing;
               res python:here.getNavigation(finder='cps',

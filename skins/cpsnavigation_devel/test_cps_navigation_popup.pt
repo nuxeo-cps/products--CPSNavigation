@@ -7,7 +7,7 @@
      function popup_nav(destId) {
        var args
        args='?input_id='+destId;
-       popup = window.open('popup_folder_navigation'+args, 'Finder', 'toolbar=0, scrollbars=0, location=1, statusbar=0, menubar=1, resizable=0, dependent=1, width=640, height=480')
+       popup = window.open('popup_cps_navigation'+args, 'Finder', 'toolbar=0, scrollbars=0, location=1, statusbar=0, menubar=1, resizable=0, dependent=1, width=640, height=480')
        if(!popup.opener)
          popup.opener = window;
        return false;
