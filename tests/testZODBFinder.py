@@ -52,9 +52,10 @@ class TestZODBFinder(ZopeTestCase):
     def test_hasChildren_01(self):
         self.assert_(self.nav._hasChildren(self.portal))
 
-    def test_getParent_01(self):
-        self.assertEqual(self.nav._getParent(self.portal.Members),
-                         self.portal)
+    def test_getParentUid_01(self):
+        current_uid = self.nav._getUid(self.portal.Members)
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, 'testsite', parent_uid)
 
 
 

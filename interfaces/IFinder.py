@@ -34,7 +34,9 @@ class IFinder(Interface):
         Return None if uid not found."""
 
     def _getUid(obj):
-        """Return the unique identifier."""
+        """Return the unique identifier.
+
+        Return None if object not found."""
 
     def _isNode(obj):
         """True if obj is a node, 0 for a leaf.
@@ -55,9 +57,8 @@ class IFinder(Interface):
         If no children return [].
         """
 
-    def _getParent(obj):
-        """Return the parent of obj.
+    def _getParentUid(uid):
+        """Return the parent uid of uid.
 
         If obj has no parent return None.
-        If obj is not known this raise a KeyError.
         """

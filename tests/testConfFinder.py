@@ -67,40 +67,36 @@ contents=leaf_4|leaf_5
     def test_isNode_04(self):
         self.assertEqual(self.nav._isNode(DC('leaf_3')), 0)
 
-    def test_getParent_01(self):
-        current = DC('node_1')
-        parent = self.nav._getParent(current)
-        self.assertEqual(parent, DC('root'), parent)
+    def test_getParentUid_01(self):
+        current_uid = 'node_1'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, 'root', parent_uid)
 
-    def test_getParent_02(self):
-        current = DC('leaf_4')
-        parent = self.nav._getParent(current)
-        self.assertEqual(parent, DC('node_3'), parent)
+    def test_getParentUid_02(self):
+        current_uid = 'leaf_4'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, 'node_3', parent_uid)
 
-    def test_getParent_03(self):
-        current = DC('root')
-        parent = self.nav._getParent(current)
-        self.assertEqual(parent, None, parent)
+    def test_getParentUid_03(self):
+        current_uid = 'root'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, None, parent_uid)
 
-    def test_getParent_04(self):
-        current = DC('leaf_1')
-        parent = self.nav._getParent(current)
-        self.assertEqual(parent, DC('root'), parent)
+    def test_getParentUid_04(self):
+        current_uid = 'leaf_1'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, 'root', parent_uid)
 
-    def test_getParent_05(self):
-        current = DC('foo')
-        try:
-            parent = self.nav._getParent(current)
-        except KeyError:
-            pass
-        else:
-            self.assert_(0, 'expecting KeyError exception')
+    def test_getParentUid_05(self):
+        current_uid = 'foo'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, None, parent_uid)
 
-    def test_getParent_06(self):
-        current = DC('leaf_3')
-        parent = self.nav._getParent(current)
-        self.assertEqual(parent, DC('node_2'), parent)
-    
+    def test_getParentUid_06(self):
+        current_uid = 'leaf_3'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, 'node_2', parent_uid)
+
 
     def test_getChildren_01(self):
         self.assertEqual(self.nav._getChildren(DC('root')),
