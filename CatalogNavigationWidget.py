@@ -54,7 +54,9 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
          'label': 'Schema for configuration options'},
         {'id': 'is_editable_option', 'type': 'boolean', 'mode': 'w',
          'label': 'Enable to edit option'},
-
+        {'id': 'preprocess_method', 'type': 'string', 'mode': 'w',
+         'label': 'this enable to use a method to customize args passed'
+         'to CatalogNavigation'},
         )
     render_method = 'widget_catalognavigationselect_render'
     popup_title = 'Catalog Navigation Popup'
@@ -66,6 +68,7 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
     layout_option = 'navigation_option'
     schema_option = 'navigation_option'
     is_editable_option = 0
+    preprocess_method = None
 
     def prepare(self, datastructure, **kw):
         """Prepare datastructure from datamodel."""
@@ -102,10 +105,7 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
             raise RuntimeError("Unknown Render Method %s for widget type %s"
                                % (render_method, self.getId()))
         value = datastructure[self.getWidgetId()]
-        obj = None
-        if value:
-            obj = self.restrictedTraverse(value)
-        return meth(mode=mode, value=value, obj=obj)
+        return meth(mode=mode, value=value)
 
 InitializeClass(CatalogNavigationSelectWidget)
 
