@@ -1,0 +1,29 @@
+Goals
+
+  Revision: $Id$
+
+  Make it very easy to create a kind of Explorer for:
+
+    - Documents
+      - using portal_tree for folders and documents
+
+    - All Vocabularies
+      - Hierarchy vocabulary
+
+    - Directories
+      - acl_users
+      - ldap
+
+  What is an explorer ?
+
+    Assuming that a node is a container and a leaf is not.
+
+    An Explorer contains 2 part:
+
+      - the left part display hierarchy of node using a tree, the
+        path to the selected node is expanded (display all children of
+        parents of the selected node)
+
+      - the right part display a listing of the content of the selected node
+        it may display either nodes and leaves, only nodes or only leaves.
+        this part should handle filtering, sorting and batching
