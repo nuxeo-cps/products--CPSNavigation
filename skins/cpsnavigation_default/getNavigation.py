@@ -39,7 +39,7 @@ elif finder == 'zodb':
                          batch_start=b_start,
                          )
 elif finder == 'ldap':
-    root_uid = 'o=gouv,c=fr'
+    root_uid = 'ou=culture,o=gouv,c=fr' #'o=gouv,c=fr'
     current_uid = REQUEST.get('current_uid', root_uid)
     nav = LDAPDirectoryNavigation(
         root_uid=root_uid,
