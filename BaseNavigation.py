@@ -116,6 +116,12 @@ class Navigation:
             if is_last_child:
                 lines[-1] = 0
             lv_ = lv
+            if node.get('is_open'):
+                node['state'] = 'open'
+            elif node.get('has_children'):
+                node['state'] = 'closed'
+            else:
+                node['state'] = 'node'
 
         return tree
 
