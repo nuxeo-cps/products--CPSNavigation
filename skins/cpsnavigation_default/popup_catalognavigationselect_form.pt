@@ -19,7 +19,7 @@
 
 <div class="tabs">
   <a tal:attributes="href python:'%s?%s' % (
-    request['URL'], mq(request.form, display_mode='tree'));
+    request['URL'], mq(display_mode='tree'));
     class python:test(res['display_mode'] == 'tree', 'selected', nothing);"
     i18n:translate="cpsnav_tree"
     >Navigation</a>
