@@ -1,7 +1,6 @@
 <tal:block define="emptybody python:1">
 <metal:block use-macro="here/main_template/macros/master">
 <metal:block fill-slot="body" tal:define="root_uid string:sections">
-  <h1>test cps nav</h1>
   <metal:block use-macro="here/navigation_lib/macros/cps_navigation">
     <metal:block fill-slot="action">
 
@@ -15,7 +14,17 @@ function updateParent() {
   self.close();
 }
   -->' />
-
+  <div id="divselection" style="display:none">
+  <tal:block repeat="item selection">
+    <div>
+      <input name="rpath:list" type="checkbox"
+        checked="checked" class="noborder"
+        tal:attributes="value item/uid">
+      <img tal:replace="structure item/img_tag">&nbsp;
+      <tal:block replace="item/title_or_id" />
+    </div>
+  </tal:block>
+  </div>
        <input type="submit" class="standalone" value="XXXXXX"
           onclick="updateParent();"
           i18n:attributes="value">

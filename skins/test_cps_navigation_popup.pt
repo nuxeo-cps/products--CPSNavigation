@@ -4,9 +4,9 @@
 <metal:block fill-slot="head_slot">
   <script type="text/javascript">
   <!--
-     function popup_nav(destId) {
+     function popup_nav(destId, title) {
        var args
-       args='?input_id='+destId;
+       args='?input_id='+destId+'&title='+escape(title);
        popup = window.open('popup_cps_navigation'+args, 'Finder', 'toolbar=0, scrollbars=0, location=1, statusbar=0, menubar=1, resizable=0, dependent=1, width=640, height=480')
        if(!popup.opener)
          popup.opener = window;
