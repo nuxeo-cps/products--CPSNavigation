@@ -5,7 +5,7 @@ if REQUEST is not None:
     kw.update(REQUEST.form)
 
 def getMapFromUid(uid, type):
-    if type == 'folder':
+    if type == 'cps':
         obj = context.restrictedTraverse(uid)
         return {'uid': uid,
                 'title_or_id': obj.title_or_id,
@@ -21,7 +21,7 @@ def getMapFromUid(uid, type):
         # XXX return default for map or ldap without vocabulary ?
         pass
 
-type = kw.get('type', 'folder')
+type = kw.get('type', 'cps')
 root_uid = kw.get('root_uid', 'sections')
 session_key = 'CPS_SELECTION_%s_%s' % (type, root_uid)
 selection = REQUEST.SESSION.get(session_key, [])

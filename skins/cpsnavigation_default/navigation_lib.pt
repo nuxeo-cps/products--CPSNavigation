@@ -45,24 +45,24 @@
 </metal:block>
 
 <!-- ============================================================ -->
-<!-- folder -->
-<metal:block define-macro="render_node_folder">
+<!-- cps -->
+<metal:block define-macro="render_node_cps">
   <tal:block replace="structure node/object/short_title" />
 </metal:block>
 
-<metal:block define-macro="render_listing_header_multi_select_folder">
+<metal:block define-macro="render_listing_header_multi_select_cps">
   <input name="uids:list" type="checkbox" class="noborder"
     tal:attributes="value listing_info/current_uid">
   <tal:block replace="listing_info/current/title_or_id|nothing" />
 </metal:block>
 
-<metal:block define-macro="render_listing_header_folder">
+<metal:block define-macro="render_listing_header_cps">
   <input name="uid" type="radio" class="noborder" checked="checked"
     tal:attributes="value listing_info/current_uid">
   <tal:block replace="listing_info/current/title_or_id|nothing" />
 </metal:block>
 
-<metal:block define-macro="render_listing_item_multi_select_folder"
+<metal:block define-macro="render_listing_item_multi_select_cps"
   tal:define="doc item/getContent;
   item_desc doc/description;
   item_uid python: utool.getRelativeUrl(item);">
@@ -77,7 +77,7 @@
   </a>
 </metal:block>
 
-<metal:block define-macro="render_listing_item_folder"
+<metal:block define-macro="render_listing_item_cps"
   tal:define="doc item/getContent;
   item_desc doc/description;
   item_uid python: utool.getRelativeUrl(item);">
@@ -93,7 +93,7 @@
   </a>
 </metal:block>
 
-<metal:block define-macro="render_selection_folder">
+<metal:block define-macro="render_selection_cps">
   <img tal:replace="structure item/img_tag">&nbsp;
   <tal:block replace="item/title_or_id" />
 </metal:block>
