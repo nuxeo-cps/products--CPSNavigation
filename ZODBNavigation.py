@@ -36,6 +36,13 @@ class ZODBNavigation(BaseNavigation):
     def __init__(self, **kw):
         if not kw.get('context'):
             raise KeyError, "No context provided."
+        if not kw.get('current_uid') and not kw.get('root_uid'):
+            # use the context
+            kw['current_uid'] = kw['context'].absolute_url(1)
+        if not kw.get('current_uid') and kw.get('root_uid'):
+            kw['current_uid'] = kw['root_uid']
+        if kw.get('current_uid') and not kw.get('root_uid'):
+            kw['root_uid'] = kw['current_uid'].split('/')[0]
         setattr(self, 'context', kw['context'])
         BaseNavigation.__init__(self, **kw)
 
