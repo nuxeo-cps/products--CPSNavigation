@@ -310,7 +310,7 @@ not found' % display_attr)" />
   <tal:block repeat="item selection">
     <div>
       <input name="selected_uids:list" type="checkbox" class="noborder"
-        tal:attributes="value item/uid">
+        checked="checked" tal:attributes="value item/uid">
         <metal:block use-macro="python:path('here/navigation_lib/macros/render_selection_%s'%type)" />
     </div>
   </tal:block>
