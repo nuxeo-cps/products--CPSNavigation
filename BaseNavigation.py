@@ -35,6 +35,7 @@ class BaseNavigation:
     batch_start = 0
     batch_orphan = 0
     include_root = 1
+    expand_all = 0
 
     debug = 1
 
@@ -93,7 +94,7 @@ class BaseNavigation:
                 }
         if self.debug > 1:
             LOG('BaseNavigation._exploreNode', DEBUG, str(node))
-        if obj_uid not in path:
+        if not self.expand_all and obj_uid not in path:
             if self._isNode(obj) and \
                self._hasChildren(obj, no_leaves=1):
                 node['has_children'] = 1
@@ -106,6 +107,8 @@ class BaseNavigation:
             children = self._filter(children, mode='tree')
             children = self._sort(children, mode='tree')
             node['is_open'] = 1
+            if self.expand_all and obj_uid not in path:
+                node['is_open'] = 0
             node['children'] = children
             if len(children):
                 node['has_children'] = 1
