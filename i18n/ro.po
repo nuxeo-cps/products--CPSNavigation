@@ -1,23 +1,53 @@
+# translation of ro.po to 
 # ##########################################################
 # ################# DON'T EDIT THIS FILE! ##################
 # ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: default\n"
+"Project-Id-Version: ro\n"
 "POT-Creation-Date: 2004-04-29 11:12default\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Your Name <your@email>\n"
-"Language-Team: Name <email>\n"
+"PO-Revision-Date: 2005-03-30 11:25+0300\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-code: ro\n"
 "Language-name: Romanian\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #.   <span content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')" class="legend">Search result</span>
@@ -29,12 +59,12 @@ msgstr ""
 #.   <input value="button_reset" class="context" name="option_reset" type="submit" />
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
-msgstr ""
+msgstr "Revenire la configuratia initiala"
 
 #.   <span>here</span>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_current_uid"
-msgstr ""
+msgstr "Dosarul curent"
 
 #.   <a attributes="href python:'%s?%s' % (
 #.       request['URL'], mq(display_mode='option'));
@@ -42,7 +72,7 @@ msgstr ""
 #.   <span class="legend">option</span>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_option"
-msgstr ""
+msgstr "Optiuni"
 
 #.   <a attributes="href python:'%s?%s' % (
 #.       request['URL'], mq(display_mode='search'));
@@ -50,12 +80,12 @@ msgstr ""
 #.   <span class="legend">Search</span>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search"
-msgstr ""
+msgstr "Cauta"
 
 #.   <div condition="python:res['status_form'] == 'invalid'" class="message">invalid search</div>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
-msgstr ""
+msgstr "Cerere invalida"
 
 #.   <a attributes="href python:'%s?%s' % (
 #.       request['URL'], mq(request.form, display_mode='tree'));
@@ -63,76 +93,77 @@ msgstr ""
 #.   <span class="legend">navigation</span>
 #: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_tree"
-msgstr ""
+msgstr "Navigare"
 
 #.   <th width="33%" class="even">label_detail</th>
 #: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_detail"
-msgstr ""
+msgstr "Continut"
 
 #.   <th condition="not:search" width="33%" class="even">label_navigation</th>
 #: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_navigation"
-msgstr ""
+msgstr "Navigare"
 
 #.   <span />
 #: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_no_results"
-msgstr ""
+msgstr "Nici un rezultat."
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
 #: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_selection"
-msgstr ""
+msgstr "Selectie"
 
 msgid "cpsnav_option_display_mode"
-msgstr ""
+msgstr "Afisare prin modul initial"
 
 msgid "cpsnav_option_include_root"
-msgstr ""
+msgstr "Afisare care include si radacina "
 
 msgid "cpsnav_option_sort_tree_by"
-msgstr ""
+msgstr "Navigare ordonata prin"
 
 msgid "cpsnav_option_sort_listing_by"
-msgstr ""
+msgstr "Listare ordonata prin"
 
 msgid "cpsnav_option_batch_size"
-msgstr ""
+msgstr "Numar de documente pe pagina"
 
 msgid "cpsnav_option_no_node"
-msgstr ""
+msgstr "Ascunde dosarele din listare"
 
 msgid "cpsnav_option_filter_tree_ptypes"
-msgstr ""
+msgstr "Filtreaza tipurile de dosare din navigare"
 
 msgid "cpsnav_option_sort_tree_direction"
-msgstr ""
+msgstr "Directia de sortare pentru navigare"
 
 msgid "cpsnav_option_sort_listing_direction"
-msgstr ""
+msgstr "Directia de sortare pentru listare"
 
 msgid "cpsnav_option_filter_listing_ptypes"
-msgstr ""
+msgstr "Filtreaza tipurile de documente in listare"
 
 msgid "cpsnav_search_expand_all"
-msgstr ""
+msgstr "Extinde toata arborescenta pentru navigare"
 
 msgid "cpsnav_search_scope"
-msgstr ""
+msgstr "Scopul cautarii"
 
 msgid "cpsnav_search_scope_entire_site"
-msgstr ""
+msgstr "intreg site-ul"
 
 msgid "cpsnav_search_scope_current_location"
-msgstr ""
+msgstr "in dosarul curent"
 
 msgid "cpsnav_option_current_uid"
-msgstr ""
+msgstr "Dosarul curent initial"
 
 msgid "cpsnav_content"
-msgstr ""
+msgstr "Continutul dosarului"
 
 msgid "cpsnav_search_result"
-msgstr ""
+msgstr "Rezultatul cautarii"
+
