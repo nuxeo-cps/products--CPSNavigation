@@ -104,8 +104,8 @@ class CatalogNavigation(BaseNavigation):
             # xxx TODO impl
             pass
 
-        if uid == self.root_uid:
-            return self._findRoots(mode=mode)
+        if uid == self.root_uid and mode == 'tree':
+            return self._findRoots()
         return self._search(mode=mode)
 
     def _getParentUid(self, uid):
@@ -113,12 +113,12 @@ class CatalogNavigation(BaseNavigation):
         return '/'.join(uid.split('/')[:-1])
 
     ###
-    def _findRoots(self, mode):
+    def _findRoots(self):
         # the goal is to dicover roots that are not direct children
         # of root_uid
 
         # first get visible children
-        children = self._search(mode=mode)
+        children = self._search(mode='tree')
 
         # then get all children
         query = self._buildQuery(getattr(self, 'query', {}),
@@ -133,6 +133,9 @@ class CatalogNavigation(BaseNavigation):
             # all children are visible
             return children
 
+        # we are building the children list
+        # assuming that the root is not accessible
+        self.include_root = 0
         depth_min = len(self.root_uid.split('/')) + 2
         depth_max = depth_min + self.find_root_depth_max - 2
 
@@ -170,7 +173,6 @@ class CatalogNavigation(BaseNavigation):
 
 
     ### override Navigation
-
     def _buildQuery(self, query_in, portal_path, mode='listing',
                     viewable=1):
         query = {}
