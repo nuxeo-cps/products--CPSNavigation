@@ -35,8 +35,9 @@ if kw.has_key('del_items_from_selection'):
 if kw.has_key('add_items_to_selection'):
     uids = kw.get('uids', [])
     selection = REQUEST.SESSION.get(session_key, [])
-    selection.extend(uids)
-    # XXX remove doublon
+    for uid in uids:
+        if uid not in selection:
+            selection.append(uid)
     REQUEST.SESSION[session_key] = selection
     current_uid = kw.get('current_uid')
     REQUEST.RESPONSE.redirect(REQUEST.URL1 +
