@@ -174,10 +174,10 @@ class CPSNavigation(ZODBNavigation):
                 elif k == 'folder_prefix' and not query_in.has_key('path'):
                     query['path'] = portal_path + v
                 elif k == 'start_date' and not query_in.has_key('start'):
-                    query['start'] = {'query' : start,
+                    query['start'] = {'query' : v,
                                       'range' : 'min'}
                 elif k == 'end_date' and not query_in.has_key('end'):
-                    query['end'] = {'query' : start,
+                    query['end'] = {'query' : v,
                                     'range' : 'max'}
                 else:
                     query[k] = v
