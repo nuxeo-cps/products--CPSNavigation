@@ -42,6 +42,26 @@ class CPSNavigation(ZODBNavigation):
         ptrees = getToolByName(kw['context'], 'portal_trees')
         self._cps_tree = ptrees[kw['root_uid']].getList(filter=1)
         ZODBNavigation.__init__(self, **kw)
+        self._cps_tree_fixture()
+
+
+    def _cps_tree_fixture(self):
+        if self.root is None:
+            # you don't have access to root_uid:
+            # build a fake root object linking to available children
+            items = self._cps_tree
+            local_rpath = items[0]['rpath'] + '/'
+            root_children = []
+            for item in items[1:]:
+                if not (item['rpath'] + '/').startswith(local_rpath):
+                    local_rpath = item['rpath'] + '/'
+                    root_children.append(item['rpath'])
+            self.root =  {'rpath': self.root_uid,
+                          'nb_children': len(root_children),
+                          'children': root_children}
+            # force root hidding
+            self.include_root = 0
+
 
     ### Finder interface
     def _getObject(self, uid):
@@ -49,6 +69,8 @@ class CPSNavigation(ZODBNavigation):
         for n in self._cps_tree:
             if n['rpath'] == uid:
                 return n
+        if hasattr(self, 'root_uid') and self.root_uid == uid:
+            return getattr(self, 'root', None)
         return None
 
     def _getUid(self, obj):
@@ -69,11 +91,17 @@ class CPSNavigation(ZODBNavigation):
     def _getChildren(self, obj, no_nodes=0, no_leaves=0, mode='tree'):
         """obj is either a real object for listing or a tree_node when
         called by getTree."""
+        if not obj:
+            return []
+        
         if mode == 'tree':
             # we are called by a getTree so we use portal tree
             # we assume we want nodes only
             if not obj['nb_children']:
                 return []
+            if obj.has_key('children'): # only fake root has children key
+                return [x for x in self._cps_tree if \
+                        x['rpath'] in obj['children']]
             children_prefix = obj['rpath'] + '/'
             children_depth = obj['depth'] + 1
             return [x for x in self._cps_tree if \
