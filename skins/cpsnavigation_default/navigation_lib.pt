@@ -50,7 +50,15 @@
   <tal:block replace="node/object/title_or_id" />
 </metal:block>
 
+<metal:block define-macro="render_listing_header_multi_select_folder">
+  <input name="uids:list" type="checkbox" class="noborder"
+    tal:attributes="value listing_info/current_uid">
+  <tal:block replace="listing_info/current/title_or_id|nothing" />
+</metal:block>
+
 <metal:block define-macro="render_listing_header_folder">
+  <input name="uid" type="radio" class="noborder" checked="checked"
+    tal:attributes="value listing_info/current_uid">
   <tal:block replace="listing_info/current/title_or_id|nothing" />
 </metal:block>
 
@@ -98,7 +106,18 @@
 found!'% display_attr])[0]" />
 </metal:block>
 
-<metal:block define-macro="render_listing_header_ldap">
+<metal:block define-macro="render_listing_header_ldap"
+  tal:define="item_desc python: listing_info['current'].get(display_attr, ['%s
+not found' % display_attr])[0];
+              item_uid listing_info/current_uid" >
+  <input name="uid" type="radio" class="noborder" checked="checked"
+    tal:attributes="value item_uid; id item_desc">
+  <tal:block replace="item_desc" />
+</metal:block>
+
+<metal:block define-macro="render_listing_header_multi_select_ldap">
+  <input name="uids:list" type="checkbox" class="noborder"
+        tal:attributes="value listing_info/current_uid">
   <tal:block replace="python: listing_info['current'].get(display_attr, ['%s
 not found' % display_attr])[0]" />
 </metal:block>
@@ -185,10 +204,8 @@ not found' % display_attr])[0]" />
     mq(request.form, current_uid=listing_info['parent_uid']));">
   <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
-  <h4><input name="uids:list" type="checkbox" class="noborder"
-        tal:attributes="value listing_info/current_uid">
-    <metal:block use-macro="python:path('here/navigation_lib/macros/render_listing_header_%s'%type)" />
-
+  <h4>
+    <metal:block use-macro="python:path('here/navigation_lib/macros/render_listing_header_multi_select_%s'%type)" />
   </h4>
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />
 
@@ -286,10 +303,8 @@ not found' % display_attr])[0]" />
     mq(request.form, current_uid=listing_info['parent_uid']));">
   <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
-  <h4><input name="uid" type="radio" class="noborder" checked="checked"
-        tal:attributes="value listing_info/current_uid">
+  <h4>
     <metal:block use-macro="python:path('here/navigation_lib/macros/render_listing_header_%s'%type)" />
-
   </h4>
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />
 
