@@ -1,6 +1,6 @@
 ZODB Requires:
 ~~~~~~~~~~~~~~
--
+- require cpsdefault po
 New features:
 ~~~~~~~~~~~~~
 - search mode first implementation

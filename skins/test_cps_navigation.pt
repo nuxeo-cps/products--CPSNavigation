@@ -4,7 +4,7 @@
   <h1>test cps nav</h1>
   <metal:block use-macro="here/navigation_lib/macros/folder_navigation">
     <metal:block fill-slot="action">
-       <input type="submit" class="standalone" value="XXXXXX"
+       <input type="submit" class="standalone" value="button_update"
           i18n:attributes="value">
 
     </metal:block>
