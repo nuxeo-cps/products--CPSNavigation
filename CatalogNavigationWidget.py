@@ -68,7 +68,7 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
     layout_option = 'navigation_option'
     schema_option = 'navigation_option'
     is_editable_option = 0
-    preprocess_method = None
+    preprocess_method = ''
 
     def prepare(self, datastructure, **kw):
         """Prepare datastructure from datamodel."""
