@@ -21,6 +21,8 @@ from AccessControl import ModuleSecurityInfo
 from Products.PythonScripts.Utility import allow_class
 from Products.CMFCore.DirectoryView import registerDirectory
 
+import CatalogNavigationWidget
+
 registerDirectory('skins', globals())
 
 from ConfNavigation import ConfNavigation
