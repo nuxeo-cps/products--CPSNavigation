@@ -5,8 +5,10 @@ from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
 from Products.CPSNavigation.LDAPDirectoryNavigation import \
      LDAPDirectoryNavigation
+from Products.CPSNavigation.CPSDirectoryNavigation import \
+     CPSDirectoryNavigation
 
-
+type = finder
 if finder == 'cps':
     current_uid = REQUEST.get('current_uid')
     if not current_uid:
@@ -41,23 +43,36 @@ elif finder == 'zodb':
                          batch_size=5,
                          request_form=REQUEST.form,
                          )
-elif finder == 'ldap':
+elif finder == 'cpsdirectory':
     current_uid = REQUEST.get('current_uid')
     dir_name = root_uid
     dir = getattr(context.portal_directories, dir_name)
-    root_uid = dir.ldap_base
-    if not current_uid:
-        current_uid = root_uid
-    current_uid = REQUEST.get('current_uid', root_uid)
-    nav = LDAPDirectoryNavigation(
-        root_uid=root_uid,
-        current_uid=current_uid,
-        context=context,
-        dir_name=dir_name,
-        include_root=0,
-        batch_size=15,
-        request_form=REQUEST.form,
-        )
+    if hasattr(dir, 'ldap_base'):
+        type = 'ldap'
+        root_uid = dir.ldap_base
+        if not current_uid:
+            current_uid = REQUEST.get('current_uid', root_uid)
+        nav = LDAPDirectoryNavigation(
+            root_uid=root_uid,
+            current_uid=current_uid,
+            context=context,
+            dir_name=dir_name,
+            include_root=0,
+            batch_size=15,
+            request_form=REQUEST.form,
+            )
+    else:
+        type = 'map'
+        nav = CPSDirectoryNavigation(
+            root_uid=dir_name,
+            current_uid=dir_name,
+            context=context,
+            dir_name=dir_name,
+            include_root=0,
+            batch_size=15,
+            request_form=REQUEST.form,
+            )
+
 
 elif finder == 'conf':
     file_content = """
@@ -78,4 +93,4 @@ tree = None
 if not REQUEST.get('search'):
     tree = nav.getTree()
 listing, listing_info, batch_info = nav.getListing()
-return tree, listing, batch_info, listing_info
+return tree, listing, batch_info, listing_info, type
