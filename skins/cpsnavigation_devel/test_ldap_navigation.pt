@@ -19,7 +19,7 @@
   <a tal:attributes="
     class python:test(node['is_current'], 'selected', nothing);
     href python:'%s?%s'%(request['URL'], mq(current_uid=node['object']['dn']));"
-    tal:content="node/object/ou" /><br>
+    tal:content="python: node['object']['ou'][0]" /><br>
 </tal:block>
 </div>
 </td><td valign="top">
@@ -34,7 +34,7 @@
   </div>
   <tal:block repeat="item listing">
     <div>
-      <span tal:content="item/ou" />
+      <span tal:content="python: item['ou'][0]" />
     </div>
     <!-- tal:block define="info python:here.getContentInfo(item, level=1);">
       <metal:block use-macro="here/content_lib/macros/info_detail" />
