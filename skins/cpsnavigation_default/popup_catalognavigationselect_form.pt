@@ -13,9 +13,16 @@
   batch_info res/listing_batch_info;
   mq nocall:modules/ZTUtils/make_query;">
 <div class="box">
-
+<tal:block condition="not:res/is_i18n">
 <h1 tal:content="res/title">CatalogNavigation</h1>
-<div class="description" tal:content="res/description">A Catalog Navigation example</div>
+<div class="description" tal:content="res/description">A Catalog Navigation
+example</div>
+</tal:block>
+<tal:block condition="res/is_i18n">
+<h1 i18n:translate="" tal:content="res/title">CatalogNavigation</h1>
+<div class="description" i18n:translate="" tal:content="res/description">A Catalog Navigation
+example</div>
+</tal:block>
 
 <div class="tabs">
   <a tal:attributes="href python:'%s?%s' % (
