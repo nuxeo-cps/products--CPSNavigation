@@ -25,10 +25,9 @@ function updateParent() {
     </div>
   </tal:block>
   </div>
-       <input type="submit" class="standalone" value="XXXXXX"
-          onclick="updateParent();"
-          i18n:attributes="value">
 
+   <input type="submit" class="standalone" value="button_update"
+    onclick="updateParent();" i18n:attributes="value">
     </metal:block>
   </metal:block>
 </metal:block>
