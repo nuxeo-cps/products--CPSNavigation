@@ -139,6 +139,11 @@ class CPSNavigation(ZODBNavigation):
     def _filter(self, objs, mode='tree'):
         if mode == 'listing' and not self.search:
             return ZODBNavigation._filter(self, objs, mode)
+        elif mode == 'tree':
+            if 'filter_tree_ptypes' in self._param_ids and \
+                   self.filter_tree_ptypes:
+                objs = [obj for obj in objs
+                        if obj['portal_type'] in self.filter_tree_ptypes]
         return objs
 
     def _sort(self, objs, mode='tree'):
