@@ -91,19 +91,34 @@
 </tal:block>
 
 <tal:block condition="python: res['display_mode'] != 'option' and
-    res['listing_batch_info'].get('length')">
+    res['listing_batch_info'].get('length') or not res['listing_info'].get('hide_current')">
 <div style="margin-left: 23em;">
-  <form name="selectionForm">
-  <div class="group">
+  <form name="selectionForm" class="group">
   <span class="legend" tal:content="python:test(res['status_form'] ==
     'valid', 'cpsnav_search_result', 'cpsnav_content')"
     i18n:translate="">Search result</span>
+  <tal:block condition="not:res/listing_info/hide_current">
+    <tal:block define="item res/listing_info/current">
+    <h3 style="margin-bottom: 1em">
+      <input name="selectionId" type="radio" class="noborder"
+        value="render00" id="sel00" checked="checked" />
+      <label for="sel00">
+        <metal:block use-macro="python: path(res['popup_view_macro_path'])" />
+      </label>
+    </h3>
+    <div style="display: none"
+      tal:define="input_id res/input_id" id="render00">
+      <metal:block use-macro="python: path(res['popup_edit_macro_path'])" />
+    </div>
+    </tal:block>
+  </tal:block>
+
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />
   <tal:block repeat="item res/listing">
     <div tal:define="item_number repeat/item/number">
       <input name="selectionId" type="radio" class="noborder"
         tal:attributes="value string:render${item_number};
-          id string:sel${item_number}">
+          id string:sel${item_number}" />
       <label tal:attributes="for string:sel${item_number}">
         <metal:block use-macro="python: path(res['popup_view_macro_path'])" />
       </label>
@@ -130,7 +145,6 @@ function updateParent() {
   -->' />
    <input type="submit" class="standalone" value="button_update"
     onclick="updateParent();" i18n:attributes="value" />
-  </div>
   </form>
 </div>
 </tal:block>
