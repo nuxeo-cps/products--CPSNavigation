@@ -41,6 +41,7 @@ navigation_search_layout = {
                 'is_i18n': 1,
                 'label_edit': 'label_subject',
                 'vocabulary': 'subject_voc',
+                'translated': 0,
                 'size': 3,
                 },
             },
@@ -137,6 +138,7 @@ navigation_option_layout = {
                 'is_i18n': 1,
                 'label_edit': 'cpsnav_option_filter_tree_ptypes',
                 'vocabulary': 'navigation_filter_tree_ptypes',
+                'translated': 0,
                 'size': 10,
                 },
             },
@@ -147,6 +149,7 @@ navigation_option_layout = {
                 'is_i18n': 1,
                 'label_edit': 'cpsnav_option_filter_listing_ptypes',
                 'vocabulary': 'navigation_filter_listing_ptypes',
+                'translated': 0,
                 'size': 10,
                 },
             },
@@ -157,6 +160,7 @@ navigation_option_layout = {
                 'is_i18n': 1,
                 'label_edit': 'cpsnav_option_sort_tree_by',
                 'vocabulary': 'navigation_sort_tree_by',
+                'translated': 0,
                 },
             },
         'expand_all': {
@@ -174,6 +178,7 @@ navigation_option_layout = {
                 'is_i18n': 1,
                 'label_edit': 'cpsnav_option_sort_listing_by',
                 'vocabulary': 'navigation_sort_listing_by',
+                'translated': 0,
                 },
             },
         'sort_listing_direction': {
@@ -183,6 +188,7 @@ navigation_option_layout = {
                 'is_i18n': 1,
                 'label_edit': 'cpsnav_option_sort_listing_direction',
                 'vocabulary': 'navigation_sort_direction',
+                'translated': 0,
                 },
             },
         'sort_tree_direction': {
@@ -192,6 +198,7 @@ navigation_option_layout = {
                 'is_i18n': 1,
                 'label_edit': 'cpsnav_option_sort_tree_direction',
                 'vocabulary': 'navigation_sort_direction',
+                'translated': 0,
                 },
             },
         'display_mode': {
@@ -201,6 +208,7 @@ navigation_option_layout = {
                 'is_i18n': 1,
                 'label_edit': 'cpsnav_option_display_mode',
                 'vocabulary': 'navigation_display_mode',
+                'translated': 0,
                 },
             },
         },
