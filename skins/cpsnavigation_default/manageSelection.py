@@ -10,14 +10,16 @@ def getMapFromUid(uid, type):
         return {'uid': uid,
                 'title_or_id': obj.title_or_id,
                 'img_tag': context.getImgTag(obj.getIcon())}
-    elif type == 'ldap':
+    elif REQUEST.get('vocabulary'):
         title = uid
         vocabulary_name = REQUEST.get('vocabulary')
-        if vocabulary_name:
-            vocabulary = getattr(context.portal_vocabularies, vocabulary_name)
-            title = vocabulary.get(uid, uid)
+        vocabulary = getattr(context.portal_vocabularies, vocabulary_name)
+        title = vocabulary.get(uid, uid)
         return {'uid': uid,
                 'title': title}
+    else:
+        # XXX return default for map or ldap without vocabulary ?
+        pass
 
 type = kw.get('type', 'folder')
 root_uid = kw.get('root_uid', 'sections')
@@ -44,4 +46,3 @@ res = []
 for s in selection:
     res.append(getMapFromUid(s, type))
 return res
-
