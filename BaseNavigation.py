@@ -21,6 +21,7 @@
 """
 from ZTUtils import Batch
 from types import IntType
+from zLOG import LOG, DEBUG
 
 class BaseNavigation:
     """This is a Base class for other Navigation class.
@@ -35,6 +36,8 @@ class BaseNavigation:
     batch_orphan = 0
     include_root = 1
 
+    debug = 1
+
     def __init__(self, **kw):
         """Init the navigation.
 
@@ -43,12 +46,23 @@ class BaseNavigation:
           current or current_uid - the current position
         """
         kw_keys = kw.keys()
-        assert('current' in kw_keys or 'current_uid' in kw_keys)
-        assert('root' in kw_keys or 'root_uid' in kw_keys)
-        if 'current' not in kw_keys:
-            kw['current'] = self._getObject(kw['current_uid'])
-        if 'root' not in kw_keys:
+        if kw.get('root'):
+            kw['root_uid'] = self._getUid(kw['root'])
+        elif kw.get('root_uid'):
             kw['root'] = self._getObject(kw['root_uid'])
+        else:
+            raise KeyError, "No root or root_uid provided."
+
+        if kw.get('current'):
+            kw['current_uid'] = self._getUid(kw['current'])
+        elif kw.get('current_uid'):
+            kw['current'] = self._getObject(kw['current_uid'])
+        else:
+            kw['current'] = kw['root']
+            kw['current_uid'] = kw['root_uid']
+
+        if not kw['current_uid']:
+            raise KeyError, "current_uid is empty."
         self._setParams(**kw)
 
     def _setParams(self, **kw):
@@ -57,6 +71,8 @@ class BaseNavigation:
         self._param_ids = kw.keys()
         for k, v in kw.items():
             setattr(self, k, v)
+        if self.debug:
+            LOG('BaseNavigation._setParams', DEBUG, str(kw))
 
     def _getParams(self):
         """Return the navigation properties."""
@@ -65,17 +81,16 @@ class BaseNavigation:
             res[k] = getattr(self, k)
         return res
 
-
     def _exploreNode(self, obj, level, is_last_child, path, flat_tree):
         obj_uid = self._getUid(obj)
-#        if not obj_uid:
-#            return
         node = {'uid': obj_uid,
                 'object': obj,
                 'level': level,
                 'is_current': obj == self.current,
                 'is_last_child': is_last_child,
                 }
+        if self.debug > 1:
+            LOG('BaseNavigation._exploreNode', DEBUG, str(node))
         if obj_uid not in path:
             if self._isNode(obj) and \
                self._hasChildren(obj, no_leaves=1):
@@ -85,6 +100,7 @@ class BaseNavigation:
             flat_tree.append(node)
         else:
             children = self._getChildren(obj, no_leaves=1, mode='tree')
+            children = filter(None, children)
             children = self._filter(children, mode='tree')
             children = self._sort(children, mode='tree')
             node['is_open'] = 1
@@ -102,28 +118,32 @@ class BaseNavigation:
                 self._exploreNode(child, level+1, is_last_child,
                                  path, flat_tree)
 
-    def _getParents(self, obj):
-        """Return list of parents from father to the root."""
+    def _getParentUids(self, uid, include_uid=1):
+        """Return a list of parents uids from root to uid.
+
+        uid is append to the list if include_uid"""
         res = []
-        parent = obj
-        while parent and parent != self.root:
-            parent = self._getParent(parent)
-            if parent:
-                res.append(parent)
+        if include_uid:
+            res = [uid]
+        parent_uid = uid
+        while parent_uid and parent_uid != self.root_uid:
+            parent_uid = self._getParentUid(parent_uid)
+            if parent_uid:
+                res.append(parent_uid)
+        res.reverse()
+        if self.debug:
+            LOG('BaseNavigation._getParentUids', DEBUG, 'return : ' + str(res))
 
         return res
 
     def getTree(self):
         """Return a flat Tree structure easily processed in ZPT."""
         # compute the path to current
-        items = self._getParents(self.current)
-        items.reverse()
-        items.append(self.current)
-        path = [self._getUid(item) for item in items]
+        path = self._getParentUids(self.current_uid)
 
         # explore tree using path
         tree = []
-        self._exploreNode(items[0], 0, 0, path, tree)
+        self._exploreNode(self._getObject(path[0]), 0, 0, path, tree)
 
         # compute vertical lines and state of the node
         shift = 0
