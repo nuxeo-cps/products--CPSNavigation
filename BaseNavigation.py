@@ -23,6 +23,7 @@ from ZTUtils import Batch
 from types import IntType
 from zLOG import LOG, DEBUG
 
+
 class BaseNavigation:
     """This is a Base class for other Navigation class.
 
@@ -65,7 +66,7 @@ class BaseNavigation:
             kw['current_uid'] = kw['root_uid']
 
         if not kw['current_uid']:
-            raise KeyError, "current_uid is empty."
+            raise KeyError, "current_uid is empty. %s" % str(kw)
         self._setParams(**kw)
 
     def _setParams(self, **kw):
@@ -125,7 +126,7 @@ class BaseNavigation:
                 else:
                     is_last_child = 0
                 self._exploreNode(child, level+1, is_last_child,
-                                 path, flat_tree)
+                                  path, flat_tree)
 
     def _getParentUids(self, uid, include_uid=1):
         """Return a list of parents uids from root to uid.
@@ -243,7 +244,7 @@ class BaseNavigation:
         if not self.include_root and self.current_uid == self.root_uid:
             hide_current = 1
 
-        if self.request_form.get('search'):
+        if self.search or self.request_form.get('search'):
             parent_uid = parent = None
             hide_current = 1
 
@@ -256,7 +257,7 @@ class BaseNavigation:
 
     def _searchItems(self):
         """Return current children if not in search mode."""
-        if self.request_form.get('search'):
+        if self.search or self.request_form.get('search'):
             return self._search()
 
         return self._getChildren(self.current, no_leaves=self.no_leaves,
@@ -269,7 +270,7 @@ class BaseNavigation:
         res = self._getChildren(self.current, no_leaves=self.no_leaves,
                                 no_nodes=self.no_nodes, mode='listing')
         q_uid = self.request_form.get('query_uid')
-        LOG('XXXX', DEBUG, 'searching %s' % q_uid)
+        LOG('BaseNavigation._search', DEBUG, 'searching %s' % q_uid)
         if q_uid:
             res = [r for r in res if self._getUid(r).find(q_uid) >= 0]
 
@@ -333,6 +334,7 @@ class BaseNavigation:
         children = filter(None, children)
         children = self._filter(children, mode='tree')
         children = self._sort(children, mode='tree')
+
         node['children_uids'] = [self._getUid(child) for child in children]
         dump[1][obj_uid] = node
         dump[0].append(obj_uid)
