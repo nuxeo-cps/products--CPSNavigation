@@ -47,7 +47,13 @@ class CPSNavigation(ZODBNavigation):
         if kw.get('current_uid') and not kw.get('root_uid'):
             kw['root_uid'] = kw['current_uid'].split('/')[0]
         ptrees = getToolByName(kw['context'], 'portal_trees')
-        self._cps_tree = ptrees[kw['root_uid']].getList(filter=1)
+
+        # Prefix for the tree if specified
+        prefix = kw.get('prefix')
+        self._cps_tree = ptrees[kw['root_uid']].getList(
+            prefix=prefix,
+            filter=1)
+
         ZODBNavigation.__init__(self, **kw)
         self._cps_tree_fixture()
 
