@@ -6,7 +6,7 @@
     <strong tal:condition="item/Title"
             tal:content="item/Title" />
     <strong tal:condition="not:item/Title"
-            tal:content="item/id" />
+            tal:content="item/getId" />
   </a>
 </metal:block>
 
