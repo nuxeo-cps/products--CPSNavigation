@@ -111,7 +111,7 @@ nav = CPSNavigation(**kw)
 if display_mode == 'tree':
     res['tree'] = nav.getTree()
 
-#(res['listing'], res['listing_info'],
-# res['listing_batch_info']) = nav.getListing()
+(res['listing'], res['listing_info'],
+ res['listing_batch_info']) = nav.getListing()
 
 return res
