@@ -117,8 +117,8 @@ class CPSNavigation(ZODBNavigation):
 
         # Otherweise, check the proxy_type (folder / folderishdocument)
         if getattr(obj, 'portal_type'):
-            ti = getattr(obj.portal_types, obj.portal_type)
-            if ti.meta_type == 'CPS Flexible Type Information':
+            ti = getattr(obj.portal_types, obj.portal_type, None)
+            if ti is not None and ti.meta_type == 'CPS Flexible Type Information':
                 display = getattr(ti,
                                   'cps_display_as_document_in_listing',
                                   0)
