@@ -83,7 +83,7 @@ class CPSNavigation(ZODBNavigation):
         uid = None
         try:
             uid = obj['rpath']
-        except TypeError, KeyError:
+        except (TypeError, KeyError):
             pass
         return uid
 
