@@ -4,8 +4,8 @@ import unittest
 from Testing.ZopeTestCase import ZopeLite
 
 from Interface.Verify import verifyClass
-from Products.CPSDefault.ConfFinder import ConfFinder, DummyClass as DC
-from Products.CPSDefault.interfaces.Finder import Finder as IFinder
+from Products.CPSNavigation.ConfFinder import ConfFinder, DummyClass as DC
+from Products.CPSNavigation.interfaces.IFinder import IFinder
 
 
 class TestConfFinder(unittest.TestCase):

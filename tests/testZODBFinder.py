@@ -5,25 +5,25 @@ from Testing.ZopeTestCase import ZopeLite, ZopeTestCase, installProduct, app
 
 
 from Interface.Verify import verifyClass
-from Products.CPSDefault.interfaces.Finder import Finder as IFinder
-from Products.CPSDefault.CMFFinder import CMFFinder
+from Products.CPSNavigation.interfaces.IFinder import IFinder
+from Products.CPSNavigation.ZODBFinder import ZODBFinder
 
 installProduct('CMFCore', quiet=1)
 installProduct('CMFDefault', quiet=1)
 installProduct('MailHost', quiet=1)
 
-class TestCMFFinder(ZopeTestCase):
+class TestZODBFinder(ZopeTestCase):
 
     def afterSetUp(self):
         from Products.CMFDefault.Portal import manage_addCMFSite
         id='testsite'
         manage_addCMFSite(self.app, id)
         self.portal = self.app[id]
-        self.finder = CMFFinder()
+        self.finder = ZODBFinder()
         self.finder.setParams(root=self.portal)
 
     def test_interface(self):
-        verifyClass(IFinder, CMFFinder)
+        verifyClass(IFinder, ZODBFinder)
 
     def test_getObject_01(self):
         node = self.finder.getObject('testsite/Members')
@@ -59,7 +59,7 @@ class TestCMFFinder(ZopeTestCase):
 
 
 def test_suite():
-    return unittest.makeSuite(TestCMFFinder)
+    return unittest.makeSuite(TestZODBFinder)
 
 if __name__ == "__main__":
     unittest.main(defaultTest='test_suite')

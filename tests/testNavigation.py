@@ -4,9 +4,8 @@ import unittest
 import os
 from Testing.ZopeTestCase import ZopeLite
 import Products
-from Interface.Verify import verifyClass
-from Products.CPSDefault.ConfFinder import DummyClass as DC, ConfFinder
-from Products.CPSDefault.Navigation import Navigation
+from Products.CPSNavigation.ConfFinder import DummyClass as DC, ConfFinder
+from Products.CPSNavigation.Navigation import Navigation
 
 
 class TestNavigation(unittest.TestCase):
@@ -65,7 +64,7 @@ contents=
         self.assertEqual(tree[3]['uid'], 'node_4', nav.strTree(tree))
 
     def test_tree_10(self):
-        file_name = os.path.join(Products.CPSDefault.__path__[0],
+        file_name = os.path.join(Products.CPSNavigation.__path__[0],
                                  'tests', 'finder.data')
         finder = ConfFinder(file_name=file_name)
 #        current = DC('mci/sections/domaines/informatique')
