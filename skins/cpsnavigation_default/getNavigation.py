@@ -2,6 +2,8 @@
 from Products.CPSNavigation.ConfNavigation import ConfNavigation
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
+from Products.CPSNavigation.LDAPDirectoryNavigation import \
+     LDAPDirectoryNavigation
 
 b_start = REQUEST.get('b_start', 0)
 
@@ -10,7 +12,7 @@ if finder == 'cps':
     nav = CPSNavigation(root_uid='sections',
                         current_uid=current_uid,
                         context=context,
-                        # include_root=0,
+                        include_root=0,
                         # no_nodes=1,
                         # filter_tree_ptypes=('Workspace',),
                         # filter_listing_ptypes=('Link',),
@@ -36,6 +38,19 @@ elif finder == 'zodb':
                          batch_size=5,
                          batch_start=b_start,
                          )
+elif finder == 'ldap':
+    root_uid = 'o=gouv,c=fr'
+    current_uid = REQUEST.get('current_uid', root_uid)
+    nav = LDAPDirectoryNavigation(
+        root_uid=root_uid,
+        current_uid=current_uid,
+        context=context,
+        dir_name='ldap_ou',
+        # include_root=0,
+        batch_size=5,
+        batch_start=b_start,
+        )
+
 elif finder == 'conf':
     file_content = """
 [root]
