@@ -50,8 +50,10 @@ class CPSNavigation(ZODBNavigation):
             # you don't have access to root_uid:
             # build a fake root object linking to available children
             items = self._cps_tree
+            if not items or len(items) == 0:
+                return
             local_rpath = items[0]['rpath'] + '/'
-            root_children = []
+            root_children = [items[0]['rpath']]
             for item in items[1:]:
                 if not (item['rpath'] + '/').startswith(local_rpath):
                     local_rpath = item['rpath'] + '/'
@@ -59,6 +61,9 @@ class CPSNavigation(ZODBNavigation):
             self.root =  {'rpath': self.root_uid,
                           'nb_children': len(root_children),
                           'children': root_children}
+            if self.current_uid == self.root_uid:
+                self.current = items[0]
+                self.current_uid = items[0]['rpath']
             # force root hidding
             self.include_root = 0
 
