@@ -38,6 +38,7 @@ class CatalogNavigation(BaseNavigation):
     sort_limit = 100
     find_root_depth_max = 4
     node_depth_max = 0
+    _search_count = 0
 
     def __init__(self, **kw):
         if not kw.get('context'):
@@ -92,6 +93,11 @@ class CatalogNavigation(BaseNavigation):
             return []
         uid = self._getUid(obj)
         luid = self.portal_path + uid
+
+        # don't search if current node is already at the node_depth_max
+        if mode == 'tree' and self.node_depth_max:
+            if len(uid.split('/')) >= self.node_depth_max:
+                return []
         # search
         self.query = {'container_path': luid}
         if no_nodes:
@@ -277,6 +283,7 @@ class CatalogNavigation(BaseNavigation):
 
     def _search(self, mode='listing'):
         """Search repository."""
+        self._search_count += 1
         if not hasattr(self, 'query'):
             return []
 
