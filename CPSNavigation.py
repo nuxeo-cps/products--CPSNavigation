@@ -75,7 +75,12 @@ class CPSNavigation(ZODBNavigation):
 
     def _getUid(self, obj):
         """obj is a portal_tree node, return the rpath."""
-        return obj['rpath']
+        uid = None
+        try:
+            uid = obj['rpath']
+        except TypeError, KeyError:
+            pass
+        return uid
 
     def _isNode(self, obj):
         if type(obj) is DictType:
@@ -93,7 +98,7 @@ class CPSNavigation(ZODBNavigation):
         called by getTree."""
         if not obj:
             return []
-        
+
         if mode == 'tree':
             # we are called by a getTree so we use portal tree
             # we assume we want nodes only
