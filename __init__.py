@@ -24,9 +24,9 @@ from Navigation import Navigation
 allow_class(Navigation)
 ModuleSecurityInfo('Products.CPSNavigation').declarePublic('Navigation')
 
-from CMFFinder import CMFFinder
-allow_class(CMFFinder)
-ModuleSecurityInfo('Products.CPSNavigation').declarePublic('CMFFinder')
+from ZODBFinder import ZODBFinder
+allow_class(ZODBFinder)
+ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ZODBFinder')
 
 from ConfFinder import ConfFinder
 allow_class(ConfFinder)
