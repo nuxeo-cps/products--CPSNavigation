@@ -18,21 +18,18 @@ msgstr ""
 
 #.   <span content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')" class="legend">Search result</span>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "Search result"
 msgstr "Emaitzak"
 
 #.   <input value="button_reset" class="context" name="search_reset" type="submit" />
 #.   <input value="button_reset" class="context" name="option_reset" type="submit" />
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
 msgstr "Berrezarri"
 
 #.   <span>here</span>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_current_uid"
 msgstr "Uneko fitxategia"
 
@@ -40,8 +37,7 @@ msgstr "Uneko fitxategia"
 #.       request['URL'], mq(display_mode='option'));
 #.       class python:test(res['display_mode'] == 'option', 'selected', nothing);">Options</a>
 #.   <span class="legend">option</span>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_option"
 msgstr "Aukerak"
 
@@ -49,14 +45,12 @@ msgstr "Aukerak"
 #.       request['URL'], mq(display_mode='search'));
 #.       class python:test(res['display_mode'] == 'search', 'selected', nothing);">Search</a>
 #.   <span class="legend">Search</span>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search"
 msgstr "Bilatu"
 
 #.   <div condition="python:res['status_form'] == 'invalid'" class="message">invalid search</div>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
 msgstr "Galdera okerra!"
 
@@ -64,39 +58,30 @@ msgstr "Galdera okerra!"
 #.       request['URL'], mq(request.form, display_mode='tree'));
 #.       class python:test(res['display_mode'] == 'tree', 'selected', nothing);">Navigation</a>
 #.   <span class="legend">navigation</span>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_tree"
 msgstr "Nabigazioa"
 
 #.   <th width="33%" class="even">label_detail</th>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_detail"
 msgstr "Edukiak"
 
 #.   <th condition="not:search" width="33%" class="even">label_navigation</th>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_navigation"
 msgstr "Nabigazioa"
 
 #.   <span />
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_no_results"
 msgstr "Emaitzarik ez."
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_selection"
 msgstr "Aukeratuta"
-
-#, fuzzy
-msgid "cpsnav_option_display_mode"
-msgstr "Display mode"
 
 msgid "cpsnav_option_include_root"
 msgstr "Root-a ere bai"
@@ -107,36 +92,8 @@ msgstr "Zuhaitza antolatzeko: "
 msgid "cpsnav_option_sort_listing_by"
 msgstr "Zerrendaketa, horrela: "
 
-#, fuzzy
-msgid "cpsnav_option_batch_size"
-msgstr "Batch size"
-
-#, fuzzy
-msgid "cpsnav_option_no_node"
-msgstr "Hide folderish in listing"
-
-#, fuzzy
-msgid "cpsnav_option_filter_tree_ptypes"
-msgstr "Tree filter folderish types"
-
-#, fuzzy
-msgid "cpsnav_option_sort_tree_direction"
-msgstr "Tree sort direction"
-
-#, fuzzy
-msgid "cpsnav_option_sort_listing_direction"
-msgstr "Listing sort direction"
-
-#, fuzzy
-msgid "cpsnav_option_filter_listing_ptypes"
-msgstr "Listing filter document types"
-
 msgid "cpsnav_search_expand_all"
 msgstr "Nabigatzeko zuhaitz osoa erakutsi "
-
-#, fuzzy
-msgid "cpsnav_search_scope"
-msgstr "Search scope"
 
 msgid "cpsnav_search_scope_entire_site"
 msgstr "Gune osoan"
@@ -152,4 +109,3 @@ msgstr "Edukia"
 
 msgid "cpsnav_search_result"
 msgstr "Emaitzak"
-

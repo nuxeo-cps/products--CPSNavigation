@@ -22,68 +22,57 @@ msgstr ""
 "X-Poedit-Country: ITALY\n"
 
 #.   <span content="python:test(res['status_form'] ==
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "Search result"
 msgstr "Risultati della ricerca"
 
 #.   <input value="button_reset" class="context" name="search_reset" type="submit" />
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
 msgstr "Ritorna alla configurazione di default"
 
 #.   <span>here</span>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_current_uid"
 msgstr "Cartella corrente"
 
 #.   <a attributes="href python:'%s?%s' % (
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_option"
 msgstr "Opzioni"
 
 #.   <a attributes="href python:'%s?%s' % (
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search"
 msgstr "Ricerca"
 
 #.   <div condition="python:res['status_form'] == 'invalid'" class="message">invalid search</div>
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
 msgstr "Richiesta non valida !"
 
 #.   <a attributes="href python:'%s?%s' % (
-#: from
-#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_tree"
 msgstr "Percorso di navigazione"
 
 #.   <th width="33%" class="even">label_detail</th>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_detail"
 msgstr "Contenuto"
 
 #.   <th condition="not:search" width="33%" class="even">label_navigation</th>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_navigation"
 msgstr "Percorso di navigazione:"
 
 #.   <span />
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_no_results"
 msgstr "Nessun risultato."
 
 #.   <th width="33%" class="even">label_selection</th>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_selection"
 msgstr "Selezionati:"
 
@@ -137,4 +126,3 @@ msgstr "Contenuto della cartella"
 
 msgid "cpsnav_search_result"
 msgstr "Risultato della ricerca"
-

@@ -136,4 +136,3 @@ msgstr "Folder content"
 
 msgid "cpsnav_search_result"
 msgstr "Search result"
-
