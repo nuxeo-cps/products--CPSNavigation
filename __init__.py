@@ -19,6 +19,9 @@
 """
 from AccessControl import ModuleSecurityInfo
 from Products.PythonScripts.Utility import allow_class
+from Products.CMFCore.DirectoryView import registerDirectory
+
+registerDirectory('skins', globals())
 
 from ZODBNavigation import ZODBNavigation
 allow_class(ZODBNavigation)
@@ -27,3 +30,5 @@ ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ZODBNavigation')
 from ConfNavigation import ConfNavigation
 allow_class(ConfNavigation)
 ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ConfNavigation')
+
+
