@@ -33,9 +33,10 @@ class ZODBNavigation(BaseNavigation):
     _v_wtool = None                     # workflow tool cache
 
     def __init__(self, **kw):
-        BaseNavigation.__init__(self, **kw)
         if not kw.get('context'):
-            setattr(self, 'context', kw['current'])
+            raise KeyError, "No context provided."
+        setattr(self, 'context', kw['context'])
+        BaseNavigation.__init__(self, **kw)
 
     ### Finder interface
     def _getObject(self, uid):
@@ -94,7 +95,8 @@ class ZODBNavigation(BaseNavigation):
 
             if mode == 'tree':
                 # conditional filtering
-                if 'filter_tree_ptypes' in self._param_ids:
+                if 'filter_tree_ptypes' in self._param_ids and \
+                       self.filter_tree_ptypes:
                     portal_type = getattr(aq_base(obj), 'portal_type', None)
                     if portal_type not in self.filter_tree_ptypes:
                         continue
@@ -109,7 +111,8 @@ class ZODBNavigation(BaseNavigation):
                             continue
 
                 # conditional filtering
-                if 'filter_listing_ptypes' in self._param_ids:
+                if 'filter_listing_ptypes' in self._param_ids and \
+                       self.filter_listing_ptypes:
                     portal_type = getattr(obj, 'portal_type', None)
                     if portal_type not in self.filter_listing_ptypes:
                         continue
