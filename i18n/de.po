@@ -1,0 +1,138 @@
+# translation of en.po to ben
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+# ben <ben@nuxeo.com>, 2004
+# ben <ben@nuxeo.com>, 2005.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: CPSNavigation-de CPS-3.2.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-29 11:12default\n"
+"PO-Revision-Date: 2005-03-16 09:59+0100\n"
+"Last-Translator: gh <georg.hennemann@dhl.com>\n"
+"Language-Team: de <rheinland@dzug.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;"
+
+#.   <span content="python:test(res['status_form'] ==
+#.       'valid', 'cpsnav_search_result', 'cpsnav_content')" class="legend">Search result</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "Search result"
+msgstr "Such Ergebnis"
+
+#.   <input value="button_reset" class="context" name="search_reset" type="submit" />
+#.   <input value="button_reset" class="context" name="option_reset" type="submit" />
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "button_reset"
+msgstr "Reset"
+
+#.   <span>here</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_current_uid"
+msgstr "Aktueller Folder"
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='option'));
+#.       class python:test(res['display_mode'] == 'option', 'selected', nothing);">Options</a>
+#.   <span class="legend">option</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_option"
+msgstr "Optionen"
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='search'));
+#.       class python:test(res['display_mode'] == 'search', 'selected', nothing);">Search</a>
+#.   <span class="legend">Search</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search"
+msgstr "Suchen"
+
+#.   <div condition="python:res['status_form'] == 'invalid'" class="message">invalid search</div>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search_invalid"
+msgstr "Ungültige Suche !"
+
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(request.form, display_mode='tree'));
+#.       class python:test(res['display_mode'] == 'tree', 'selected', nothing);">Navigation</a>
+#.   <span class="legend">navigation</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_tree"
+msgstr "Navigation"
+
+#.   <th width="33%" class="even">label_detail</th>
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
+msgid "label_detail"
+msgstr "Inhalt"
+
+#.   <th condition="not:search" width="33%" class="even">label_navigation</th>
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
+msgid "label_navigation"
+msgstr "Navigation"
+
+#.   <span />
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
+msgid "label_no_results"
+msgstr "Kein Ergebnis."
+
+#.   <th width="33%" class="even">label_selection</th>
+#.   <th width="60%" class="even">label_selection</th>
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
+msgid "label_selection"
+msgstr "Ausgewählt"
+
+msgid "cpsnav_option_display_mode"
+msgstr "Anzeige Modus"
+
+msgid "cpsnav_option_include_root"
+msgstr "Mit Root-Verzeichnis"
+
+msgid "cpsnav_option_sort_tree_by"
+msgstr "Baum sortiert nach"
+
+msgid "cpsnav_option_sort_listing_by"
+msgstr "Liste sortiert nach"
+
+msgid "cpsnav_option_batch_size"
+msgstr "Batch Grösse"
+
+msgid "cpsnav_option_no_node"
+msgstr "Verbergen von Folder Typen in der Liste"
+
+msgid "cpsnav_option_filter_tree_ptypes"
+msgstr "Baum Filter für  Folder Typen"
+
+msgid "cpsnav_option_sort_tree_direction"
+msgstr "Baum Sortier Richtung"
+
+msgid "cpsnav_option_sort_listing_direction"
+msgstr "Listen Sortier Richtung"
+
+msgid "cpsnav_option_filter_listing_ptypes"
+msgstr "Liste Filter Dokument Typen"
+
+msgid "cpsnav_search_expand_all"
+msgstr "Expandieren Gesamtbaum zur Navigation"
+
+msgid "cpsnav_search_scope"
+msgstr "Such Umfang"
+
+msgid "cpsnav_search_scope_entire_site"
+msgstr "gesamtes Portal"
+
+msgid "cpsnav_search_scope_current_location"
+msgstr "aktueller Folder"
+
+msgid "cpsnav_option_current_uid"
+msgstr "aktueller Standard Pfad"
+
+msgid "cpsnav_content"
+msgstr "Folder Inhalt"
+
+msgid "cpsnav_search_result"
+msgstr "Such Ergebnis"
+
