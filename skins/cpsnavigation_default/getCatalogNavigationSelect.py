@@ -79,7 +79,7 @@ res['popup_edit_macro_path'] = widget.popup_edit_macro_path
 res['popup_view_macro_path'] = widget.popup_view_macro_path
 res['is_editable_option'] = widget.is_editable_option
 res['input_id'] = input_id
-
+res['is_i18n'] = widget.is_i18n
 # process option form
 if not option_pref or display_mode == 'option':
     (res['rendered_option_form'], status, ds) = ltool.renderLayout(
