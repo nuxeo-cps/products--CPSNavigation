@@ -69,8 +69,8 @@ class ConfFinder:
         Either a filename or a file content is expected."""
         if file_name:
             file_fd = open(file_name, 'r')
-        elif text:
-            file_fd = StringIO(text_conf)
+        elif file_content:
+            file_fd = StringIO(file_content)
 
         parser = ConfigParser()
         parser.readfp(file_fd)
