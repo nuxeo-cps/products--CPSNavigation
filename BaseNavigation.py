@@ -225,16 +225,22 @@ class BaseNavigation:
                       'previous': previous,
                       'next': next,
                       }
-        if self.current_uid != self.root_uid:
-            parent_uid = self._getParentUid(self.current_uid)
-            parent = self._getObject(parent_uid)
-        else:
+        hide_current = 0
+        if self.current_uid == self.root_uid:
             parent_uid = None
             parent = None
+        else:
+            parent_uid = self._getParentUid(self.current_uid)
+            parent = self._getObject(parent_uid)
+        if not self.include_root and self.current_uid == self.root_uid:
+            hide_current = 1
+
+
         listing_info = {'current': self.current,
                         'current_uid': self.current_uid,
                         'parent': parent,
-                        'parent_uid': parent_uid}
+                        'parent_uid': parent_uid,
+                        'hide_current': hide_current}
         return res, listing_info, batch_info
 
     def _filter(self, objs, mode='tree'):

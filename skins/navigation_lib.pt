@@ -204,7 +204,7 @@ not found' % display_attr])[0]" />
     mq(request.form, current_uid=listing_info['parent_uid']));">
   <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
-  <h4>
+  <h4 tal:condition="not:listing_info/hide_current">
     <metal:block use-macro="python:path('here/navigation_lib/macros/render_listing_header_multi_select_%s'%type)" />
   </h4>
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />
@@ -303,7 +303,7 @@ not found' % display_attr])[0]" />
     mq(request.form, current_uid=listing_info['parent_uid']));">
   <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
-  <h4>
+  <h4 tal:condition="not:listing_info/hide_current">
     <metal:block use-macro="python:path('here/navigation_lib/macros/render_listing_header_%s'%type)" />
   </h4>
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />

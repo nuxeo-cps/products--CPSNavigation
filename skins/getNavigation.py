@@ -56,7 +56,7 @@ elif finder == 'ldap':
         current_uid=current_uid,
         context=context,
         dir_name=dir_name,
-        # include_root=0,
+        include_root=0,
         batch_size=15,
         batch_start=b_start,
         )
