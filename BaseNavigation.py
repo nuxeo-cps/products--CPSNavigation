@@ -21,6 +21,7 @@
 """
 from ZTUtils import Batch
 from types import IntType
+from time import time
 from zLOG import LOG, DEBUG
 
 
@@ -96,7 +97,7 @@ class BaseNavigation:
         node = {'uid': obj_uid,
                 'object': obj,
                 'level': level,
-                'is_current': obj == self.current,
+                'is_current': obj_uid == self.current_uid,
                 'is_last_child': is_last_child,
                 }
         if self.debug > 1:
@@ -149,8 +150,10 @@ class BaseNavigation:
 
         return res
 
-    def getTree(self):
+    def getTree(self):        
         """Return a flat Tree structure easily processed in ZPT."""
+
+        chrono_start = time()
         # compute the path to current
         path = self._getParentUids(self.current_uid)
 
@@ -190,11 +193,16 @@ class BaseNavigation:
                 node['state'] = 'closed'
             else:
                 node['state'] = 'node'
+        chrono_stop = time()
 
+        LOG('BaseNavigation.getTree', DEBUG, 'end\n'
+            '\ttime elapsed %7.3fs\n' % (
+             chrono_stop - chrono_start))
         return tree
 
     def getListing(self):
         """Return a Listing structure and batch information."""
+        chrono_start = time()
         res = self._searchItems()
         res = self._filter(res, mode='listing')
         res = self._sort(res, mode='listing')
@@ -264,6 +272,12 @@ class BaseNavigation:
                         'parent': parent,
                         'parent_uid': parent_uid,
                         'hide_current': hide_current}
+
+        chrono_stop = time()
+        LOG('BaseNavigation.getListing', DEBUG, 'end\n'
+            '\ttime elapsed %7.3fs\n' % (
+             chrono_stop - chrono_start))
+
         return res, listing_info, batch_info
 
     def _searchItems(self):
