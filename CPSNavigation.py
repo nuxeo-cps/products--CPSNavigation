@@ -19,15 +19,20 @@
 """
 
 from types import DictType
-from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import getToolByName, _getAuthenticatedUser
+from types import StringType
 from ZODBNavigation import ZODBNavigation
+from Acquisition import aq_base, aq_parent, aq_inner
 from zLOG import LOG, DEBUG
-from time import clock
+from time import time
+from types import IntType
 
 class CPSNavigation(ZODBNavigation):
     """Implement Finder interface for a CPS.
     the tree contains portal_tree node,
     the listing are normal object."""
+
+    sort_limit = 100
 
     def __init__(self, **kw):
         # root and current are cps tree node object !
@@ -132,17 +137,21 @@ class CPSNavigation(ZODBNavigation):
 
     ### override Navigation
     def _filter(self, objs, mode='tree'):
-        if mode == 'tree':
+        if mode == 'listing' and self.search:
             return objs
         return ZODBNavigation._filter(self, objs, mode)
 
+    def _sort(self, objs, mode='tree'):
+        if mode == 'listing' and self.search:
+            return objs
+        return ZODBNavigation._filter(self, objs, mode)
 
-    def _clean_query(self, query_in):
-        catalog_query = {}
-        cps_query = {}
+    def _buildQuery(self, query_in, portal_path):
+        query = {}
         date_suffix = '_usage'
+
         if not query_in:
-            return catalog_query, cps_query
+            return query
 
         for k, v in query_in.items():
             # skip date usage key without date
@@ -151,93 +160,82 @@ class CPSNavigation(ZODBNavigation):
                 if not query_in.get(k_prefix):
                     v = None
             if v:
-                catalog_query[k] = v
+                # skip this criteries, they are added by catalog tool
+                if k in ('expires', 'effective',
+                         'expires_usage', 'effective_usage'):
+                    continue
 
-        for k in ('folder_prefix', 'start_date', 'end_date',
-                  'review_state'):
-            if catalog_query.has_key(k):
-                cps_query[k] = catalog_query[k]
-                del catalog_query[k]
+                # title search
+                if k == 'Title':
+                    # we search on the ZCTextIndex,
+                    # Title index is a FieldIndex only used for sorting
+                    query['ZCTitle'] = v
+                # compatibility with cpsdefault search
+                elif k == 'folder_prefix' and not query_in.has_key('path'):
+                    query['path'] = portal_path + v
+                elif k == 'start_date' and not query_in.has_key('start'):
+                    query['start'] = {'query' : start,
+                                      'range' : 'min'}
+                elif k == 'end_date' and not query_in.has_key('end'):
+                    query['end'] = {'query' : start,
+                                    'range' : 'max'}
+                else:
+                    query[k] = v
 
-        if catalog_query:
-            portal_path = getToolByName(self.context,
-                                        'portal_url').getPortalPath()
-            catalog_query['path'] = portal_path + '/portal_repository/'
+        if query or self.allow_empty_search:
+            # this is a set of searchable document
+            # not located in the repository, without any '.xx'
+            query['cps_filter_sets'] = 'searchable'
+            if self.no_nodes:
+                query['cps_filter_sets'] = {'query' : ('searchable', 'leaves'),
+                                            'operator' : 'and'}
             if 'filter_listing_ptypes' in self._param_ids and \
-                       self.filter_listing_ptypes:
-                catalog_query['portal_type'] = self.filter_listing_ptypes
+                   self.filter_listing_ptypes:
+                query['portal_type'] = self.filter_listing_ptypes
 
-        return catalog_query, cps_query
+        # handle sorting
+        if 'sort_listing_by' in self._param_ids:
+            if self.sort_listing_by and not query_in.has_key('sort-on'):
+                # for compatibility with cpsdefault search
+                sort_by = self.sort_listing_by
+                if sort_by in ('title', 'date'):
+                    sort_by = sort_by.capitalize()
+                elif sort_by == 'status':
+                    sort_by = 'review_state'
+                elif sort_by == 'author':
+                    sort_by = 'Creator'
+                query['sort-on'] = sort_by
+                if 'sort_listing_direction' in self._param_ids:
+                    direction = self.sort_listing_direction
+                    if direction.startswith('desc'):
+                        query['sort-order'] = 'reverse'
+                if self.sort_limit:
+                    query['sort-limit'] = self.sort_limit
+
+        return query
+
 
     def _search(self):
         """Search repository."""
         if not hasattr(self, 'query'):
             return []
 
-        catalog_query, cps_query = self._clean_query(
-            getattr(self, 'query', {}))
+        ctool = getToolByName(self.context, 'portal_catalog')
+        portal = aq_parent(aq_inner(ctool))
+        portal_path = '/' + ctool.getPhysicalPath()[1] + '/'
+
+        query = self._buildQuery(getattr(self, 'query', {}), portal_path)
         LOG('BaseNavigation._search', DEBUG, 'start\n'
-            '\tcatalog_query = %s\n'
-            '\tcps_query = %s'% (catalog_query, cps_query))
-        if not catalog_query:
+            '\tquery = %s\n' % (query))
+        if not query:
             return []
 
-        proxy_count = 0
-        catalog = getToolByName(self.context, 'portal_catalog')
-        ptool = getToolByName(self.context, 'portal_proxies')
-        wtool = getToolByName(self.context, 'portal_workflow')
-        review_state = cps_query.get('review_state')
-        start_date = cps_query.get('start_date')
-        end_date = cps_query.get('end_date')
+        chrono_start = time()
+        brains = ctool(**query)
+        chrono_stop = time()
 
-        # catalog search
-        chrono_start = clock()
-        doc_brains = catalog(**catalog_query)
-        chrono_step1 = clock()
-
-        # proxy search
-        items = []
-        for doc_brain in doc_brains:
-            doc_id = doc_brain.getPath().split('/')[-1]
-            proxy_infos = ptool.getProxiesFromObjectId(
-                doc_id, proxy_rpath_prefix=cps_query.get('folder_prefix'))
-            for proxy_info in proxy_infos:
-                proxy_count += 1
-                proxy = proxy_info['object']
-                # status filtering
-                if (review_state and
-                    wtool.getInfoFor(proxy,
-                                     'review_state',
-                                     'nostate') != review_state):
-                    continue
-                # event start/end filtering
-                if start_date and end_date:
-                    doc = proxy.getContent()
-                    sd = ed = 0
-                    if hasattr(doc.aq_explicit, 'start'):
-                        if callable(doc.start):
-                            sd = doc.start()
-                        else:
-                            sd = doc.start
-                    if hasattr(doc.aq_explicit, 'end'):
-                        if callable(doc.end):
-                            ed = doc.end()
-                        else:
-                            ed = doc.end
-                    if not sd or not ed:
-                        continue
-                    if (sd - end_date > 0) or (start_date - ed > 0):
-                        continue
-                # get one
-                items.append(proxy)
-
-        chrono_stop = clock()
         LOG('BaseNavigation._search', DEBUG, 'end\n'
-            '\tcatalog found %s document brains in %.3fs\n'
-            '\tgetting %s proxies and filter in %.3fs\n'
-            '\tsearch result: %s proxies found in %.3fs\n' % (
-            len(doc_brains), chrono_step1 - chrono_start,
-            proxy_count, chrono_stop - chrono_step1,
-            len(items), chrono_stop - chrono_start,))
+            '\tcatalog found %s document brains in %7.3fs\n' % (
+            len(brains), chrono_stop - chrono_start))
 
-        return items
+        return brains
