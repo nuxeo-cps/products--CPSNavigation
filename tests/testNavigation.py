@@ -97,7 +97,7 @@ contents=
         tree = nav.getTree()
         self.assert_(tree[0]['uid'] == 'node_1', nav._strTree(tree))
 
-    
+
     def test_tree_21(self):
         nav = ConfNavigation(file_content="""[root]
         """,
@@ -120,7 +120,7 @@ contents=
         tree = nav.getTree()
         self.assert_(len(tree) == 1, nav._strTree(tree))
 
-    
+
 
 
     def test_listing_01(self):
@@ -128,7 +128,7 @@ contents=
         nav = ConfNavigation(file_content=self.fc,
                          root_uid='root',
                          current=current)
-        items, batch_info = nav.getListing()
+        items, listing_info, batch_info = nav.getListing()
         # items is a batched !
         self.assertEqual([items[0], items[1], items[2]],
                          [DC('node_1'), DC('node_2'), DC('leaf_1')],
