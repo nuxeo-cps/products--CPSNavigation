@@ -19,6 +19,7 @@
 """
 from ConfigParser import ConfigParser, NoOptionError, NoSectionError
 from Products.CPSDefault.interfaces.Finder import Finder
+from StringIO import StringIO
 
 
 class DummyClass:
@@ -62,13 +63,15 @@ class ConfFinder:
 
     sep = '|'
 
-    def __init__(self, filename=None, file_fd=None):
+    def __init__(self, file_name=None, file_content=None):
         """Initialize the Finder.
 
-        Either a filename or a file descriptor: file_fd is expected."""
-        if filename:
-            self.filename = filename
-            file_fd = open(self.filename, 'r')
+        Either a filename or a file content is expected."""
+        if file_name:
+            file_fd = open(file_name, 'r')
+        elif text:
+            file_fd = StringIO(text_conf)
+
         parser = ConfigParser()
         parser.readfp(file_fd)
         file_fd.close()
