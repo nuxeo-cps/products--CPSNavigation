@@ -1,0 +1,32 @@
+<tal:block define="emptybody python:1;
+                   res here/getNavigation;
+                   tree python:res[0];
+                   listing python:res[1];
+                   ">
+<metal:block use-macro="here/main_template/macros/master">
+<metal:block fill-slot="body">
+<h1>Current Tree</h1>
+<table><tr><td valign="top">
+<div class="box" style="white-space: nowrap;">
+<tal:block repeat="node tree">
+  <tal:block repeat="line node/lines"
+    content="structure python:3*'&nbsp;' + test(not line, '&nbsp;', test(line==1, '|', '`'))" />
+  <tal:block
+    content="python:test(node['state'] == 'open', '>',
+                         test(node['state'] == 'closed', '+', '-'))" />
+  <a tal:attributes="
+    class python:test(node['is_current'], 'selected', nothing);
+    href python:node['object'].absolute_url()+'/test_zodb_navigation';"
+    tal:content="node/object/title_or_id" /><br>
+</tal:block>
+</div>
+</td><td valign="top">
+  <tal:block repeat="item listing">
+    <tal:block define="info python:here.getContentInfo(item, level=1);">
+      <metal:block use-macro="here/content_lib/macros/info_detail" />
+    </tal:block>
+  </tal:block>
+</td></tr></table>
+</metal:block>
+</metal:block>
+</tal:block>
