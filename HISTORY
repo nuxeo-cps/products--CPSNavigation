@@ -1,4 +1,23 @@
 *******************************************
+** CPSNavigation V0.12.0 [R1 build 2004/12/21-09:19 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Possible to pass batch_size argument to script getNavigation (before, was
+  always set to 15)
+- Adding Navigation for CPS Indirect Directory
+Bug fixes:
+~~~~~~~~~~
+- In catalog navigation, when item had a blank title, no text was provided
+  to define the item (now gives the id)
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- CatalogNavigationSelectWidget has empty default title/descr (#444)
+
+*******************************************
 ** CPSNavigation V0.11.0 [R1 build 2004/10/22-06:06 by ben]
 
 Requires:
