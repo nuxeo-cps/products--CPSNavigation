@@ -1,3 +1,5 @@
+- BUG absolute_url(relative=1)
+  return cps/zelkjr vs portal_tree /zelkjr -> broken
 - popup
    o CPS
 - FavoritesNavigation

@@ -6,6 +6,8 @@
                    listing_info python:res[3];
                    mq nocall:modules/ZTUtils/make_query;
                    current_uid request/current_uid|string:sections;
+                   selection python:here.manageSelection(REQUEST=request,
+                     type='folder');
                    ">
 <metal:block use-macro="here/main_template/macros/master">
 <metal:block fill-slot="body">
@@ -28,19 +30,19 @@
                          test(node['state'] == 'closed', '+', '-'))" />
   <a tal:attributes="
     class python:test(node['is_current'], 'selected', nothing);
-    href python:'%s?%s'%(base_url+'test_cps_navigation',
+    href python:'%s?%s'%(request['URL0'],
       mq(current_uid=node['object']['rpath']));"
     tal:content="node/object/title_or_id" /><br>
 </tal:block>
 </div>
 </td><td valign="top" width="33%" class="odd">
   <a accesskey="U" tal:condition="listing_info/parent_uid"
-    tal:attributes="href python:'%s?%s'%(base_url+'test_cps_navigation',
+    tal:attributes="href python:'%s?%s'%(request['URL0'],
     mq(current_uid=listing_info['parent_uid']));">
     <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
 
-  <form action="manageSelection" method="GET" tal:condition="listing_info/current">
+  <form action="" method="post" tal:condition="listing_info/current">
   <h4><input name="uids:list" type="checkbox" class="noborder"
         tal:attributes="value listing_info/current_uid">
   <tal:block content="listing_info/current/title_or_id|nothing" /></h4>
@@ -56,7 +58,7 @@
       <img tal:replace="structure python:here.getImgTag(item.getIcon(),
         base_url=base_url)">&nbsp;
       <a href="" tal:attributes="title item_desc;
-        href python:'%s?%s'%(base_url+'test_cps_navigation',
+        href python:'%s?%s'%(request.URL0,
           mq(current_uid=item_uid));">
         <tal:block replace="item/title_or_id" />
       </a>
@@ -71,11 +73,9 @@
     value="button_select" i18n:attributes="value">
   </form>
 
-</td><td valign="top" with="33%" class="odd"
-  tal:define="items python:here.manageSelection(REQUEST=request,
-    mode='get', type='folder')">
-  <form action="manageSelection" method="GET" tal:condition="items">
-  <tal:block repeat="item items">
+</td><td valign="top" with="33%" class="odd">
+  <form action="" method="post" tal:condition="selection">
+  <tal:block repeat="item selection">
     <div>
       <input name="selected_uids:list" type="checkbox" class="noborder"
         tal:attributes="value item/uid">
