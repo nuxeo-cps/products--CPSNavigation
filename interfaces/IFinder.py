@@ -29,7 +29,18 @@ class Finder(Interface):
     """
 
     def setParams(**kw):
-        """Initialize the navigation parameters."""
+        """Initialize the navigation parameters.
+
+        This method should be called before using any others.
+        You can assert to have kw['root'] with the root object."""
+
+    def getObject(uid):
+        """Return the object corresponding to the unique identifier.
+
+        Return None if uid not found."""
+
+    def getUid(obj):
+        """Return the unique identifier."""
 
     def isNode(obj):
         """True if obj is a node, 0 for a leaf.
@@ -49,8 +60,9 @@ class Finder(Interface):
         If obj is not known this raise a KeyError.
         """
 
-    def getParents(obj):
-        """Return a list of parents of obj from father to the root.
+    def getParent(obj):
+        """Return the parent of obj.
 
+        If obj has no parent return None.
         If obj is not known this raise a KeyError.
         """

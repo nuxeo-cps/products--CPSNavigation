@@ -31,9 +31,26 @@ contents=leaf_3
 contents=leaf_4|leaf_5
         """
         self.finder = ConfFinder(file_content=file_content)
+        self.finder.setParams(root=DC('root'))
 
     def test_interface(self):
         verifyClass(IFinder, ConfFinder)
+
+    def test_getObject_01(self):
+        node_ = DC('node_2')
+        node = self.finder.getObject('node_2')
+        self.assertEqual(node, node_, node)
+
+    def test_getObject_03(self):
+        node_ = None
+        node = self.finder.getObject('XXX')
+        self.assertEqual(node, node_, node)
+
+    def test_getUid_01(self):
+        uid_ = 'node_3'
+        node = self.finder.getObject(uid_)
+        uid = self.finder.getUid(node)
+        self.assertEqual(uid, uid_, uid)
 
     def test_isNode_01(self):
         self.assertEqual(self.finder.isNode(DC('root')), 1)
@@ -47,46 +64,30 @@ contents=leaf_4|leaf_5
     def test_isNode_04(self):
         self.assertEqual(self.finder.isNode(DC('leaf_3')), 0)
 
-    def test_getParents_01(self):
-        _children = []
-        child = DC('root')
-        while 1:
-            r = self.finder.getChildren(child)
-            if not r:
-                break
-            _children.append(child)
-            child = r[0]
-
-        _children.reverse()
-        children = self.finder.getParents(child)
-        self.assertEqual(children, _children)
-
-    def test_getParents_02(self):
-        current = DC('leaf_4')
-        parents = self.finder.getParents(current)
-        self.assertEqual(parents, [DC('node_3'),
-                                   DC('node_1'),
-                                   DC('root')], parents)
-
-    def test_getParents_03(self):
-        current = DC('root')
-        parents = self.finder.getParents(current)
-        self.assertEqual(parents, [], parents)
-
-    def test_getParents_04(self):
-        current = DC('leaf_1')
-        parents = self.finder.getParents(current)
-        self.assertEqual(parents, [DC('root')], parents)
-
-    def test_getParents_05(self):
+    def test_getParent_01(self):
         current = DC('node_1')
-        parents = self.finder.getParents(current)
-        self.assertEqual(parents, [DC('root')], parents)
+        parent = self.finder.getParent(current)
+        self.assertEqual(parent, DC('root'), parent)
 
-    def test_getParents_06(self):
+    def test_getParent_02(self):
+        current = DC('leaf_4')
+        parent = self.finder.getParent(current)
+        self.assertEqual(parent, DC('node_3'), parent)
+
+    def test_getParent_03(self):
+        current = DC('root')
+        parent = self.finder.getParent(current)
+        self.assertEqual(parent, None, parent)
+
+    def test_getParent_04(self):
+        current = DC('leaf_1')
+        parent = self.finder.getParent(current)
+        self.assertEqual(parent, DC('root'), parent)
+
+    def test_getParent_05(self):
         current = DC('foo')
         try:
-            parents = self.finder.getParents(current)
+            parent = self.finder.getParent(current)
         except KeyError:
             pass
         else:

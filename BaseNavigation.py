@@ -27,6 +27,19 @@ class Navigation:
     no_nodes = 0
 
     def __init__(self, finder, **kw):
+        """Init the navigation.
+
+        Required kw:
+          root or root_uid       - the root object
+          current or current_uid - the current position
+        """
+        kw_keys = kw.keys()
+        assert('current' in kw_keys or 'current_uid' in kw_keys)
+        assert('root' in kw_keys or 'root_uid' in kw_keys)
+        if 'current' not in kw_keys:
+            kw['current'] = finder.getObject(kw['current_uid'])
+        if 'root' not in kw_keys:
+            kw['root'] = finder.getObject(kw['root_uid'])
         self._finder = finder
         self.setParams(**kw)
         self._finder.setParams(**kw)
@@ -50,15 +63,15 @@ class Navigation:
         return res
 
 
-    def exploreNode(self, obj, level, is_last_child, path, flat_tree):
-        obj_id = obj.getId()
-        node = {'id': obj_id,
+    def _exploreNode(self, obj, level, is_last_child, path, flat_tree):
+        obj_uid = self._finder.getUid(obj)
+        node = {'uid': obj_uid,
                 'object': obj,
                 'level': level,
                 'is_current': obj == self.current,
                 'is_last_child': is_last_child,
                 }
-        if obj_id not in path:
+        if obj_uid not in path:
             if self._finder.isNode(obj) and \
                self._finder.hasChildren(obj, no_leaves=1):
                 node['has_children'] = 1
@@ -79,20 +92,31 @@ class Navigation:
                     is_last_child = 1
                 else:
                     is_last_child = 0
-                self.exploreNode(child, level+1, is_last_child,
+                self._exploreNode(child, level+1, is_last_child,
                                  path, flat_tree)
+
+    def getParents(self, obj):
+        """Return list of parents from father to the root."""
+        res = []
+        parent = obj
+        while parent and parent != self.root:
+            parent = self._finder.getParent(parent)
+            if parent:
+                res.append(parent)
+
+        return res
 
     def getTree(self):
         """Return a flat Tree structure easily processed in ZPT."""
         # compute the path to current
-        items = self._finder.getParents(self.current)
+        items = self.getParents(self.current)
         items.reverse()
         items.append(self.current)
-        path = [item.getId() for item in items]
+        path = [self._finder.getUid(item) for item in items]
 
         # explore tree using path
         tree = []
-        self.exploreNode(items[0], 0, 0, path, tree)
+        self._exploreNode(items[0], 0, 0, path, tree)
 
         # compute vertical lines
         lines = []
@@ -142,6 +166,7 @@ class Navigation:
                 text += '    |'
             elif l == 2:
                 text += '    `'
+        # XXX use state instead of testing is_open and has_children
         if node.get('is_open'):
             text += '-> '
         elif node.get('has_children'):
@@ -149,9 +174,9 @@ class Navigation:
         else:
             text += '-- '
         if node.get('is_current'):
-            text += '[%s]' % node['id']
+            text += '[%s]' % node['uid']
         else:
-            text += node['id']
+            text += node['uid']
 
         if show_obj:
             text += ": %s" % str(node['object'])

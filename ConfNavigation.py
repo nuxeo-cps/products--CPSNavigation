@@ -81,10 +81,20 @@ class ConfFinder:
     ### Finder interface
     def setParams(self, **kw):
         self._param_ids = kw.keys()
+        assert('root' in self._param_ids)
         for k, v in kw.items():
             setattr(self, k, v)
 
+    def getObject(self, uid):
+        if uid in self.parser.sections():
+            return self._dummyfy(uid)
+        return None
+
+    def getUid(self, obj):
+        return obj.getId()
+
     def isNode(self, obj):
+        # support dump_tree export
         if getattr(obj, 'type', '') in ('Section', 'Workspace'):
             return 1
         try:
@@ -114,16 +124,15 @@ class ConfFinder:
 
         return children
 
-    def getParents(self, obj):
-        res = []
-        parent = obj
-        while parent:
-            parent = self._findParent(parent)
-            if parent:
-                res.append(parent)
-
-        return res
-
+    def getParent(self, obj):
+        sections = self.parser.sections()
+        for section in sections:
+            for child in self.getChildren(DummyClass(section), no_leaves=0):
+                if child == obj:
+                    return self._dummyfy(section)
+        if obj.getId() not in sections:
+            raise KeyError, obj.getId()
+        return None
 
     ### Private
     def _dummyfy(self, id):
@@ -136,16 +145,4 @@ class ConfFinder:
                 if option not in ('id',):
                     kw[option] = self.parser.get(id, option)
         return DummyClass(id=id, **kw)
-
-    def _findParent(self, obj):
-        """find the parent of obj."""
-        sections = self.parser.sections()
-        for section in sections:
-            for child in self.getChildren(DummyClass(section), no_leaves=0):
-                if child == obj:
-                    return self._dummyfy(section)
-        if obj.getId() not in sections:
-            raise KeyError
-        return None
-
 

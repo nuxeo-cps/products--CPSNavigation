@@ -29,8 +29,20 @@ class CMFFinder:
     ### Finder interface
     def setParams(self, **kw):
         self._param_ids = kw.keys()
+        assert('root' in self._param_ids)
         for k, v in kw.items():
             setattr(self, k, v)
+
+    def getObject(self, uid):
+        try:
+            obj = self.root.unrestrictedTraverse(uid)
+        except KeyError:
+            obj = None
+        return obj
+
+    def getUid(self, obj):
+        # return something like 'cps/sections/folder'
+        return obj.absolute_url(1)
 
     def isNode(self, obj):
         return obj.isPrincipiaFolderish
@@ -48,21 +60,5 @@ class CMFFinder:
 
         return children
 
-    def getParents(self, obj):
-        parents = []
-        portal_url = getToolByName(obj, 'portal_url')
-        portal = portal_url.getPortalObject()
-
-        # find the first parent
-        parent = obj
-        while parent and not self.isNode(parent):
-            parent = aq_parent(aq_inner(parent))
-
-        if not(parent is obj):
-            parents.append(parent)
-
-        while parent and parent is not portal:
-            parent = aq_parent(aq_inner(parent))
-            parents.append(parent)
-
-        return parents
+    def getParent(self, obj):
+        return aq_parent(aq_inner(obj))
