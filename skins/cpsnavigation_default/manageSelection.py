@@ -24,6 +24,10 @@ def getMapFromUid(uid, type):
 type = kw.get('type', 'cps')
 root_uid = kw.get('root_uid', 'sections')
 session_key = 'CPS_SELECTION_%s_%s' % (type, root_uid)
+
+if kw.has_key('clear_selection'):
+    REQUEST.SESSION[session_key] = []
+
 selection = REQUEST.SESSION.get(session_key, [])
 
 if kw.has_key('del_items_from_selection'):
