@@ -11,3 +11,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - installer setup indexes and metadata used by catalognavigation
 - i18n title and description popup if widget is_i18n
+- xhtmlize a bit navigation_lib
