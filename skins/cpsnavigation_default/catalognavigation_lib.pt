@@ -12,6 +12,7 @@
 </metal:block>
 
 <metal:block define-macro="item_view">
+<input type="hidden" tal:attributes="name input_id;value item/relative_path">
 <strong tal:content="item/relative_path" />
 </metal:block>
 
