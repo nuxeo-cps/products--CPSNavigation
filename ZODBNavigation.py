@@ -23,6 +23,8 @@ from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from interfaces.IFinder import IFinder
 from BaseNavigation import BaseNavigation
+from urllib import unquote
+from zLOG import LOG, DEBUG
 
 class ZODBNavigation(BaseNavigation):
     """Implement Finder interface for a ZODB."""
@@ -38,7 +40,7 @@ class ZODBNavigation(BaseNavigation):
     ### Finder interface
     def _getObject(self, uid):
         try:
-            obj = self.context.unrestrictedTraverse(uid)
+            obj = self.context.unrestrictedTraverse(unquote(uid))
         except KeyError:
             obj = None
         return obj
