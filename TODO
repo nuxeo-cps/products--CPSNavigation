@@ -1,8 +1,16 @@
-- use session to store dm_opt and dm_search
-  this will speed up layout validation
-- handle display option for cps icon/detail/..
+CPSNavigation
+- add listing display option in the option layout (icon/detail..)
+- getListing return equiv of getContentInfo instead of obj
 - batching for navigation
    o use max_children for directory nav ?
+- how to set some option from another tab like changing sort direction
+  from the content list ?
+- how to hide some options ?
+- finish all sort option
+- check tree filtering
+- query must use portal types set in option
+- handle root = root of all tree ?
+- status line displaying current sort/filter link to option ?
 
 # ------------------------------------------------------------
 - CPSNavigation
