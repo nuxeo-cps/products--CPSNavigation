@@ -36,22 +36,23 @@ class ConfNavigation(BaseNavigation):
 
     sep = '|'
 
-    def __init__(self, **kw)
+    def __init__(self, **kw):
         """Initialize the Finder.
 
         Either a filename or a file content is expected."""
-        BaseNavigation(self, **kw)
         file_fd = None
         if kw.get('file_name'):
-            file_fd = open(file_name, 'r')
+            file_fd = open(kw['file_name'], 'r')
         elif kw.get('file_content'):
-            file_fd = StringIO(file_content)
+            file_fd = StringIO(kw['file_content'])
         else:
             raise KeyError, "No file_content or file_name provided."
         parser = ConfigParser()
         parser.readfp(file_fd)
         file_fd.close()
         self._parser = parser
+        BaseNavigation.__init__(self, **kw)
+
 
     ### Finder interface
     def getObject(self, uid):
@@ -141,4 +142,3 @@ class DummyClass:
 
     def getId(self):
         return self.id
-
