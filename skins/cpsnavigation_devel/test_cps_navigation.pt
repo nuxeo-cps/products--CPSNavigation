@@ -10,12 +10,13 @@
 <metal:block use-macro="here/main_template/macros/master">
 <metal:block fill-slot="body">
 <h1>Current Tree</h1>
+
 <br><center>
 <table bgcolor="#333333" width="95%" cellspacing="0" cellpadding="0"><tr><td>
 <table width="100%" cellspacing="1" cellpadding="5">
-<tr><th width="33%" class="even">Dossier</th>
-  <th width="33%" class="even">Detail</th>
-  <th width="33%" class="even">Selection</th>
+<tr><th width="33%" class="even" i18n:translate="">label_folder_navigation</th>
+  <th width="33%" class="even" i18n:translate="">label_detail</th>
+  <th width="33%" class="even" i18n:translate="">label_selection</th>
 </tr>
 <tr><td width="33%" valign="top" class="odd">
 <div class="box" style="white-space: nowrap;">
@@ -40,7 +41,7 @@
   base_url=base_url)"> ..<br></a>
 
   <form action="manageSelection" method="GET" tal:condition="listing_info/current">
-  <h4><input name="uids:list" type="checkbox"
+  <h4><input name="uids:list" type="checkbox" class="noborder"
         tal:attributes="value listing_info/current_uid">
   <tal:block content="listing_info/current/title_or_id|nothing" /></h4>
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />
@@ -50,7 +51,7 @@
     <div tal:define="doc item/getContent;
       item_desc doc/description;
       item_uid python: utool.getRelativeUrl(item);">
-      &nbsp;&nbsp;<input name="uids:list" type="checkbox"
+      &nbsp;&nbsp;<input name="uids:list" type="checkbox" class="noborder"
         tal:attributes="value item_uid">
       <img tal:replace="structure python:here.getImgTag(item.getIcon(),
         base_url=base_url)">&nbsp;
@@ -76,7 +77,7 @@
   <form action="manageSelection" method="GET" tal:condition="items">
   <tal:block repeat="item items">
     <div>
-      <input name="selected_uids:list" type="checkbox"
+      <input name="selected_uids:list" type="checkbox" class="noborder"
         tal:attributes="value item/uid">
       <img tal:replace="structure item/img_tag">&nbsp;
       <tal:block replace="item/title_or_id" />
@@ -96,6 +97,8 @@
 </td></tr></table>
 </td></tr></table>
 </center>
+
+
 </metal:block>
 </metal:block>
 </tal:block>
