@@ -24,6 +24,12 @@ from Products.CMFCore.utils import getToolByName
 from interfaces.IFinder import IFinder
 from BaseNavigation import BaseNavigation
 from zLOG import LOG, DEBUG, ERROR
+try:
+    from Products.LDAPUserGroupsFolder.utils import filter_format
+except ImportError:
+    from Products.LDAPUserFolder.utils import filter_format
+
+
 
 class LDAPDirectoryNavigation(BaseNavigation):
     """Implement Finder interface for a LDAPDirectory."""
@@ -34,10 +40,23 @@ class LDAPDirectoryNavigation(BaseNavigation):
             raise KeyError, 'No context provided.'
         if not kw.get('dir_name'):
             raise KeyError, 'No dir_name provided.'
+
         self._dir = getToolByName(kw['context'],
                                   'portal_directories')[kw['dir_name']]
+        self._ldap_attrs = self._getAttrs(kw['context'])
         BaseNavigation.__init__(self, **kw)
 
+
+    def _getAttrs(self, context):
+        # return list of ldap attributes
+        attrs = [x['id'] for x in
+                 context.getDirectoryResultFields(self._dir.getId(),
+                                                  self._dir.title_field)]
+        if 'dn' not in attrs:
+            attrs.append('dn')
+        if self._dir.title_field not in attrs:
+            attrs.append(self._dir.title_field)
+        return attrs
 
     ### Finder interface
     def _getObject(self, uid):
@@ -45,8 +64,8 @@ class LDAPDirectoryNavigation(BaseNavigation):
         uid_utf8 = unicode(uid, 'iso-8859-15').encode('utf8')
         res = self._dir._delegate.search(base=uid_utf8,
                                          scope=0,
-                                         filter='(objectClass=*)')
-
+                                         filter='(objectClass=*)',
+                                         attrs=self._ldap_attrs)
         if res['exception']:
             LOG('LDAPDirectoryNavigation._getObject',
                 ERROR, 'Error searching for dn=[%s]: %s' %
@@ -87,13 +106,13 @@ class LDAPDirectoryNavigation(BaseNavigation):
         res = self._dir._delegate.search(base=uid_utf8,
                                          scope=1,
                                          filter=self._dir.objectClassFilter(),
-                                         attrs=['dn'])
+                                         attrs=self._ldap_attrs)
         if res['exception']:
             LOG('LDAPDirectoryNavigation._getChildren',
                 ERROR, 'LDAP search error on dn=%s: %s' % (uid,
                                                            res['exception']))
             return []
-        children = [self._getObject(x['dn']) for x in res['results']]
+        children = res['results']
         if no_nodes:
             children = [child for child in children if not self._isNode(child)]
 
@@ -102,3 +121,45 @@ class LDAPDirectoryNavigation(BaseNavigation):
     def _getParentUid(self, uid):
         parent_uid = uid.split(',', 1)[1]
         return parent_uid
+
+    ### override Navigation
+    def _search(self):
+        """Default search is done on uid in the current children.
+
+        This method should be overriden in Navigation implementation."""
+
+        base_utf8 = unicode(self._dir.ldap_base, 'iso-8859-15').encode('utf8')
+        key = self._ldap_attrs[0]
+        query = self.request_form.get('query_uid', '').strip()
+        filter = ''
+        if not query:
+            return []
+        for attr in self._ldap_attrs:
+            if attr == 'dn':
+                continue
+            if attr in self._dir.search_substring_fields:
+                f = filter_format('(%s=*%s*)', (attr, query))
+            else:
+                f = filter_format('(%s=%s)', (attr, query))
+            filter += f
+        filter = '(&(objectClass=*)(|%s))' % filter
+
+        if self.debug:
+            LOG('LDAPDirectoryNavigation._search', DEBUG,
+                'filter=%s attrs=%s' % (filter, self._ldap_attrs))
+
+        res = self._dir._delegate.search(base=base_utf8,
+                                         scope=2,
+                                         filter=filter,
+                                         attrs=self._ldap_attrs)
+        if res['exception']:
+            LOG('LDAPDirectoryNavigation._search',
+                ERROR, 'Error searching filter=%s attrs=%s: %s' %
+                (filter, self._ldap_attrs,  res['exception']))
+            return []
+
+
+
+        if not res['size']:
+            return []
+        return res['results']
