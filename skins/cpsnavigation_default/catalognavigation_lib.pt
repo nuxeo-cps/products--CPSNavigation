@@ -12,8 +12,10 @@
 </metal:block>
 
 <metal:block define-macro="item_view">
-<input type="hidden" tal:attributes="name input_id;value item/relative_path">
-<strong tal:content="item/relative_path" />
+  <tal:block define="rpath python:item.getContentInfo()['rpath']">
+    <input type="hidden" tal:attributes="name input_id;value rpath" />
+    <strong tal:content="rpath" />
+  </tal:block>
 </metal:block>
 
 <metal:block define-macro="popup_item_view">
