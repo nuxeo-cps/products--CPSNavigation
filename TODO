@@ -1,7 +1,14 @@
-- BUG absolute_url(relative=1)
-  return cps/zelkjr vs portal_tree /zelkjr -> broken
-- popup
-   o CPS
+- use session to store dm_opt and dm_search
+  this will speed up layout validation
+- handle display option for cps icon/detail/..
+- batching for navigation
+   o use max_children for directory nav ?
+
+# ------------------------------------------------------------
+- CPSNavigation
+   o rename into CPSTreeNavigation
+   o need unit test
+   o handle invalid current_uid
 - FavoritesNavigation
    o expand all folder in Favorites as level 1
 - LDAPDirectoryNavigation
@@ -9,13 +16,7 @@
    o more check
 - ConfNavigation
    o rename into ConfigNavigation ?
-- CPSNavigation
-   o rename CPSTreeNavigation
-   o need unit test
-   o check what's append if current not part of the root tree ?
 - ZODBNavigation
    o check aq_base
 - VocabularyNavigation
    o assuming that a key=path ?
-- BaseNavigation
-   o expand all
