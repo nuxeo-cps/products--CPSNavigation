@@ -62,3 +62,6 @@ msgstr ""
 msgid "cpsnav_option_current_uid"
 msgstr ""
 
+msgid "cpsnav_current_uid"
+msgstr ""
+

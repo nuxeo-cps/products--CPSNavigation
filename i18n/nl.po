@@ -1,3 +1,14 @@
+#.   <input value="button_reset" class="context" name="search_reset" type="submit" />
+#.   <input value="button_reset" class="context" name="option_reset" type="submit" />
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "button_reset"
+msgstr ""
+
+#.   <span>here</span>
+#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_current_uid"
+msgstr ""
+
 #.   <th width="33%" class="even">label_detail</th>
 #: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_detail"
