@@ -1,0 +1,6 @@
+# $Id$
+
+# CPS --------------------
+CPSCore
+CPSSchemas
+CPSDirectory
