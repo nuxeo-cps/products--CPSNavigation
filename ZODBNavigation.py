@@ -15,16 +15,15 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""A CMF Finder
+"""A ZODB Finder
 """
 from Acquisition import aq_parent, aq_inner
-from interfaces.Finder import Finder
-from Products.CMFCore.utils import getToolByName
+from interfaces.IFinder import IFinder
 
 
-class CMFFinder:
-    """Implement Finder interface for a CMF site."""
-    __implements__ = (Finder, )     # See Finder interface for method docstring
+class ZODBFinder:
+    """Implement Finder interface for a ZODB."""
+    __implements__ = (IFinder, )   # See IFinder interface for method docstring
 
     ### Finder interface
     def setParams(self, **kw):

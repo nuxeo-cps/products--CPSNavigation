@@ -18,8 +18,8 @@
 """A ConfigParser Finder
 """
 from ConfigParser import ConfigParser, NoOptionError, NoSectionError
-from Products.CPSDefault.interfaces.Finder import Finder
 from StringIO import StringIO
+from Products.CPSNavigation.interfaces.IFinder import IFinder
 
 
 class DummyClass:
@@ -59,7 +59,7 @@ class ConfFinder:
     contents=bla|blah
     ...
     """
-    __implements__ = (Finder, )     # See Finder interface for method docstring
+    __implements__ = (IFinder, )  # See Finder interface for method docstring
 
     sep = '|'
 
@@ -67,11 +67,13 @@ class ConfFinder:
         """Initialize the Finder.
 
         Either a filename or a file content is expected."""
+        file_fd = None
         if file_name:
             file_fd = open(file_name, 'r')
         elif file_content:
             file_fd = StringIO(file_content)
-
+        else:
+            raise KeyError, "No file_content or file_name provided."
         parser = ConfigParser()
         parser.readfp(file_fd)
         file_fd.close()
@@ -98,7 +100,7 @@ class ConfFinder:
         if getattr(obj, 'type', '') in ('Section', 'Workspace'):
             return 1
         try:
-            value = self.parser.get(obj.getId(), 'contents')
+            self.parser.get(obj.getId(), 'contents')
         except (NoSectionError, NoOptionError):
             return 0
 
