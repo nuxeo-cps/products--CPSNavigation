@@ -1,4 +1,24 @@
 *******************************************
+** CPSNavigation V0.9.0 [R1 build 2004/07/22-09:31 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- first impl CatalogNavigation
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- CPSNavigation adding portal_type filter
+- _isNode() within CPSNavigation takes into consideration the portal_type filter
+s
+- CPSNavigation constructor -> prefix for the tree cache
+- navigation_lib hide_current possiblity
+
+*******************************************
 ** CPSNavigation V0.8.1 [R1 build 2004/07/02-16:39 by anahide]
 
 Requires:
