@@ -46,7 +46,7 @@ class Navigation:
         """Return the navigation properties."""
         res = {}
         for k in self._param_ids:
-            res['k'] = getattr(self, k)
+            res[k] = getattr(self, k)
         return res
 
 
