@@ -91,8 +91,8 @@ class CPSNavigation(ZODBNavigation):
         """Update title and description according to current locale
         """
         locale = self.locale
-        if node.has_key('l10n_titles') and \
-               node['l10n_titles'].has_key(locale):
+        if ( node.has_key('l10n_titles') and
+               node['l10n_titles'].has_key(locale) ):
             node['title'] = node['l10n_titles'][locale]
             if node['title']:
                 title_or_id = node['title']
@@ -100,8 +100,8 @@ class CPSNavigation(ZODBNavigation):
                 title_or_id = node['id']
             node['title_or_id'] = title_or_id
             node['short_title'] = truncateText(title_or_id)
-        if node.has_key('l10n_descriptions') and \
-               node['l10n_descriptions'].has_key(locale):
+        if ( node.has_key('l10n_descriptions') and
+               node['l10n_descriptions'].has_key(locale) ):
             node['description'] = node['l10n_descriptions'][locale]
         return node
 
@@ -157,13 +157,13 @@ class CPSNavigation(ZODBNavigation):
             if not obj['nb_children']:
                 return []
             if obj.has_key('children'): # only fake root has children key
-                return [self._localizeNode(x) for x in self._cps_tree if \
-                        x['rpath'] in obj['children']]
+                return [self._localizeNode(x) for x in self._cps_tree
+                        if x['rpath'] in obj['children']]
             children_prefix = obj['rpath'] + '/'
             children_depth = obj['depth'] + 1
-            return [self._localizeNode(x) for x in self._cps_tree if \
-                    x['depth'] == children_depth and \
-                    x['rpath'].startswith(children_prefix)]
+            return [self._localizeNode(x) for x in self._cps_tree 
+                    if ( x['depth'] == children_depth and
+                         x['rpath'].startswith(children_prefix) )]
 
         # for the listing use the ZODB
         lobj = obj
