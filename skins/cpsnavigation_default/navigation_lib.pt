@@ -156,6 +156,63 @@ not found' % display_attr])[0]" />
 </metal:block>
 
 
+<!-- ============================================================ -->
+<!-- map -->
+<metal:block define-macro="render_node_map">
+  <tal:block replace="python:
+here.truncString(node['object'].get(display_attr, '%s not found!'% display_attr))" />
+</metal:block>
+
+<metal:block define-macro="render_listing_header_map"
+  tal:define="item_desc python: listing_info['current'].get(display_attr, '%s
+not found' % display_attr);
+              item_uid listing_info/current_uid">
+  <input name="uid" type="radio" class="noborder" checked="checked"
+    tal:attributes="value item_uid; id item_desc">
+  <tal:block replace="item_desc" />
+</metal:block>
+
+<metal:block define-macro="render_listing_header_multi_select_map">
+  <input name="uids:list" type="checkbox" class="noborder"
+        tal:attributes="value listing_info/current_uid">
+  <tal:block replace="python: listing_info['current'].get(display_attr, '%s
+not found' % display_attr)" />
+</metal:block>
+
+<metal:block define-macro="render_listing_item_multi_select_map"
+  tal:define="item_uid python: item['the_uid'];
+    item_desc python: item.get(display_attr,'%s not found!' % display_attr)">
+  <input name="uids:list" type="checkbox" class="noborder"
+        tal:attributes="value item_uid">
+  <a href="" tal:attributes="title item_uid;
+    href python:'%s?%s'%(request.URL0,
+    mq(request.form, current_uid=item_uid));"
+    tal:omit-tag="search">
+    <tal:block replace="item_desc" />
+  </a>
+</metal:block>
+
+<metal:block define-macro="render_listing_item_map"
+  tal:define="item_uid python: item['the_uid'];
+  item_desc python: item.get(display_attr,'%s not found!' % display_attr);">
+  <input name="uid" type="radio" class="noborder"
+    tal:attributes="value item_uid;id item_desc;
+      checked python:search and repeat['item'].start">
+  <a href="" tal:attributes="title item_uid;
+    href python:'%s?%s'%(request.URL0,
+    mq(request.form, current_uid=item_uid));"
+    tal:omit-tag="search">
+    <tal:block replace="item_desc" />
+  </a>
+</metal:block>
+
+
+<metal:block define-macro="render_selection_map">
+  <tal:block replace="item/title" />
+</metal:block>
+
+
+
 
 <!-- ============================================================ -->
 <!-- this is a nav/detail/multi selection table you should define -->
@@ -170,6 +227,7 @@ not found' % display_attr])[0]" />
               listing python:res[1];
               batch_info python:res[2];
               listing_info python:res[3];
+              type python:res[4];
               mq nocall:modules/ZTUtils/make_query;
               current_uid request/current_uid|nothing;
               search request/search|nothing;
@@ -288,6 +346,7 @@ not found' % display_attr])[0]" />
               listing python:res[1];
               batch_info python:res[2];
               listing_info python:res[3];
+              type python:res[4];
               mq nocall:modules/ZTUtils/make_query;
               current_uid request/current_uid|nothing;
               search request/search|nothing;
