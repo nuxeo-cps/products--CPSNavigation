@@ -1,0 +1,42 @@
+# translation of en.po to ben
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+# ben <ben@nuxeo.com>, 2004
+msgid ""
+msgstr ""
+"Project-Id-Version: en\n"
+"POT-Creation-Date: 2004-01-28 10:57default\n"
+"PO-Revision-Date: 2004-01-28 10:58+0100\n"
+"Last-Translator: ben <ben@nuxeo.com>\n"
+"Language-Team: ben\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: LL\n"
+"Language-name: Language\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+"X-Generator: KBabel 1.0.1\n"
+
+#.   <th width="33%" class="even">label_detail</th>
+#: from ../skins/navigation_lib.pt
+msgid "label_detail"
+msgstr "Content"
+
+#.   <th condition="not:search" width="33%" class="even">label_navigation</th>
+#: from ../skins/navigation_lib.pt
+msgid "label_navigation"
+msgstr "Navigation"
+
+#.   <span />
+#: from ../skins/navigation_lib.pt
+msgid "label_no_results"
+msgstr "No results."
+
+#.   <th width="33%" class="even">label_selection</th>
+#.   <th width="60%" class="even">label_selection</th>
+#: from ../skins/navigation_lib.pt
+msgid "label_selection"
+msgstr "Selected"
+

@@ -1,0 +1,20 @@
+#.   <th width="33%" class="even">label_detail</th>
+#: from ../skins/navigation_lib.pt
+msgid "label_detail"
+msgstr ""
+
+#.   <th condition="not:search" width="33%" class="even">label_navigation</th>
+#: from ../skins/navigation_lib.pt
+msgid "label_navigation"
+msgstr ""
+
+#.   <span />
+#: from ../skins/navigation_lib.pt
+msgid "label_no_results"
+msgstr ""
+
+#.   <th width="33%" class="even">label_selection</th>
+#.   <th width="60%" class="even">label_selection</th>
+#: from ../skins/navigation_lib.pt
+msgid "label_selection"
+msgstr ""
