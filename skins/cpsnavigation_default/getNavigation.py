@@ -6,7 +6,6 @@ from Products.CPSNavigation.CPSNavigation import CPSNavigation
 from Products.CPSNavigation.LDAPDirectoryNavigation import \
      LDAPDirectoryNavigation
 
-b_start = REQUEST.get('b_start', 0)
 
 if finder == 'cps':
     current_uid = REQUEST.get('current_uid')
@@ -23,7 +22,7 @@ if finder == 'cps':
                         sort_listing_by='title',
                         sort_listing_direction='asc',
                         batch_size=15,
-                        batch_start=b_start,
+                        request_form=REQUEST.form,
                         )
     # XXX try to get another tree and concatenate ?
 
@@ -40,11 +39,10 @@ elif finder == 'zodb':
                          sort_listing_by='title',
                          sort_listing_direction='desc',
                          batch_size=5,
-                         batch_start=b_start,
+                         request_form=REQUEST.form,
                          )
 elif finder == 'ldap':
     current_uid = REQUEST.get('current_uid')
-
     dir_name = root_uid
     dir = getattr(context.portal_directories, dir_name)
     root_uid = dir.ldap_base
@@ -58,7 +56,7 @@ elif finder == 'ldap':
         dir_name=dir_name,
         include_root=0,
         batch_size=15,
-        batch_start=b_start,
+        request_form=REQUEST.form,
         )
 
 elif finder == 'conf':
@@ -76,6 +74,8 @@ contents=leaf_4|leaf_5
                          current_uid='node_2',
                          file_content=file_content)
 
-tree = nav.getTree()
+tree = None
+if not REQUEST.get('search'):
+    tree = nav.getTree()
 listing, listing_info, batch_info = nav.getListing()
 return tree, listing, batch_info, listing_info
