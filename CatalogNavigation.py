@@ -32,11 +32,11 @@ from Products.CMFCore.CMFCorePermissions import AccessInactivePortalContent
 from DateTime import DateTime
 
 
-
 class CatalogNavigation(BaseNavigation):
     """Implement Finder interface using the portal_catalog."""
 
     sort_limit = 100
+    find_root_depth_max = 4
 
     def __init__(self, **kw):
         if not kw.get('context'):
@@ -51,6 +51,7 @@ class CatalogNavigation(BaseNavigation):
             kw['root_uid'] = kw['current_uid'].split('/')[0]
         self.ctool = getToolByName(kw['context'], 'portal_catalog')
         self.portal_path = '/' + self.ctool.getPhysicalPath()[1] + '/'
+        self.portal_path_len = len(self.portal_path)
         BaseNavigation.__init__(self, **kw)
 
     ### Finder interface
@@ -74,11 +75,12 @@ class CatalogNavigation(BaseNavigation):
         else:
             # obj is a brain
             rid = obj.getRID()
-            uid = self.ctool._catalog.paths[rid][len(self.portal_path):]
+            uid = self.ctool._catalog.paths[rid][self.portal_path_len:]
         return uid
 
     def _isNode(self, obj):
-        # XXX TODO impl
+        # do nothing as we use search filter for nodes and leaves
+        # this is only used by BaseNavigation explore nodes so return 1
         return 1
 
     def _hasChildren(self, obj, no_nodes=0, no_leaves=0):
@@ -89,22 +91,82 @@ class CatalogNavigation(BaseNavigation):
             return []
         uid = self._getUid(obj)
         luid = self.portal_path + uid
-        level = len(luid.split('/'))
-        child_level = level + 1
         # search
         self.query = {'container_path': luid}
         if no_nodes:
             # xxx TODO impl
             pass
+
+        if uid == self.root_uid:
+            return self._findRoots()
         return self._search(mode=mode)
 
     def _getParentUid(self, uid):
         obj = self._getObject(uid)
         return '/'.join(uid.split('/')[:-1])
 
+    ###
+    def _findRoots(self):
+        # the goal is to dicover roots that are not direct children
+        # of root_uid
+
+        # first get visible children
+        children = self._search(mode='tree')
+
+        # then get all children
+        query = self._buildQuery(getattr(self, 'query', {}),
+                                 self.portal_path, 'tree', viewable=0)
+        LOG('CatalogNavigation._findRoots', DEBUG, 'start\n'
+            '\tquery = %s\n' % (query))
+        all_children = ZCatalog.searchResults(self.ctool, None, **query)
+        LOG('CatalogNavigation._findRoots', DEBUG, 'found %s items' %
+            len(all_children))
+
+        if len(all_children) == len(children):
+            # all children are visible
+            return children
+
+        depth_min = len(self.root_uid.split('/')) + 2
+        depth_max = depth_min + self.find_root_depth_max - 2
+
+        pathes_viewable = [x.relative_path for x in children]
+        pathes_to_explore = [self.portal_path + x.relative_path \
+                             for x in all_children if \
+                             x.relative_path not in pathes_viewable]
+        LOG('CatalogNavigation._findRoots', DEBUG, 'explore %s' %
+            pathes_to_explore)
+
+        query = {'path': pathes_to_explore}
+        query['relative_path_depth'] = {'query': (depth_min, depth_max),
+                                        'range': 'min:max'}
+        query['sort-on'] = 'container_path'
+        self.query = query
+        brains = self._search(mode='tree')
+
+        # extract roots
+        items = []
+        last_root = None
+        for b in brains:
+            current_container = b.relative_path[:-len(b.getId)]
+            if last_root and current_container.startswith(last_root):
+                continue
+            last_root = b.relative_path + '/'
+            items.append(b)
+
+        # add new roots to children
+        if len(items):
+            items = [x for x in children] + items
+
+        LOG('CatalogNavigation._findRoots', DEBUG, 'found %s' % (
+            [x.relative_path for x in items]))
+
+        return items
+
+
     ### override Navigation
 
-    def _buildQuery(self, query_in, portal_path, mode='listing'):
+    def _buildQuery(self, query_in, portal_path, mode='listing',
+                    viewable=1):
         query = {}
         date_suffix = '_usage'
 
@@ -145,11 +207,12 @@ class CatalogNavigation(BaseNavigation):
             # not located in the repository, without any '.xx'
             query['cps_filter_sets'] = 'searchable'
             # filter viewable document
-            user = _getAuthenticatedUser(self)
-            query[
-                'allowedRolesAndUsers'] = self.ctool._listAllowedRolesAndUsers(
-                user)
-
+            if viewable:
+                user = _getAuthenticatedUser(self)
+                query['allowedRolesAndUsers'] = self.ctool._listAllowedRolesAndUsers(user)
+                if 'Manager' in query['allowedRolesAndUsers']:
+                    # manager powa
+                    del query['allowedRolesAndUsers']
             if mode == 'listing':
                 if not _checkPermission(AccessInactivePortalContent, self):
                     base = aq_base(self)
@@ -211,9 +274,8 @@ class CatalogNavigation(BaseNavigation):
         if not hasattr(self, 'query'):
             return []
 
-        ctool = getToolByName(self.context, 'portal_catalog')
-        portal = aq_parent(aq_inner(ctool))
-        portal_path = '/' + ctool.getPhysicalPath()[1] + '/'
+        portal = aq_parent(aq_inner(self.ctool))
+        portal_path = '/' + self.ctool.getPhysicalPath()[1] + '/'
 
         query = self._buildQuery(getattr(self, 'query', {}),
                                  portal_path, mode)
@@ -223,7 +285,7 @@ class CatalogNavigation(BaseNavigation):
             return []
 
         chrono_start = time()
-        brains = ZCatalog.searchResults(ctool, None, **query)
+        brains = ZCatalog.searchResults(self.ctool, None, **query)
         chrono_stop = time()
 
         LOG('CatalogNavigation._search', DEBUG, 'end\n'
