@@ -3,7 +3,7 @@ ZODB Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- search mode first implementation
 Bug fixes:
 ~~~~~~~~~~
 -
