@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-01-28 10:57default\n"
+"POT-Creation-Date: 2004-04-27 16:41default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -20,22 +20,67 @@ msgstr ""
 "Domain: default\n"
 
 #.   <th width="33%" class="even">label_detail</th>
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_detail"
 msgstr ""
 
 #.   <th condition="not:search" width="33%" class="even">label_navigation</th>
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_navigation"
 msgstr ""
 
 #.   <span />
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_no_results"
 msgstr ""
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_selection"
+msgstr ""
+
+msgid "cpsnav_option_display_mode"
+msgstr ""
+
+msgid "cpsnav_option_include_root"
+msgstr ""
+
+msgid "cpsnav_option_sort_tree_by"
+msgstr ""
+
+msgid "cpsnav_option_sort_listing_by"
+msgstr ""
+
+msgid "cpsnav_option_batch_size"
+msgstr ""
+
+msgid "cpsnav_option_no_node"
+msgstr ""
+
+msgid "cpsnav_option_filter_tree_ptypes"
+msgstr ""
+
+msgid "cpsnav_option_sort_tree_direction"
+msgstr ""
+
+msgid "cpsnav_option_sort_listing_direction"
+msgstr ""
+
+msgid "cpsnav_option_filter_listing_ptypes"
+msgstr ""
+
+msgid "cpsnav_search_expand_all"
+msgstr ""
+
+msgid "cpsnav_search_scope"
+msgstr ""
+
+msgid "cpsnav_search_scope_entire_site"
+msgstr ""
+
+msgid "cpsnav_search_scope_current_location"
+msgstr ""
+
+msgid "cpsnav_option_current_uid"
 msgstr ""

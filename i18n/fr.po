@@ -5,12 +5,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-01-28 10:57default\n"
-"PO-Revision-Date: 2004-01-28 10:59+0100\n"
+"POT-Creation-Date: 2004-04-27 16:41default\n"
+"PO-Revision-Date: 2004-04-27 16:42+0200\n"
 "Last-Translator: ben <ben@nuxeo.com>\n"
 "Language-Team: ben\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-code: LL\n"
@@ -20,23 +20,68 @@ msgstr ""
 "X-Generator: KBabel 1.0.1\n"
 
 #.   <th width="33%" class="even">label_detail</th>
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_detail"
 msgstr "Détail"
 
 #.   <th condition="not:search" width="33%" class="even">label_navigation</th>
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_navigation"
 msgstr "Navigation"
 
 #.   <span />
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_no_results"
 msgstr "Aucun résultat."
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
-#: from ../skins/navigation_lib.pt
+#: from ../skins/cpsnavigation_default/navigation_lib.pt
 msgid "label_selection"
 msgstr "Sélection"
+
+msgid "cpsnav_option_display_mode"
+msgstr "Affichage par défaut mode"
+
+msgid "cpsnav_option_include_root"
+msgstr "Afficher la racine de la navigation"
+
+msgid "cpsnav_option_sort_tree_by"
+msgstr "Navigation triée par"
+
+msgid "cpsnav_option_sort_listing_by"
+msgstr "Listing trié par"
+
+msgid "cpsnav_option_batch_size"
+msgstr "Nombre de document par page"
+
+msgid "cpsnav_option_no_node"
+msgstr "Cacher les dossiers dans le listing"
+
+msgid "cpsnav_option_filter_tree_ptypes"
+msgstr "Filtrer les types de dossiers dans la navigation"
+
+msgid "cpsnav_option_sort_tree_direction"
+msgstr "Direction du tri pour la navigation"
+
+msgid "cpsnav_option_sort_listing_direction"
+msgstr "Direction du tri pour le listing"
+
+msgid "cpsnav_option_filter_listing_ptypes"
+msgstr "Filtrer les types de documents dans le listing"
+
+msgid "cpsnav_search_expand_all"
+msgstr "Deployer toute l'arborescence pour la navigation"
+
+msgid "cpsnav_search_scope"
+msgstr "Étendu de la recherche"
+
+msgid "cpsnav_search_scope_entire_site"
+msgstr "le site entier"
+
+msgid "cpsnav_search_scope_current_location"
+msgstr "dans le dossier courrant"
+
+msgid "cpsnav_option_current_uid"
+msgstr "Dossier courrant"
 

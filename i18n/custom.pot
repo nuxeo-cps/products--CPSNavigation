@@ -16,3 +16,49 @@ msgstr ""
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
 
+
+msgid "cpsnav_option_display_mode"
+msgstr ""
+
+msgid "cpsnav_option_include_root"
+msgstr ""
+
+msgid "cpsnav_option_sort_tree_by"
+msgstr ""
+
+msgid "cpsnav_option_sort_listing_by"
+msgstr ""
+
+msgid "cpsnav_option_batch_size"
+msgstr ""
+
+msgid "cpsnav_option_no_node"
+msgstr ""
+
+msgid "cpsnav_option_filter_tree_ptypes"
+msgstr ""
+
+msgid "cpsnav_option_sort_tree_direction"
+msgstr ""
+
+msgid "cpsnav_option_sort_listing_direction"
+msgstr ""
+
+msgid "cpsnav_option_filter_listing_ptypes"
+msgstr ""
+
+msgid "cpsnav_search_expand_all"
+msgstr ""
+
+msgid "cpsnav_search_scope"
+msgstr ""
+
+msgid "cpsnav_search_scope_entire_site"
+msgstr ""
+
+msgid "cpsnav_search_scope_current_location"
+msgstr ""
+
+msgid "cpsnav_option_current_uid"
+msgstr ""
+
