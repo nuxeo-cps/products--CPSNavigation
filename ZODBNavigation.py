@@ -55,7 +55,7 @@ class ZODBNavigation(BaseNavigation):
         return not not len(self._getChildren(obj, no_nodes, no_leaves))
 
     def _getChildren(self, obj, no_nodes=0, no_leaves=0, mode='tree'):
-        children = aq_base(obj).objectValues()
+        children = obj.objectValues()
         if no_nodes:
             children = [child for child in children if not self._isNode(child)]
         if no_leaves:
