@@ -1,7 +1,7 @@
 .PHONY: clean check
 
 check:
-	pychecker *.py
+	pychecker2 *.py
 
 clean:
 	find . -name '*~' | xargs rm -f
