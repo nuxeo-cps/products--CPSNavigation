@@ -116,7 +116,7 @@
   </tal:block>
   <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
   <br>
-  <input type="submit" class="standalone"
+  <input type="submit" class="context"
     name="add_items_to_selection"
     value="button_select" i18n:attributes="value">
   </div>
@@ -139,7 +139,7 @@
     tal:attributes="value input_id">
   <input type="hidden" name="title"
     tal:attributes="value title">
-  <input type="submit" class="destructive" value="button_delete"
+  <input type="submit" class="context" value="button_delete"
     name="del_items_from_selection"
     i18n:attributes="value">
   <metal:block define-slot="action">
