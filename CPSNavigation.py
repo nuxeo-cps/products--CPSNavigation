@@ -22,6 +22,7 @@ from types import DictType
 from Products.CMFCore.utils import getToolByName
 from ZODBNavigation import ZODBNavigation
 from zLOG import LOG, DEBUG
+from time import clock
 
 class CPSNavigation(ZODBNavigation):
     """Implement Finder interface for a CPS.
@@ -29,15 +30,17 @@ class CPSNavigation(ZODBNavigation):
     the listing are normal object."""
 
     def __init__(self, **kw):
-        #root and current are cps tree node object !
-        if not kw.get('current_uid'):
-            raise KeyError, "No current_uid provided."
-        if not kw.get('root_uid'):
-            raise KeyError, "No root_uid provided."
+        # root and current are cps tree node object !
         if not kw.get('context'):
             raise KeyError, "No context provided."
-
         ptrees = getToolByName(kw['context'], 'portal_trees')
+        if not kw.get('current_uid') and not kw.get('root_uid'):
+            # get the first tree
+            kw['root_uid'] = ptrees.objectIds()[0]
+        if not kw.get('current_uid') and kw.get('root_uid'):
+            kw['current_uid'] = kw['root_uid']
+        if kw.get('current_uid') and not kw.get('root_uid'):
+            kw['root_uid'] = kw['current_uid'].split('/')[0]
         self._cps_tree = ptrees[kw['root_uid']].getList(filter=1)
         ZODBNavigation.__init__(self, **kw)
         self._cps_tree_fixture()
@@ -82,6 +85,7 @@ class CPSNavigation(ZODBNavigation):
         try:
             uid = obj['rpath']
         except (TypeError, KeyError):
+            LOG('CPSNavigation._getUid', DEBUG, '')
             pass
         return uid
 
@@ -130,3 +134,91 @@ class CPSNavigation(ZODBNavigation):
         if mode == 'tree':
             return objs
         return ZODBNavigation._filter(self, objs, mode)
+
+    def _search(self):
+        """Search repository."""
+        query = getattr(self, 'query', None)
+        LOG('BaseNavigation._search', DEBUG, 'searching %s' % query)
+        if not query:
+            return []
+        chrono_start = clock()
+        nb_proxies = 0
+        folder_prefix = query.get('folder_prefix')
+        start_date = query.get('start_date')
+        end_date = query.get('end_date')
+        if query.has_key('folder_prefix'):
+            del query['folder_prefix']
+        if query.has_key('start_date'):
+            del query['start_date']
+        if query.has_key('end_date'):
+            del query['end_date']
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        ptool = getToolByName(self.context, 'portal_proxies')
+
+        # search the document repository
+        portal_path = getToolByName(self.context,
+                                    'portal_url').getPortalPath()
+        query['path'] = portal_path + '/portal_repository/'
+
+        # init status
+        status=''
+        if query.get('review_state'):
+            status = query['review_state']
+            wtool = context.portal_workflow
+            del query['review_state']
+
+        # search and get documents brains
+        b_docs = catalog(**query)
+        chrono_step1 = clock()
+        items = []
+        for b_doc in b_docs:
+            doc_id = b_doc.getPath().split('/')[-1]
+            i_proxies = ptool.getProxiesFromObjectId(
+                doc_id, proxy_rpath_prefix=folder_prefix)
+            for i_proxy in i_proxies:
+                nb_proxies += 1
+                proxy = i_proxy['object']
+                # prevent zcatalog desynchronization ??
+                try:
+                    title = proxy.Title()
+                except (AttributeError):
+                    continue
+                # folder_prefix filtering
+                if folder_prefix and \
+                       not i_proxy['rpath'].startswith(folder_prefix):
+                    continue
+                # status filtering
+                if (status and
+                    wtool.getInfoFor(proxy,
+                                     'review_state','nostate') != status):
+                    continue
+
+                # event start/end filtering
+                if start_date and end_date:
+                    doc = proxy.getContent()
+                    sd = ed = 0
+                    if hasattr(doc.aq_explicit, 'start'):
+                        if callable(doc.start):
+                            sd = doc.start()
+                        else:
+                            sd = doc.start
+                    if hasattr(doc.aq_explicit, 'end'):
+                        if callable(doc.end):
+                            ed = doc.end()
+                        else:
+                            ed = doc.end
+                    if not sd or not ed:
+                        continue
+                    if (sd - end_date > 0) or (start_date - ed > 0):
+                        continue
+
+                items.append(proxy)
+        chrono_stop = clock()
+        LOG('BaseNavigation._search', DEBUG,
+            'found %s item in %7.4fs (catalog found %s in %7.4fs)'
+            'filtering %s proxies' % (
+            len(items), chrono_stop-chrono_start,
+            len(b_docs), chrono_step1 - chrono_start, nb_proxies))
+
+        return items
