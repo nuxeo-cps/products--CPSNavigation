@@ -42,9 +42,9 @@ class CMFFinder:
     def getChildren(self, obj, no_nodes=0, no_leaves=0):
         children = obj.objectValues()
         if no_nodes:
-            children = [child for child in children and not self.isNode(i)]
+            children = [child for child in children if not self.isNode(child)]
         if no_leaves:
-            children = [child for child in children and self.isNode(i)]
+            children = [child for child in children if self.isNode(child)]
 
         return children
 
