@@ -25,6 +25,10 @@ from interfaces.IFinder import IFinder
 from BaseNavigation import BaseNavigation
 from zLOG import LOG, DEBUG, ERROR
 
+def uid2utf8(self, uid):
+    return unicode(text, 'iso-8859-15').encode('utf8')
+
+
 class LDAPDirectoryNavigation(BaseNavigation):
     """Implement Finder interface for a LDAPDirectory."""
     __implements__ = (IFinder, )   # See IFinder interface for method docstring
@@ -42,48 +46,63 @@ class LDAPDirectoryNavigation(BaseNavigation):
     ### Finder interface
     def _getObject(self, uid):
         # return an mapping of a directory entry
-        obj = None
-        try:
-            obj = self._dir.getEntryByDN(uid)
-        except ValueError:
-            pass
-        return obj
+        uid_utf8 = unicode(uid, 'iso-8859-15').encode('utf8')
+        res = self._dir._delegate.search(base=uid_utf8,
+                                         scope=0,
+                                         filter='(objectClass=*)')
+
+        if res['exception']:
+            LOG('LDAPDirectoryNavigation._getObject',
+                ERROR, 'Error searching for dn=[%s]: %s' %
+                (uid, res['exception']))
+            return None
+        if not res['size']:
+            return None
+        return res['results'][0]
+
 
     def _getUid(self, obj):
         # return something like
         # 'ou=direction des musees de france,ou=culture,o=gouv,c=fr
-        if type(obj) is DictType:
-            LOG('XXXXX', DEBUG, obj['dn'])
-            return obj['dn']
-        return None
+        # uid is encoded in iso 8859 15
+        return obj['dn']
 
     def _isNode(self, obj):
         return 1
 
     def _hasChildren(self, obj, no_nodes=0, no_leaves=0):
-        # Such an ineficient way
-        return not not len(self._getChildren(obj, no_nodes, no_leaves))
+        uid = self._getUid(obj)
+        uid_utf8 = unicode(uid, 'iso-8859-15').encode('utf8')
+        res = self._dir._delegate.search(base=uid_utf8,
+                                         scope=1,
+                                         filter=self._dir.objectClassFilter(),
+                                         attrs=['dn'])
+        if res['exception']:
+            LOG('LDAPDirectoryNavigation._hasChildren',
+                ERROR, 'LDAP search error on dn=%s: %s' % (uid,
+                                                           res['exception']))
+            return 0
+
+        return res['size']
 
     def _getChildren(self, obj, no_nodes=0, no_leaves=0, mode='tree'):
-        dn = self._getUid(obj)
-        dir = self._dir
-        res = dir._delegate.search(base=dn,
-                                   scope=1,
-                                   filter=dir.objectClassFilter(),
-                                   attrs=['dn'])
+        uid = self._getUid(obj)
+        uid_utf8 = unicode(uid, 'iso-8859-15').encode('utf8')
+        res = self._dir._delegate.search(base=uid_utf8,
+                                         scope=1,
+                                         filter=self._dir.objectClassFilter(),
+                                         attrs=['dn'])
         if res['exception']:
-            LOG('LDAPDirectory', ERROR, 'Error talking to server: %s'
-                % res['exception'])
-            raise ValueError(res['exception']) # XXX do better ?
-
+            LOG('LDAPDirectoryNavigation._getChildren',
+                ERROR, 'LDAP search error on dn=%s: %s' % (uid,
+                                                           res['exception']))
+            return []
         children = [self._getObject(x['dn']) for x in res['results']]
-        children = filter(None, children)
         if no_nodes:
             children = [child for child in children if not self._isNode(child)]
 
         return children
 
-    def _getParent(self, obj):
-        dn = self._getUid(obj)
-        parent_dn = dn.split(',', 1)[1]
-        return self._getObject(parent_dn)
+    def _getParentUid(self, uid):
+        parent_uid = uid.split(',', 1)[1]
+        return parent_uid
