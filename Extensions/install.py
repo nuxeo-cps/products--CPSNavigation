@@ -41,6 +41,21 @@ class CPSNavigationInstaller(CPSInstaller):
              'cpsnavigation_devel': 'Products/CPSNavigation/skins/cpsnavigation_devel',
              }
 
+
+    def verifyCatalogNavigationIndexes(self):
+        indexes = (('container_path', 'FieldIndex', None),
+                   ('relative_path_depth', 'FieldIndex', None),
+                   ('relative_path', 'FieldIndex', None),
+                   )
+        metadata = ('relative_path',)
+
+        # check indexes
+        for index_name, index_type, index_extra in indexes:
+            self.addPortalCatalogIndex(index_name, index_type, index_extra)
+        # check metadata
+        for name in metadata:
+            self.addPortalCatalogMetadata(name)
+
     def install(self):
         self.log("Starting CPSNavigation install")
         self.verifySkins(self.SKINS)
@@ -50,6 +65,8 @@ class CPSNavigationInstaller(CPSInstaller):
         self.verifyLayouts(self.portal.getCPSNavigationLayouts())
         self.verifyVocabularies(self.portal.getCPSNavigationVocabularies())
         self.setupTranslations()
+        self.verifyCatalogNavigationIndexes()
+        self.finalize()
         self.log("End of specific CPSNavigation install")
 
 def install(self):
