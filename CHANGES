@@ -10,4 +10,6 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - CPSNavigation adding portal_type filter
-- _isNode() within CPSNavigation takes into consideration the portal_type filters
+- _isNode() within CPSNavigation takes into consideration the portal_type filter
+s
+- CPSNavigation constructor -> prefix for the tree cache
