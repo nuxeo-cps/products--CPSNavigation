@@ -136,65 +136,80 @@ class CPSNavigation(ZODBNavigation):
             return objs
         return ZODBNavigation._filter(self, objs, mode)
 
+
+    def _clean_query(self, query_in):
+        catalog_query = {}
+        cps_query = {}
+        date_suffix = '_usage'
+        if not query_in:
+            return catalog_query, cps_query
+
+        for k, v in query_in.items():
+            # skip date usage key without date
+            if k.endswith(date_suffix):
+                k_prefix = k[:-len(date_suffix)]
+                if not query_in.get(k_prefix):
+                    v = None
+            if v:
+                catalog_query[k] = v
+
+        for k in ('folder_prefix', 'start_date', 'end_date',
+                  'review_state'):
+            if catalog_query.has_key(k):
+                cps_query[k] = catalog_query[k]
+                del catalog_query[k]
+
+        if catalog_query:
+            portal_path = getToolByName(self.context,
+                                        'portal_url').getPortalPath()
+            catalog_query['path'] = portal_path + '/portal_repository/'
+            if 'filter_listing_ptypes' in self._param_ids and \
+                       self.filter_listing_ptypes:
+                catalog_query['portal_type'] = self.filter_listing_ptypes
+
+        return catalog_query, cps_query
+
     def _search(self):
         """Search repository."""
-        query = getattr(self, 'query', None)
-        LOG('BaseNavigation._search', DEBUG, 'searching %s' % query)
-        if not query:
+        if not hasattr(self, 'query'):
             return []
-        chrono_start = clock()
-        nb_proxies = 0
-        folder_prefix = query.get('folder_prefix')
-        start_date = query.get('start_date')
-        end_date = query.get('end_date')
-        if query.has_key('folder_prefix'):
-            del query['folder_prefix']
-        if query.has_key('start_date'):
-            del query['start_date']
-        if query.has_key('end_date'):
-            del query['end_date']
 
+        catalog_query, cps_query = self._clean_query(
+            getattr(self, 'query', {}))
+        LOG('BaseNavigation._search', DEBUG, 'start\n'
+            '\tcatalog_query = %s\n'
+            '\tcps_query = %s'% (catalog_query, cps_query))
+        if not catalog_query:
+            return []
+
+        proxy_count = 0
         catalog = getToolByName(self.context, 'portal_catalog')
         ptool = getToolByName(self.context, 'portal_proxies')
+        wtool = getToolByName(self.context, 'portal_workflow')
+        review_state = cps_query.get('review_state')
+        start_date = cps_query.get('start_date')
+        end_date = cps_query.get('end_date')
 
-        # search the document repository
-        portal_path = getToolByName(self.context,
-                                    'portal_url').getPortalPath()
-        query['path'] = portal_path + '/portal_repository/'
-
-        # init status
-        status=''
-        if query.get('review_state'):
-            status = query['review_state']
-            wtool = self.context.portal_workflow
-            del query['review_state']
-
-        # search and get documents brains
-        b_docs = catalog(**query)
+        # catalog search
+        chrono_start = clock()
+        doc_brains = catalog(**catalog_query)
         chrono_step1 = clock()
-        items = []
-        for b_doc in b_docs:
-            doc_id = b_doc.getPath().split('/')[-1]
-            i_proxies = ptool.getProxiesFromObjectId(
-                doc_id, proxy_rpath_prefix=folder_prefix)
-            for i_proxy in i_proxies:
-                nb_proxies += 1
-                proxy = i_proxy['object']
-                # prevent zcatalog desynchronization ??
-                try:
-                    title = proxy.Title()
-                except (AttributeError):
-                    continue
-                # folder_prefix filtering
-                if folder_prefix and \
-                       not i_proxy['rpath'].startswith(folder_prefix):
-                    continue
-                # status filtering
-                if (status and
-                    wtool.getInfoFor(proxy,
-                                     'review_state','nostate') != status):
-                    continue
 
+        # proxy search
+        items = []
+        for doc_brain in doc_brains:
+            doc_id = doc_brain.getPath().split('/')[-1]
+            proxy_infos = ptool.getProxiesFromObjectId(
+                doc_id, proxy_rpath_prefix=cps_query.get('folder_prefix'))
+            for proxy_info in proxy_infos:
+                proxy_count += 1
+                proxy = proxy_info['object']
+                # status filtering
+                if (review_state and
+                    wtool.getInfoFor(proxy,
+                                     'review_state',
+                                     'nostate') != review_state):
+                    continue
                 # event start/end filtering
                 if start_date and end_date:
                     doc = proxy.getContent()
@@ -213,13 +228,16 @@ class CPSNavigation(ZODBNavigation):
                         continue
                     if (sd - end_date > 0) or (start_date - ed > 0):
                         continue
-
+                # get one
                 items.append(proxy)
+
         chrono_stop = clock()
-        LOG('BaseNavigation._search', DEBUG,
-            'found %s item in %7.4fs (catalog found %s in %7.4fs)'
-            'filtering %s proxies' % (
-            len(items), chrono_stop-chrono_start,
-            len(b_docs), chrono_step1 - chrono_start, nb_proxies))
+        LOG('BaseNavigation._search', DEBUG, 'end\n'
+            '\tcatalog found %s document brains in %.3fs\n'
+            '\tgetting %s proxies and filter in %.3fs\n'
+            '\tsearch result: %s proxies found in %.3fs\n' % (
+            len(doc_brains), chrono_step1 - chrono_start,
+            proxy_count, chrono_stop - chrono_step1,
+            len(items), chrono_stop - chrono_start,))
 
         return items
