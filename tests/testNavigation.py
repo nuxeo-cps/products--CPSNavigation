@@ -5,10 +5,8 @@ import os
 from Testing.ZopeTestCase import ZopeLite
 import Products
 from Interface.Verify import verifyClass
-from Products.CPSDefault.tests.ConfFinder import DummyClass as DC
+from Products.CPSDefault.ConfFinder import DummyClass as DC, ConfFinder
 from Products.CPSDefault.Navigation import Navigation
-from ConfFinder import ConfFinder
-from StringIO import StringIO
 
 
 class TestNavigation(unittest.TestCase):
@@ -25,7 +23,7 @@ class TestNavigation(unittest.TestCase):
         # |       `-- node_4
         # `-- node_2
         #     `-- leaf_3
-        text_conf="""
+        file_content="""
 [root]
 contents=node_1|node_2|leaf_1
 [node_1]
@@ -37,8 +35,7 @@ contents=leaf_4|leaf_5|node_4
 [node_4]
 contents=
         """
-        fd = StringIO(text_conf)
-        self.finder = ConfFinder(file_fd=fd)
+        self.finder = ConfFinder(file_content=file_content)
 
     def test_tree_01(self):
         current = DC('root')
@@ -68,9 +65,9 @@ contents=
         self.assertEqual(tree[3]['id'], 'node_4', nav.strTree(tree))
 
     def test_tree_10(self):
-        filename = os.path.join(Products.CPSDefault.__path__[0],
-                                'tests', 'finder.data')
-        finder = ConfFinder(filename=filename)
+        file_name = os.path.join(Products.CPSDefault.__path__[0],
+                                 'tests', 'finder.data')
+        finder = ConfFinder(file_name=file_name)
 #        current = DC('mci/sections/domaines/informatique')
         current = DC('mci/sections/domaines/archives/recherche')
         nav = Navigation(finder, current=current)
