@@ -25,6 +25,7 @@ from interfaces.IFinder import IFinder
 from BaseNavigation import BaseNavigation
 from urllib import unquote
 from zLOG import LOG, DEBUG
+from time import time
 
 class ZODBNavigation(BaseNavigation):
     """Implement Finder interface for a ZODB."""
@@ -74,11 +75,14 @@ class ZODBNavigation(BaseNavigation):
 
     ### override Navigation
     def _filter(self, objs, mode='tree'):
+        LOG('ZODBNavigation._filter', DEBUG, 'start')
         res = []
         if mode == 'listing':
             now = DateTime()
-
+        obj_count = res_count = 0
+        chrono_start = time()
         for obj in objs:
+            obj_count +=1
             #common filtering
             obj_id = obj.getId()
             # XXX this filter to much removing folder like portal_*
@@ -116,8 +120,12 @@ class ZODBNavigation(BaseNavigation):
                     portal_type = getattr(obj, 'portal_type', None)
                     if portal_type not in self.filter_listing_ptypes:
                         continue
-
+            res_count += 1
             res.append(obj)
+        chrono_stop = time()
+        LOG('ZODBNavigation._filter', DEBUG, 'end\n'
+            '\tfilter %s return %s in %.3fs\n' % (
+            obj_count, res_count, chrono_stop - chrono_start,))
 
         return res
 
@@ -133,7 +141,7 @@ class ZODBNavigation(BaseNavigation):
         return {'nop':'0',
                 'pending':'1',
                 'published':'2',
-                'work':'3',
+
                 }.get(review_state, '0')
 
     def _getSortKey(self, obj, sort_by, mode='listing'):
