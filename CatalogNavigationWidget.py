@@ -23,16 +23,17 @@ from Globals import InitializeClass
 
 from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
 from Products.CPSSchemas.Widget import CPSWidget, CPSWidgetType
+from Products.CPSSchemas.BasicWidgets import CPSStringWidget, CPSStringWidgetType
 from Products.CPSSchemas.BasicWidgets import renderHtmlTag, _isinstance
 
 ##################################################
 
-class CatalogNavigationSelectWidget(CPSWidget):
+class CatalogNavigationSelectWidget(CPSStringWidget):
     """This enable to peek a cps zodb object in edit mode using
     a catalog nav popup and display it as a link.in view mode."""
     meta_type = "CPS Catalog Navigation Select Widget"
 
-    _properties = CPSWidget._properties + (
+    _properties = CPSStringWidget._properties + (
         {'id': 'popup_title', 'type': 'string', 'mode': 'w',
          'label': 'Title of the popup'},
         {'id': 'popup_description', 'type': 'string', 'mode': 'w',
@@ -85,7 +86,7 @@ class CatalogNavigationSelectWidget(CPSWidget):
 InitializeClass(CatalogNavigationSelectWidget)
 
 
-class CatalogNavigationSelectWidgetType(CPSWidgetType):
+class CatalogNavigationSelectWidgetType(CPSStringWidgetType):
     """CatlogNavigationSelectwidget type."""
     meta_type = "CPS Catalog Navigation Select Widget Type"
     cls = CatalogNavigationSelectWidget
