@@ -362,7 +362,7 @@ not found' % display_attr)" />
               dir_name request/dir_name|nothing;
 ">
 <h1 tal:content="title" />
-<form action="" method="post">
+<form action="" method="post" id="navigation_form">
 <br><center>
 <table bgcolor="#333333" width="95%" cellspacing="0" cellpadding="0"><tr><td>
 <table width="100%" cellspacing="1" cellpadding="5">
