@@ -17,11 +17,9 @@
 # $Id$
 """A CPS Navigation using portal_tree
 """
+
 from types import DictType
-from Acquisition import aq_parent, aq_inner
-from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
-from interfaces.IFinder import IFinder
 from ZODBNavigation import ZODBNavigation
 from zLOG import LOG, DEBUG
 

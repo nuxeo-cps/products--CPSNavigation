@@ -17,9 +17,7 @@
 # $Id$
 """A CPSDirectory Navigation
 """
-from types import DictType
-from Acquisition import aq_parent, aq_inner
-from DateTime import DateTime
+
 from Products.CMFCore.utils import getToolByName
 from interfaces.IFinder import IFinder
 from BaseNavigation import BaseNavigation

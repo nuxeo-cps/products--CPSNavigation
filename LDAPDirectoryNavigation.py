@@ -17,9 +17,7 @@
 # $Id$
 """A LDAPDirectory Navigation
 """
-from types import DictType
-from Acquisition import aq_parent, aq_inner
-from DateTime import DateTime
+
 from Products.CMFCore.utils import getToolByName
 from interfaces.IFinder import IFinder
 from BaseNavigation import BaseNavigation
@@ -27,13 +25,13 @@ from zLOG import LOG, DEBUG, ERROR
 try:
     from Products.LDAPUserGroupsFolder.utils import filter_format
 except ImportError:
-   def filter_format(filter_template,assertion_values):
-       # redefine an empty filter to be able to use CPSNavigation
-       # without installing LDAPUserGroupFolder
-       LOG('LDAPDirectoryNavigation filter_format', ERROR,
-           "WARNING using fake function filter_format !"
-           "you should install LDAPUserGroupsFolder.")
-       return filter_template % (assertion_values)
+    def filter_format(filter_template,assertion_values):
+        # redefine an empty filter to be able to use CPSNavigation
+        # without installing LDAPUserGroupFolder
+        LOG('LDAPDirectoryNavigation filter_format', ERROR,
+            "WARNING using fake function filter_format !"
+            "you should install LDAPUserGroupsFolder.")
+        return filter_template % (assertion_values)
 
 
 class LDAPDirectoryNavigation(BaseNavigation):

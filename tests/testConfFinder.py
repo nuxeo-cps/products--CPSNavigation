@@ -21,7 +21,7 @@ class TestConfFinder(unittest.TestCase):
         # |       `-- leaf_5
         # `-- node_2
         #     `-- leaf_3
-        file_content="""
+        file_content = """
 [root]
 contents=node_1|node_2|leaf_1
 [node_1]
@@ -97,7 +97,6 @@ contents=leaf_4|leaf_5
         parent_uid = self.nav._getParentUid(current_uid)
         self.assertEqual(parent_uid, 'node_2', parent_uid)
 
-
     def test_getChildren_01(self):
         self.assertEqual(self.nav._getChildren(DC('root')),
                          [DC('node_1'),
@@ -124,9 +123,6 @@ contents=leaf_4|leaf_5
         self.assertEqual(self.nav._getChildren(DC('root'),
                                                  no_leaves=1),
                          [DC('node_1'), DC('node_2')])
-
-
-
 
 def test_suite():
     return unittest.makeSuite(TestConfFinder)

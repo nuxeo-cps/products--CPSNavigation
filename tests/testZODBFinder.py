@@ -3,7 +3,6 @@
 import unittest
 from Testing.ZopeTestCase import ZopeLite, ZopeTestCase, installProduct, app
 
-
 from Interface.Verify import verifyClass
 from Products.CPSNavigation.interfaces.IFinder import IFinder
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
@@ -16,11 +15,10 @@ class TestZODBFinder(ZopeTestCase):
 
     def afterSetUp(self):
         from Products.CMFDefault.Portal import manage_addCMFSite
-        id='testsite'
+        id = 'testsite'
         manage_addCMFSite(self.app, id)
         self.portal = self.app[id]
-        self.nav = ZODBNavigation(root=self.portal,
-                                  current=self.portal)
+        self.nav = ZODBNavigation(root=self.portal, current=self.portal)
 
     def test_interface(self):
         verifyClass(IFinder, ZODBNavigation)
@@ -56,8 +54,6 @@ class TestZODBFinder(ZopeTestCase):
         current_uid = self.nav._getUid(self.portal.Members)
         parent_uid = self.nav._getParentUid(current_uid)
         self.assertEqual(parent_uid, 'testsite', parent_uid)
-
-
 
 def test_suite():
     return unittest.makeSuite(TestZODBFinder)
