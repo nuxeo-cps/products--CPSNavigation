@@ -96,7 +96,7 @@ class CatalogNavigation(BaseNavigation):
 
         # don't search if current node is already at the node_depth_max
         if mode == 'tree' and self.node_depth_max:
-            if len(uid.split('/')) >= self.node_depth_max:
+            if (uid.count('/')+1) >= self.node_depth_max:
                 return []
         # search
         self.query = {'container_path': luid}
@@ -105,7 +105,7 @@ class CatalogNavigation(BaseNavigation):
             pass
 
         if uid == self.root_uid:
-            return self._findRoots()
+            return self._findRoots(mode=mode)
         return self._search(mode=mode)
 
     def _getParentUid(self, uid):
@@ -113,12 +113,12 @@ class CatalogNavigation(BaseNavigation):
         return '/'.join(uid.split('/')[:-1])
 
     ###
-    def _findRoots(self):
+    def _findRoots(self, mode):
         # the goal is to dicover roots that are not direct children
         # of root_uid
 
         # first get visible children
-        children = self._search(mode='tree')
+        children = self._search(mode=mode)
 
         # then get all children
         query = self._buildQuery(getattr(self, 'query', {}),
@@ -149,7 +149,6 @@ class CatalogNavigation(BaseNavigation):
         query['sort-on'] = 'container_path'
         self.query = query
         brains = self._search(mode='tree')
-
         # extract roots
         items = []
         last_root = None
