@@ -6,10 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- fix: CatalogNavigationSelectWidget not usable
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- CatalogNavigationSelect: reset session_key on popup
-- CatalogNavigationSelect: new preprocess_method attribute
-  this enable to use a method to customize args passed to CatalogNavigation
-- CatalogNavigationSelect: no more obj passed to render
+-

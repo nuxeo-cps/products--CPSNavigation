@@ -1,4 +1,23 @@
 *******************************************
+** CPSNavigation V0.10.1 [R1 build 2004/09/06-13:43 by anahide]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- fix: CatalogNavigationSelectWidget not usable
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- CatalogNavigationSelect: reset session_key on popup
+- CatalogNavigationSelect: new preprocess_method attribute
+  this enable to use a method to customize args passed to CatalogNavigation
+- CatalogNavigationSelect: no more obj passed to render
+
+*******************************************
 ** CPSNavigation V0.10.0 [R1 build 2004/08/23-05:54 by fermigier]
 
 Requires:
