@@ -4,9 +4,8 @@ import unittest
 from Testing.ZopeTestCase import ZopeLite
 
 from Interface.Verify import verifyClass
-from Products.CPSDefault.tests.ConfFinder import ConfFinder, DummyClass as DC
+from Products.CPSDefault.ConfFinder import ConfFinder, DummyClass as DC
 from Products.CPSDefault.interfaces.Finder import Finder as IFinder
-from StringIO import StringIO
 
 
 class TestConfFinder(unittest.TestCase):
@@ -21,7 +20,7 @@ class TestConfFinder(unittest.TestCase):
         # |       `-- leaf_5
         # `-- node_2
         #     `-- leaf_3
-        text_conf="""
+        file_content="""
 [root]
 contents=node_1|node_2|leaf_1
 [node_1]
@@ -31,8 +30,7 @@ contents=leaf_3
 [node_3]
 contents=leaf_4|leaf_5
         """
-        fd = StringIO(text_conf)
-        self.finder = ConfFinder(file_fd=fd)
+        self.finder = ConfFinder(file_content=file_content)
 
     def test_interface(self):
         verifyClass(IFinder, ConfFinder)
