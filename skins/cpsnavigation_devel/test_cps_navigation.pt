@@ -89,7 +89,7 @@
 </tal:block>
 
 <tal:block condition="python: res['display_mode'] != 'option' and
-    res['listing_batch_info'].get('length')">
+  res['listing_batch_info'] and res['listing_batch_info'].get('length')">
 <div style="margin-left: 23em;">
   <div class="group">
   <span class="legend" tal:content="python:test(res['status_form'] ==
