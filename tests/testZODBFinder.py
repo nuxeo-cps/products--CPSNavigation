@@ -26,34 +26,34 @@ class TestZODBFinder(ZopeTestCase):
         verifyClass(IFinder, ZODBNavigation)
 
     def test_getObject_01(self):
-        node = self.nav.getObject('testsite/Members')
+        node = self.nav._getObject('testsite/Members')
         self.assertEqual(node, self.portal.Members, node)
 
     def test_getObject_02(self):
-        node = self.nav.getObject('XXX')
+        node = self.nav._getObject('XXX')
         self.assertEqual(node, None, node)
 
     def test_getUid_01(self):
         uid_ = 'testsite/Members'
-        node = self.nav.getObject(uid_)
-        uid = self.nav.getUid(node)
+        node = self.nav._getObject(uid_)
+        uid = self.nav._getUid(node)
         self.assertEqual(uid, uid_, uid)
 
     def test_isNode_01(self):
-        self.assertEqual(self.nav.isNode(self.portal), 1)
+        self.assertEqual(self.nav._isNode(self.portal), 1)
 
     def test_isNode_02(self):
-        self.assertEqual(self.nav.isNode(self.portal.portal_url), 0)
+        self.assertEqual(self.nav._isNode(self.portal.portal_url), 0)
 
     def test_getChildren_01(self):
         self.assert_(self.portal.portal_url in \
-                     self.nav.getChildren(self.portal))
+                     self.nav._getChildren(self.portal))
 
     def test_hasChildren_01(self):
-        self.assert_(self.nav.hasChildren(self.portal))
+        self.assert_(self.nav._hasChildren(self.portal))
 
     def test_getParent_01(self):
-        self.assertEqual(self.nav.getParent(self.portal.Members),
+        self.assertEqual(self.nav._getParent(self.portal.Members),
                          self.portal)
 
 

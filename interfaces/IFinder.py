@@ -28,33 +28,34 @@ class IFinder(Interface):
     used by Navigation.
     """
 
-    def getObject(uid):
+    def _getObject(uid):
         """Return the object corresponding to the unique identifier.
 
         Return None if uid not found."""
 
-    def getUid(obj):
+    def _getUid(obj):
         """Return the unique identifier."""
 
-    def isNode(obj):
+    def _isNode(obj):
         """True if obj is a node, 0 for a leaf.
 
         A node is container that may be empty,
         if obj is not know this raise a KeyError."""
 
-    def hasChildren(obj, no_nodes=0, no_leaves=0):
+    def _hasChildren(obj, no_nodes=0, no_leaves=0):
         """Return true if object has children.
 
         Use no_leaves=1 to know if obj has children nodes.
         """
 
-    def getChildren(obj, no_nodes=0, no_leaves=0):
+    def _getChildren(obj, no_nodes=0, no_leaves=0, mode='tree'):
         """Return a list of children objects of obj.
 
         If obj is not known this raise a KeyError.
+        If no children return [].
         """
 
-    def getParent(obj):
+    def _getParent(obj):
         """Return the parent of obj.
 
         If obj has no parent return None.

@@ -55,15 +55,15 @@ class ConfNavigation(BaseNavigation):
 
 
     ### Finder interface
-    def getObject(self, uid):
-        if uid in self._parser.sections():
-            return self._dummyfy(uid)
-        return None
+    def _getObject(self, uid):
+        """Warning getObject always return an object even if uid is
+        unknown."""
+        return self._dummyfy(uid)
 
-    def getUid(self, obj):
+    def _getUid(self, obj):
         return obj.getId()
 
-    def isNode(self, obj):
+    def _isNode(self, obj):
         # support dump_tree export
         if getattr(obj, 'type', '') in ('Section', 'Workspace'):
             return 1
@@ -74,11 +74,11 @@ class ConfNavigation(BaseNavigation):
 
         return 1
 
-    def hasChildren(self, obj, no_nodes=0, no_leaves=0):
+    def _hasChildren(self, obj, no_nodes=0, no_leaves=0):
         # Such an ineficient way
-        return not not len(self.getChildren(obj, no_nodes, no_leaves))
+        return not not len(self._getChildren(obj, no_nodes, no_leaves))
 
-    def getChildren(self, obj, no_nodes=0, no_leaves=0):
+    def _getChildren(self, obj, no_nodes=0, no_leaves=0, mode='tree'):
         children = []
         try:
             value = self._parser.get(obj.getId(), 'contents')
@@ -88,20 +88,21 @@ class ConfNavigation(BaseNavigation):
         children = filter(None, children)
         children = [self._dummyfy(child) for child in children]
         if no_leaves:
-            children = [child for child in children if self.isNode(child)]
+            children = [child for child in children if self._isNode(child)]
         if no_nodes:
-            children = [child for child in children if not self.isNode(child)]
+            children = [child for child in children if not self._isNode(child)]
 
         return children
 
-    def getParent(self, obj):
+    def _getParent(self, obj):
         sections = self._parser.sections()
         for section in sections:
-            for child in self.getChildren(DummyClass(section), no_leaves=0):
+            for child in self._getChildren(DummyClass(section), no_leaves=0):
                 if child == obj:
                     return self._dummyfy(section)
         if obj.getId() not in sections:
             raise KeyError, obj.getId()
+        # obj is the root
         return None
 
     ### Private

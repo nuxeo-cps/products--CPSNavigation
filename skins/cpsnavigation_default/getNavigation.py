@@ -1,10 +1,41 @@
-##parameters=finder='zodb'
-from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
+##parameters=finder='cps', REQUEST=None
 from Products.CPSNavigation.ConfNavigation import ConfNavigation
+from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
+from Products.CPSNavigation.CPSNavigation import CPSNavigation
 
-if finder == 'zodb':
-    nav = ZODBNavigation(root=context.portal_url.getPortalObject(),
-                         current=context)
+b_start = REQUEST.get('b_start', 0)
+
+if finder == 'cps':
+    current_uid = context.portal_url.getRelativeContentURL(context)
+    nav = CPSNavigation(root_uid='sections',
+                        current_uid=current_uid,
+                        context=context,
+                        # include_root=0,
+                        # no_nodes=1,
+                        # filter_tree_ptypes=('Workspace',),
+                        # filter_listing_ptypes=('Link',),
+                        sort_listing_by='title',
+                        sort_listing_direction='desc',
+                        batch_size=5,
+                        batch_start=b_start,
+                        )
+    # XXX try to get another tree and concatenate ?
+
+elif finder == 'zodb':
+    nav = ZODBNavigation(root=context.portal_url.getPortalObject(), #.sections,
+                         current=context,
+                         context=context,
+                         # include_root=0,
+                         # no_nodes=1,
+                         # filter_tree_ptypes=('Workspace',),
+                         # filter_listing_ptypes=('Link',),
+                         sort_tree_by='date',
+                         sort_tree_direction='asc',
+                         sort_listing_by='title',
+                         sort_listing_direction='desc',
+                         batch_size=5,
+                         batch_start=b_start,
+                         )
 elif finder == 'conf':
     file_content = """
 [root]
@@ -21,8 +52,8 @@ contents=leaf_4|leaf_5
                          file_content=file_content)
 
 tree = nav.getTree()
-listing = nav.getListing()
-return tree, listing
+listing, batch_info = nav.getListing()
+return tree, listing, batch_info
 
 
 ## a goal:

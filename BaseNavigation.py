@@ -19,6 +19,8 @@
 
    Used to build Navigation screen like tree + listing
 """
+from ZTUtils import Batch
+from types import IntType
 
 class BaseNavigation:
     """This is a Base class for other Navigation class.
@@ -28,6 +30,10 @@ class BaseNavigation:
     """
     no_leaves = 0
     no_nodes = 0
+    batch_size = 15
+    batch_start = 0
+    batch_orphan = 0
+    include_root = 1
 
     def __init__(self, **kw):
         """Init the navigation.
@@ -40,19 +46,19 @@ class BaseNavigation:
         assert('current' in kw_keys or 'current_uid' in kw_keys)
         assert('root' in kw_keys or 'root_uid' in kw_keys)
         if 'current' not in kw_keys:
-            kw['current'] = self.getObject(kw['current_uid'])
+            kw['current'] = self._getObject(kw['current_uid'])
         if 'root' not in kw_keys:
-            kw['root'] = self.getObject(kw['root_uid'])
-        self.setParams(**kw)
+            kw['root'] = self._getObject(kw['root_uid'])
+        self._setParams(**kw)
 
-    def setParams(self, **kw):
+    def _setParams(self, **kw):
         """Setting navigation properties.
         """
         self._param_ids = kw.keys()
         for k, v in kw.items():
             setattr(self, k, v)
 
-    def getParams(self):
+    def _getParams(self):
         """Return the navigation properties."""
         res = {}
         for k in self._param_ids:
@@ -61,7 +67,9 @@ class BaseNavigation:
 
 
     def _exploreNode(self, obj, level, is_last_child, path, flat_tree):
-        obj_uid = self.getUid(obj)
+        obj_uid = self._getUid(obj)
+#        if not obj_uid:
+#            return
         node = {'uid': obj_uid,
                 'object': obj,
                 'level': level,
@@ -69,14 +77,16 @@ class BaseNavigation:
                 'is_last_child': is_last_child,
                 }
         if obj_uid not in path:
-            if self.isNode(obj) and \
-               self.hasChildren(obj, no_leaves=1):
+            if self._isNode(obj) and \
+               self._hasChildren(obj, no_leaves=1):
                 node['has_children'] = 1
             else:
                 node['has_children'] = 0
             flat_tree.append(node)
         else:
-            children = self.getChildren(obj, no_leaves=1)
+            children = self._getChildren(obj, no_leaves=1, mode='tree')
+            children = self._filter(children, mode='tree')
+            children = self._sort(children, mode='tree')
             node['is_open'] = 1
             node['children'] = children
             if len(children):
@@ -92,12 +102,12 @@ class BaseNavigation:
                 self._exploreNode(child, level+1, is_last_child,
                                  path, flat_tree)
 
-    def getParents(self, obj):
+    def _getParents(self, obj):
         """Return list of parents from father to the root."""
         res = []
         parent = obj
         while parent and parent != self.root:
-            parent = self.getParent(parent)
+            parent = self._getParent(parent)
             if parent:
                 res.append(parent)
 
@@ -106,20 +116,24 @@ class BaseNavigation:
     def getTree(self):
         """Return a flat Tree structure easily processed in ZPT."""
         # compute the path to current
-        items = self.getParents(self.current)
+        items = self._getParents(self.current)
         items.reverse()
         items.append(self.current)
-        path = [self.getUid(item) for item in items]
+        path = [self._getUid(item) for item in items]
 
         # explore tree using path
         tree = []
         self._exploreNode(items[0], 0, 0, path, tree)
 
-        # compute vertical lines
+        # compute vertical lines and state of the node
+        shift = 0
+        if not self.include_root:
+            tree = tree[1:]
+            shift = 1
         lines = []
         lv = lv_ = 0
         for node in tree:
-            lv = node['level']
+            lv = node['level'] - shift
             is_last_child = node.get('is_last_child')
             if is_last_child:
                 value = 2
@@ -134,7 +148,7 @@ class BaseNavigation:
                     lines[-1] = value
 
             node['lines'] = tuple(lines)
-            if is_last_child:
+            if is_last_child and lines:
                 lines[-1] = 0
             lv_ = lv
             if node.get('is_open'):
@@ -147,13 +161,64 @@ class BaseNavigation:
         return tree
 
     def getListing(self):
-        """Return a Listing structure."""
-        res = self.getChildren(self.current, no_leaves=self.no_leaves,
-                                       no_nodes=self.no_nodes)
-        return res
+        """Return a Listing structure and batch information."""
+        res = self._getChildren(self.current, no_leaves=self.no_leaves,
+                                no_nodes=self.no_nodes, mode='listing')
+        res = self._filter(res, mode='listing')
+        res = self._sort(res, mode='listing')
+        # XXX batching should be refactored
+        # this is just a port of cpsdefault getBatch..
+        length = len(res)
+        res = Batch(res, self.batch_size, self.batch_start, self.batch_orphan)
+        nb_pages = length / float(self.batch_size)
+        if type(nb_pages) is not IntType and nb_pages > 1:
+            nb_pages = int(nb_pages) + 1
+        else:
+            nb_pages = 0
+        stop = self.batch_start + self.batch_size
+        if stop > length:
+            stop = length
+        current = [0, 1]
+        pages = []
+        j = 0
+        for i in range(nb_pages):
+            pages.append(j)
+            if self.batch_start == j:
+                current = [i + 1, j]
+            j += self.batch_size
+        if current[0] > 1:
+            previous = current[1] - self.batch_size
+        else:
+            previous = None
+        if current[0] != nb_pages:
+            next = current[1] + self.batch_size
+        else:
+            next = None
 
+        batch_info = {'nb_pages': nb_pages,
+                      'pages': pages,
+                      'start': self.batch_start + 1,
+                      'stop': stop,
+                      'length': length,
+                      'previous': previous,
+                      'next': next,
+                      }
+        return res, batch_info
 
-    def strNode(self, node, show_obj=1):
+    def _filter(self, objs, mode='tree'):
+        """Filter the objects according to init parameters.
+
+        mode is either tree or listing,
+        This method can be overriden in Navigation implementation."""
+        return objs
+
+    def _sort(self, objs, mode='tree'):
+        """Sort objects according to init parameters.
+
+        This method can be overriden in Navigation implementation."""
+        return objs
+
+    def _strNode(self, node, show_obj=1):
         text = ''
         lines = node['lines']
         for l in lines:
@@ -163,10 +228,10 @@ class BaseNavigation:
                 text += '    |'
             elif l == 2:
                 text += '    `'
-        # XXX use state instead of testing is_open and has_children
-        if node.get('is_open'):
+
+        if node['state'] == 'open':
             text += '-> '
-        elif node.get('has_children'):
+        elif node['state'] == 'closed':
             text += '-+ '
         else:
             text += '-- '
@@ -178,12 +243,12 @@ class BaseNavigation:
         if show_obj:
             text += ": %s" % str(node['object'])
 
-#        text += " - %d %s\n" % (node['level'], str(node['lines']))
+        # text += " - %d %s\n" % (node['level'], str(node['lines']))
         return text + '\n'
 
-    def strTree(self, tree, show_obj=1):
+    def _strTree(self, tree, show_obj=1):
         """Dump a tree structure returned by a getTree into text."""
         text = '\n'
         for node in tree:
-            text  += self.strNode(node, show_obj)
+            text  += self._strNode(node, show_obj)
         return text

@@ -49,26 +49,34 @@ contents=
                          root_uid='root',
                          current=current)
         tree = nav.getTree()
-        self.assertEqual(len(tree), 4, nav.strTree(tree))
-        self.assertEqual(tree[3]['uid'], 'node_2', nav.strTree(tree))
+        self.assertEqual(len(tree), 4, nav._strTree(tree))
+        self.assertEqual(tree[3]['uid'], 'node_2', nav._strTree(tree))
 
     def test_tree_03(self):
         current = DC('root')
         nav = ConfNavigation(file_content=self.fc,
-                         root_uid='root',
-                         current=current)
+                             root_uid='root',
+                             current=current)
         tree = nav.getTree()
-        self.assertEqual(len(tree), 3, nav.strTree(tree))
-        self.assertEqual(tree[2]['uid'], 'node_2', nav.strTree(tree))
+        self.assertEqual(len(tree), 3, nav._strTree(tree))
+        self.assertEqual(tree[2]['uid'], 'node_2', nav._strTree(tree))
 
     def test_tree_04(self):
         current = DC('node_3')
         nav = ConfNavigation(file_content=self.fc,
-                         root_uid='root',
-                         current=current)
+                             root_uid='root',
+                             current=current)
         tree = nav.getTree()
-        self.assertEqual(len(tree), 5, nav.strTree(tree))
-        self.assertEqual(tree[3]['uid'], 'node_4', nav.strTree(tree))
+        self.assertEqual(len(tree), 5, nav._strTree(tree))
+        self.assertEqual(tree[3]['uid'], 'node_4', nav._strTree(tree))
+
+
+    def test_tree_05(self):
+        nav = ConfNavigation(file_content=self.fc,
+                             current_uid='leaf_3',
+                             root_uid='root')
+        tree = nav.getTree()
+        self.assert_(tree[0]['uid'] == 'root', nav._strTree(tree))
 
     def test_tree_10(self):
         file_name = os.path.join(Products.CPSNavigation.__path__[0],
@@ -78,16 +86,52 @@ contents=
         nav = ConfNavigation(file_name=file_name,
                              root_uid='root', current=current)
         tree = nav.getTree()
-        self.assertEqual(tree[4]['is_open'], 1, nav.strTree(tree,
+        self.assertEqual(tree[4]['is_open'], 1, nav._strTree(tree,
                                                             show_obj=0))
 
-    def test_list_01(self):
+    def test_tree_20(self):
+        nav = ConfNavigation(file_content=self.fc,
+                             current_uid='leaf_3',
+                             root_uid='root',
+                             include_root=0)
+        tree = nav.getTree()
+        self.assert_(tree[0]['uid'] == 'node_1', nav._strTree(tree))
+
+    
+    def test_tree_21(self):
+        nav = ConfNavigation(file_content="""[root]
+        """,
+                             current_uid='root',
+                             root_uid='root',
+                             include_root=0)
+        tree = nav.getTree()
+        self.assert_(len(tree) == 0, nav._strTree(tree))
+
+
+    def test_tree_21(self):
+        nav = ConfNavigation(file_content="""[root]
+contents=node_1
+[node_1]
+contents=
+        """,
+                             current_uid='node_1',
+                             root_uid='root',
+                             include_root=0)
+        tree = nav.getTree()
+        self.assert_(len(tree) == 1, nav._strTree(tree))
+
+    
+
+
+    def test_listing_01(self):
         current = DC('root')
         nav = ConfNavigation(file_content=self.fc,
                          root_uid='root',
                          current=current)
-        items = nav.getListing()
-        self.assertEqual(items, [DC('node_1'), DC('node_2'), DC('leaf_1')],
+        items, batch_info = nav.getListing()
+        # items is a batched !
+        self.assertEqual([items[0], items[1], items[2]],
+                         [DC('node_1'), DC('node_2'), DC('leaf_1')],
                          items)
 
 
