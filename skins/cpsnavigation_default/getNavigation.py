@@ -1,4 +1,4 @@
-##parameters=finder, root_uid, prefix=None, filter_tree_ptypes=None, filter_listing_ptypes=None, REQUEST=None
+##parameters=finder, root_uid, prefix=None, filter_tree_ptypes=None, filter_listing_ptypes=None, REQUEST=None, batch_size=15
 # $Id$
 from Products.CPSNavigation.ConfNavigation import ConfNavigation
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
@@ -26,7 +26,7 @@ if finder == 'cps':
                         filter_listing_ptypes=filter_listing_ptypes,
                         sort_listing_by='title',
                         sort_listing_direction='asc',
-                        batch_size=15,
+                        batch_size=batch_size,
                         request_form=REQUEST.form,
                         )
     # XXX try to get another tree and concatenate ?
@@ -43,7 +43,7 @@ elif finder == 'zodb':
                          sort_tree_direction='asc',
                          sort_listing_by='title',
                          sort_listing_direction='desc',
-                         batch_size=15,
+                         batch_size=batch_size,
                          request_form=REQUEST.form,
                          )
 elif finder == 'cpsdirectory':
@@ -72,7 +72,7 @@ elif finder == 'cpsdirectory':
             context=context,
             dir_name=dir_name,
             include_root=include_root,
-            batch_size=15,
+            batch_size=batch_size,
             request_form=REQUEST.form,
             )
     elif indirect:
@@ -83,7 +83,7 @@ elif finder == 'cpsdirectory':
             context=context,
             dir_name=dir_name,
             include_root=0,
-            batch_size=15,
+            batch_size=batch_size,
             request_form=REQUEST.form,
             )
     else:
@@ -94,7 +94,7 @@ elif finder == 'cpsdirectory':
             context=context,
             dir_name=dir_name,
             include_root=0,
-            batch_size=15,
+            batch_size=batch_size,
             request_form=REQUEST.form,
             )
 
