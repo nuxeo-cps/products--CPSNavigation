@@ -110,7 +110,7 @@
       <div style="display: none"
         tal:define="input_id res/input_id"
         tal:attributes="id string:render${item_number}">
-        <metal:block use-macro="python: path(res['view_macro_path'])" />
+        <metal:block use-macro="python: path(res['popup_edit_macro_path'])" />
       </div>
     </div>
   </tal:block>
