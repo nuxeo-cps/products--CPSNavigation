@@ -1,6 +1,5 @@
 <tal:block define="mode options/mode;
            value options/value;
-           obj options/obj;
            html_id here/getHtmlWidgetId;
            widget_id here/getId;
            layout_id here/aq_parent/getId">
@@ -22,7 +21,7 @@
       <!--
         function popup_catalognav_select(inputId, layoutId, widgetId) {
         var args;
-        args='?input_id='+inputId+'&layout_id='+layoutId+'&widget_id='+widgetId;
+        args='?reset=yes&input_id='+inputId+'&layout_id='+layoutId+'&widget_id='+widgetId;
         popup = window.open('popup_catalognavigationselect_form'+args, 'Catalognav_Select', 'toolbar=0, scrollbars=1, location=0, statusbar=0, menubar=0, resizable=1, dependent=1, width=712, height=480');
         if(!popup.opener)
         popup.opener = window;
