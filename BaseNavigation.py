@@ -225,10 +225,15 @@ class BaseNavigation:
                       'previous': previous,
                       'next': next,
                       }
-        parent_uid = self._getParentUid(self.current_uid)
+        if self.current_uid != self.root_uid:
+            parent_uid = self._getParentUid(self.current_uid)
+            parent = self._getObject(parent_uid)
+        else:
+            parent_uid = None
+            parent = None
         listing_info = {'current': self.current,
                         'current_uid': self.current_uid,
-                        'parent': self._getObject(parent_uid),
+                        'parent': parent,
                         'parent_uid': parent_uid}
         return res, listing_info, batch_info
 
