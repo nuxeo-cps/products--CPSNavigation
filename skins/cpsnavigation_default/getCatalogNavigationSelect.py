@@ -30,13 +30,18 @@ if form.has_key('search_submit'):
     search_form = form
 else:
     search_form = {}
-if form.get('option_reset'):
+if form.get('tree_reset') or form.get('reset'):
+    try:
+        del REQUEST.SESSION[TREE_PREF_SESSION_KEY]
+    except KeyError:
+        pass
+if form.get('option_reset') or form.get('reset'):
     try:
         del REQUEST.SESSION[OPTION_PREF_SESSION_KEY]
         del REQUEST.SESSION[TREE_PREF_SESSION_KEY]['current_uid']
     except KeyError:
         pass
-if form.get('search_reset'):
+if form.get('search_reset') or form.get('reset'):
     try:
         del REQUEST.SESSION[SEARCH_PREF_SESSION_KEY]
     except KeyError:
@@ -106,7 +111,6 @@ if display_mode == 'search':
 
 # build nav options
 kw = option_pref.copy()
-#kw['root_uid'] = 'workspaces'
 
 kw.update({'display_mode': display_mode,
            'current_uid': current_uid,
@@ -122,6 +126,14 @@ if display_mode == 'search':
             query['folder_prefix'] = kw['current_uid']
         del query['scope']
         kw['query'] = query
+
+
+if widget.preprocess_method:
+    meth = getattr(self, render_method, None)
+    if meth is None:
+        raise RuntimeError("Unknown preprocess method %s" %
+                           widget.preprocess_method)
+    kw = meth(kw)
 
 # nav process init
 nav = CatalogNavigation(**kw)
