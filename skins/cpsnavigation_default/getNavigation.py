@@ -7,6 +7,8 @@ from Products.CPSNavigation.LDAPDirectoryNavigation import \
      LDAPDirectoryNavigation
 from Products.CPSNavigation.CPSDirectoryNavigation import \
      CPSDirectoryNavigation
+from Products.CPSNavigation.CPSIndirectDirectoryNavigation import \
+     CPSIndirectDirectoryNavigation
 
 type = finder
 if finder == 'cps':
@@ -50,6 +52,12 @@ elif finder == 'cpsdirectory':
     if not dir_name:
         dir_name = root_uid
     dir = getattr(context.portal_directories, dir_name)
+    indirect = 0
+    if dir.meta_type == 'CPS Indirect Directory':
+        indirect = 1
+    elif dir.meta_type == 'CPS Local Directory':
+        if dir.directory_type == 'CPS Indirect Directory':
+            indirect = 1
     if hasattr(dir, 'ldap_base'):
         type = 'ldap'
         include_root = 1
@@ -64,6 +72,17 @@ elif finder == 'cpsdirectory':
             context=context,
             dir_name=dir_name,
             include_root=include_root,
+            batch_size=15,
+            request_form=REQUEST.form,
+            )
+    elif indirect:
+        type = 'map'
+        nav = CPSIndirectDirectoryNavigation(
+            root_uid=dir_name,
+            current_uid=dir_name,
+            context=context,
+            dir_name=dir_name,
+            include_root=0,
             batch_size=15,
             request_form=REQUEST.form,
             )
