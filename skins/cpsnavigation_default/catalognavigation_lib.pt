@@ -1,26 +1,15 @@
-<!-- macros expect to have an 'item' define which should be a brain -->
-
-<metal:block define-macro="render_listing_item_simple">
-  <tal:block content="item/Title" />
-</metal:block>
-
-
-<metal:block define-macro="item_view2">
-  <img tal:replace="structure python:here.getImgTag(item['getIcon'],
-    base_url=base_url)"> HOHO !!
-  <a tal:attributes="title item/Description"><strong tal:content="item/Title" /></a>
-</metal:block>
-
-<metal:block define-macro="item_view">
-  <tal:block define="rpath python:item.getContentInfo()['rpath']">
-    <input type="hidden" tal:attributes="name input_id;value rpath" />
-    <strong tal:content="rpath" />
-  </tal:block>
-</metal:block>
-
+<!-- item is a brain -->
 <metal:block define-macro="popup_item_view">
   <img tal:replace="structure python:here.getImgTag(item['getIcon'],
-    base_url=base_url)">
-  <a tal:attributes="title item/Description"><strong
-tal:content="item/Title" /></a>
+       base_url=base_url)" />
+  <a tal:attributes="title item/Description">
+    <strong tal:content="item/Title" />
+  </a>
+</metal:block>
+
+<!-- item is a brain input_id is the widget id in parent window -->
+<metal:block define-macro="popup_item_edit">
+  <input type="hidden"
+         tal:attributes="name input_id; value item/relative_path" />
+  <em tal:content="item/relative_path" />
 </metal:block>
