@@ -31,9 +31,11 @@ from Products.CMFCore.utils import _getAuthenticatedUser, _checkPermission
 from Products.CMFCore.CMFCorePermissions import AccessInactivePortalContent
 from DateTime import DateTime
 from Products.ZCTextIndex.ParseTree import ParseError
+from interfaces.IFinder import IFinder
 
 class CatalogNavigation(BaseNavigation):
     """Implement Finder interface using the portal_catalog."""
+    __implements__ = (IFinder, )   # See IFinder interface for method docstring
 
     sort_limit = 100
     find_root_depth_max = 4
