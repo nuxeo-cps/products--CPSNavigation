@@ -10,3 +10,4 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - CPSNavigation adding portal_type filter
+- _isNode() within CPSNavigation takes into consideration the portal_type filters
