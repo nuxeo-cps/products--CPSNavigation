@@ -48,7 +48,8 @@
 <!-- this is a nav/detail/selection table you should define
   a root_uid which is a cps tree name like workspaces or sections -->
 <metal:block define-macro="folder_navigation"
-  tal:define="root_uid root_uid|nothing;
+  tal:define="input_id request/input_id|nothing;
+              root_uid root_uid|nothing;
               res python:here.getNavigation(finder='cps',
                                             root_uid=root_uid,REQUEST=request);
               tree python:res[0];
@@ -79,14 +80,14 @@
   <a tal:attributes="
     class python:test(node['is_current'], 'selected', nothing);
     href python:'%s?%s'%(request['URL0'],
-      mq(current_uid=node['object']['rpath']));"
+      mq(current_uid=node['object']['rpath'], input_id=input_id));"
     tal:content="node/object/title_or_id" /><br>
 </tal:block>
 </div>
 </td><td valign="top" width="33%" class="odd">
   <a accesskey="U" tal:condition="listing_info/parent_uid"
     tal:attributes="href python:'%s?%s'%(request['URL0'],
-    mq(current_uid=listing_info['parent_uid']));">
+    mq(current_uid=listing_info['parent_uid'], input_id=input_id));">
     <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
   base_url=base_url)"> ..<br></a>
 
@@ -106,7 +107,7 @@
         base_url=base_url)">&nbsp;
       <a href="" tal:attributes="title item_desc;
         href python:'%s?%s'%(request.URL0,
-          mq(current_uid=item_uid));">
+          mq(current_uid=item_uid, input_id=input_id));">
         <tal:block replace="item/title_or_id" />
       </a>
     </div>
@@ -134,6 +135,8 @@
   <input type="hidden" name="type" value="folder">
   <input type="hidden" name="current_uid"
     tal:attributes="value current_uid">
+  <input type="hidden" name="input_id"
+    tal:attributes="value input_id">
   <input type="submit" class="destructive" value="button_delete"
     name="del_items_from_selection"
     i18n:attributes="value">
