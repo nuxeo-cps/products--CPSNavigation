@@ -59,8 +59,8 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
          'to CatalogNavigation'},
         )
     render_method = 'widget_catalognavigationselect_render'
-    popup_title = 'Catalog Navigation Popup'
-    popup_description = 'a popup description'
+    popup_title = ''
+    popup_description = ''
     popup_view_macro_path = 'here/catalognavigation_lib/macros/popup_item_view'
     popup_edit_macro_path = 'here/catalognavigation_lib/macros/popup_item_edit'
     layout_search = 'navigation_search'
