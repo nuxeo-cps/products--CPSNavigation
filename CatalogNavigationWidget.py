@@ -23,25 +23,27 @@ from Globals import InitializeClass
 
 from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
 from Products.CPSSchemas.Widget import CPSWidget, CPSWidgetType
-from Products.CPSSchemas.BasicWidgets import CPSStringWidget, CPSStringWidgetType
+from Products.CPSSchemas.BasicWidgets import CPSURLWidget
 from Products.CPSSchemas.BasicWidgets import renderHtmlTag, _isinstance
 
 ##################################################
 
-class CatalogNavigationSelectWidget(CPSStringWidget):
+class CatalogNavigationSelectWidget(CPSURLWidget):
     """This enable to peek a cps zodb object in edit mode using
     a catalog nav popup and display it as a link.in view mode."""
     meta_type = "CPS Catalog Navigation Select Widget"
 
-    _properties = CPSStringWidget._properties + (
+    _properties = CPSURLWidget._properties + (
+        {'id': 'render_method', 'type': 'string', 'mode': 'w',
+         'label': 'widget render method'},
         {'id': 'popup_title', 'type': 'string', 'mode': 'w',
          'label': 'Title of the popup'},
         {'id': 'popup_description', 'type': 'string', 'mode': 'w',
          'label': 'A description of the popup'},
-        {'id': 'view_macro_path', 'type': 'string', 'mode': 'w',
-         'label': 'macro to display an item in the document'},
         {'id': 'popup_view_macro_path', 'type': 'string', 'mode': 'w',
-         'label': 'macro to display an item in the popup window'},
+         'label': 'macro to display an item in the popup'},
+        {'id': 'popup_edit_macro_path', 'type': 'string', 'mode': 'w',
+         'label': 'macro to display an item in the document from the popup'},
         {'id': 'layout_search', 'type': 'string', 'mode': 'w',
          'label': 'Layout for searching'},
         {'id': 'schema_search', 'type': 'string', 'mode': 'w',
@@ -54,10 +56,11 @@ class CatalogNavigationSelectWidget(CPSStringWidget):
          'label': 'Enable to edit option'},
 
         )
+    render_method = 'widget_catalognavigationselect_render'
     popup_title = 'Catalog Navigation Popup'
     popup_description = 'a popup description'
-    view_macro_path = 'here/catalognavigation_lib/macros/item_view'
     popup_view_macro_path = 'here/catalognavigation_lib/macros/popup_item_view'
+    popup_edit_macro_path = 'here/catalognavigation_lib/macros/popup_item_edit'
     layout_search = 'navigation_search'
     schema_search = 'navigation_search'
     layout_option = 'navigation_option'
@@ -69,10 +72,31 @@ class CatalogNavigationSelectWidget(CPSStringWidget):
         datamodel = datastructure.getDataModel()
         value = datamodel[self.fields[0]]
         datastructure[self.getWidgetId()] = value
+        datastructure[self.getWidgetId() + '_set'] = ''
+
+    def validate(self, datastructure, **kw):
+        """Validate datastructure and update datamodel."""
+        widget_id = self.getWidgetId()
+        widget_set_id = widget_id + '_set'
+        datamodel = datastructure.getDataModel()
+        if not self.is_required and not datastructure[widget_set_id]:
+            v = ''
+        else:
+            v = datastructure[widget_id]
+        err, v = self._extractValue(v)
+        if not err and v and not self.checkUrl(v):
+            err = 'cpsschemas_err_url'
+        if err:
+            datastructure.setError(widget_id, err)
+            datastructure[widget_id] = v
+        else:
+            datamodel = datastructure.getDataModel()
+            datamodel[self.fields[0]] = v
+        return not err
 
     def render(self, mode, datastructure, **kw):
         """Render in mode from datastructure."""
-        render_method = 'widget_catalognavigationselect_render'
+        render_method = self.render_method
         meth = getattr(self, render_method, None)
         if meth is None:
             raise RuntimeError("Unknown Render Method %s for widget type %s"
@@ -86,7 +110,7 @@ class CatalogNavigationSelectWidget(CPSStringWidget):
 InitializeClass(CatalogNavigationSelectWidget)
 
 
-class CatalogNavigationSelectWidgetType(CPSStringWidgetType):
+class CatalogNavigationSelectWidgetType(CPSWidgetType):
     """CatlogNavigationSelectwidget type."""
     meta_type = "CPS Catalog Navigation Select Widget Type"
     cls = CatalogNavigationSelectWidget
