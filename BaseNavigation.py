@@ -293,3 +293,26 @@ class BaseNavigation:
         for node in tree:
             text  += self._strNode(node, show_obj)
         return text
+
+    # dumping
+    def _exploreNodeForDump(self, obj, level, dump):
+        if not obj:
+            return
+        obj_uid = self._getUid(obj)
+        node = {'object': obj, 'level': level}
+        children = self._getChildren(obj, no_leaves=1, mode='tree')
+        children = filter(None, children)
+        children = self._filter(children, mode='tree')
+        children = self._sort(children, mode='tree')
+        node['children_uids'] = [self._getUid(child) for child in children]
+        dump[1][obj_uid] = node
+        dump[0].append(obj_uid)
+        for child in children:
+            self._exploreNodeForDump(child, level+1, dump)
+
+    def dumpTree(self):
+        """Return a structure that can be easily processed to create a dump."""
+        dump = ([], {})
+        self._exploreNodeForDump(self.root, 0, dump)
+        return dump
+
