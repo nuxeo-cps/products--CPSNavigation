@@ -20,14 +20,10 @@
 from AccessControl import ModuleSecurityInfo
 from Products.PythonScripts.Utility import allow_class
 
-from Navigation import Navigation
-allow_class(Navigation)
-ModuleSecurityInfo('Products.CPSNavigation').declarePublic('Navigation')
+from ZODBNavigation import ZODBNavigation
+allow_class(ZODBNavigation)
+ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ZODBNavigation')
 
-from ZODBFinder import ZODBFinder
-allow_class(ZODBFinder)
-ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ZODBFinder')
-
-from ConfFinder import ConfFinder
-allow_class(ConfFinder)
-ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ConfFinder')
+from ConfNavigation import ConfNavigation
+allow_class(ConfNavigation)
+ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ConfNavigation')

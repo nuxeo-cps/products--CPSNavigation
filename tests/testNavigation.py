@@ -4,9 +4,8 @@ import unittest
 import os
 from Testing.ZopeTestCase import ZopeLite
 import Products
-from Products.CPSNavigation.ConfFinder import DummyClass as DC, ConfFinder
-from Products.CPSNavigation.Navigation import Navigation
-
+from Products.CPSNavigation.ConfNavigation import DummyClass as DC, \
+     ConfNavigation
 
 class TestNavigation(unittest.TestCase):
 
@@ -34,31 +33,39 @@ contents=leaf_4|leaf_5|node_4
 [node_4]
 contents=
         """
-        self.finder = ConfFinder(file_content=file_content)
+        self.fc = file_content
 
     def test_tree_01(self):
         current = DC('root')
-        nav = Navigation(self.finder, root_uid='root', current=current)
+        nav = ConfNavigation(file_content=self.fc,
+                         root_uid='root',
+                         current=current)
         tree = nav.getTree()
         self.assertEqual(tree[0]['object'], current)
 
     def test_tree_02(self):
         current = DC('node_1')
-        nav = Navigation(self.finder, root_uid='root', current=current)
+        nav = ConfNavigation(file_content=self.fc,
+                         root_uid='root',
+                         current=current)
         tree = nav.getTree()
         self.assertEqual(len(tree), 4, nav.strTree(tree))
         self.assertEqual(tree[3]['uid'], 'node_2', nav.strTree(tree))
 
     def test_tree_03(self):
         current = DC('root')
-        nav = Navigation(self.finder, root_uid='root', current=current)
+        nav = ConfNavigation(file_content=self.fc,
+                         root_uid='root',
+                         current=current)
         tree = nav.getTree()
         self.assertEqual(len(tree), 3, nav.strTree(tree))
         self.assertEqual(tree[2]['uid'], 'node_2', nav.strTree(tree))
 
     def test_tree_04(self):
         current = DC('node_3')
-        nav = Navigation(self.finder, root_uid='root', current=current)
+        nav = ConfNavigation(file_content=self.fc,
+                         root_uid='root',
+                         current=current)
         tree = nav.getTree()
         self.assertEqual(len(tree), 5, nav.strTree(tree))
         self.assertEqual(tree[3]['uid'], 'node_4', nav.strTree(tree))
@@ -66,17 +73,19 @@ contents=
     def test_tree_10(self):
         file_name = os.path.join(Products.CPSNavigation.__path__[0],
                                  'tests', 'finder.data')
-        finder = ConfFinder(file_name=file_name)
-#        current = DC('mci/sections/domaines/informatique')
+        # current = DC('mci/sections/domaines/informatique')
         current = DC('mci/sections/domaines/archives/recherche')
-        nav = Navigation(finder, root_uid='root', current=current)
+        nav = ConfNavigation(file_name=file_name,
+                             root_uid='root', current=current)
         tree = nav.getTree()
         self.assertEqual(tree[4]['is_open'], 1, nav.strTree(tree,
                                                             show_obj=0))
 
     def test_list_01(self):
         current = DC('root')
-        nav = Navigation(self.finder, root_uid='root', current=current)
+        nav = ConfNavigation(file_content=self.fc,
+                         root_uid='root',
+                         current=current)
         items = nav.getListing()
         self.assertEqual(items, [DC('node_1'), DC('node_2'), DC('leaf_1')],
                          items)

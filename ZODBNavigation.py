@@ -15,23 +15,17 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""A ZODB Finder
+"""A ZODB Navigation
 """
 from Acquisition import aq_parent, aq_inner
 from interfaces.IFinder import IFinder
+from BaseNavigation import BaseNavigation
 
-
-class ZODBFinder:
+class ZODBNavigation(BaseNavigation):
     """Implement Finder interface for a ZODB."""
     __implements__ = (IFinder, )   # See IFinder interface for method docstring
 
     ### Finder interface
-    def setParams(self, **kw):
-        self._param_ids = kw.keys()
-        assert('root' in self._param_ids)
-        for k, v in kw.items():
-            setattr(self, k, v)
-
     def getObject(self, uid):
         try:
             obj = self.root.unrestrictedTraverse(uid)

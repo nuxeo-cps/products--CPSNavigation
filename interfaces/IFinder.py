@@ -28,12 +28,6 @@ class IFinder(Interface):
     used by Navigation.
     """
 
-    def setParams(**kw):
-        """Initialize the navigation parameters.
-
-        This method should be called before using any others.
-        You can assert to have kw['root'] with the root object."""
-
     def getObject(uid):
         """Return the object corresponding to the unique identifier.
 

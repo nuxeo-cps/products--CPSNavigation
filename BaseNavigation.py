@@ -20,13 +20,16 @@
    Used to build Navigation screen like tree + listing
 """
 
-class Navigation:
-    """
+class BaseNavigation:
+    """This is a Base class for other Navigation class.
+
+    To write your navigation class you have to inherit from BaseNavigation
+    and implement the IFinder interface.
     """
     no_leaves = 0
     no_nodes = 0
 
-    def __init__(self, finder, **kw):
+    def __init__(self, **kw):
         """Init the navigation.
 
         Required kw:
@@ -37,19 +40,13 @@ class Navigation:
         assert('current' in kw_keys or 'current_uid' in kw_keys)
         assert('root' in kw_keys or 'root_uid' in kw_keys)
         if 'current' not in kw_keys:
-            kw['current'] = finder.getObject(kw['current_uid'])
+            kw['current'] = self.getObject(kw['current_uid'])
         if 'root' not in kw_keys:
-            kw['root'] = finder.getObject(kw['root_uid'])
-        self._finder = finder
+            kw['root'] = self.getObject(kw['root_uid'])
         self.setParams(**kw)
-        self._finder.setParams(**kw)
 
     def setParams(self, **kw):
         """Setting navigation properties.
-
-        main kw
-        current : the current object
-        node_only : listing only contains node (no leaf)
         """
         self._param_ids = kw.keys()
         for k, v in kw.items():
@@ -64,7 +61,7 @@ class Navigation:
 
 
     def _exploreNode(self, obj, level, is_last_child, path, flat_tree):
-        obj_uid = self._finder.getUid(obj)
+        obj_uid = self.getUid(obj)
         node = {'uid': obj_uid,
                 'object': obj,
                 'level': level,
@@ -72,14 +69,14 @@ class Navigation:
                 'is_last_child': is_last_child,
                 }
         if obj_uid not in path:
-            if self._finder.isNode(obj) and \
-               self._finder.hasChildren(obj, no_leaves=1):
+            if self.isNode(obj) and \
+               self.hasChildren(obj, no_leaves=1):
                 node['has_children'] = 1
             else:
                 node['has_children'] = 0
             flat_tree.append(node)
         else:
-            children = self._finder.getChildren(obj, no_leaves=1)
+            children = self.getChildren(obj, no_leaves=1)
             node['is_open'] = 1
             node['children'] = children
             if len(children):
@@ -100,7 +97,7 @@ class Navigation:
         res = []
         parent = obj
         while parent and parent != self.root:
-            parent = self._finder.getParent(parent)
+            parent = self.getParent(parent)
             if parent:
                 res.append(parent)
 
@@ -112,7 +109,7 @@ class Navigation:
         items = self.getParents(self.current)
         items.reverse()
         items.append(self.current)
-        path = [self._finder.getUid(item) for item in items]
+        path = [self.getUid(item) for item in items]
 
         # explore tree using path
         tree = []
@@ -151,7 +148,7 @@ class Navigation:
 
     def getListing(self):
         """Return a Listing structure."""
-        res = self._finder.getChildren(self.current, no_leaves=self.no_leaves,
+        res = self.getChildren(self.current, no_leaves=self.no_leaves,
                                        no_nodes=self.no_nodes)
         return res
 

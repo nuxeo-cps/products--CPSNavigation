@@ -15,11 +15,105 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""A ConfigParser Finder
+"""A ConfigParser Navigation
 """
 from ConfigParser import ConfigParser, NoOptionError, NoSectionError
 from StringIO import StringIO
 from Products.CPSNavigation.interfaces.IFinder import IFinder
+from BaseNavigation import BaseNavigation
+
+class ConfNavigation(BaseNavigation):
+    """Implement Finder interface for a Conf/Ini file.
+
+    example of conf file is:
+    [root]
+    contents=foo|bar|pom
+    [foo]
+    contents=bla|blah
+    ...
+    """
+    __implements__ = (IFinder, )  # See Finder interface for method docstring
+
+    sep = '|'
+
+    def __init__(self, **kw)
+        """Initialize the Finder.
+
+        Either a filename or a file content is expected."""
+        BaseNavigation(self, **kw)
+        file_fd = None
+        if kw.get('file_name'):
+            file_fd = open(file_name, 'r')
+        elif kw.get('file_content'):
+            file_fd = StringIO(file_content)
+        else:
+            raise KeyError, "No file_content or file_name provided."
+        parser = ConfigParser()
+        parser.readfp(file_fd)
+        file_fd.close()
+        self._parser = parser
+
+    ### Finder interface
+    def getObject(self, uid):
+        if uid in self._parser.sections():
+            return self._dummyfy(uid)
+        return None
+
+    def getUid(self, obj):
+        return obj.getId()
+
+    def isNode(self, obj):
+        # support dump_tree export
+        if getattr(obj, 'type', '') in ('Section', 'Workspace'):
+            return 1
+        try:
+            self._parser.get(obj.getId(), 'contents')
+        except (NoSectionError, NoOptionError):
+            return 0
+
+        return 1
+
+    def hasChildren(self, obj, no_nodes=0, no_leaves=0):
+        # Such an ineficient way
+        return not not len(self.getChildren(obj, no_nodes, no_leaves))
+
+    def getChildren(self, obj, no_nodes=0, no_leaves=0):
+        children = []
+        try:
+            value = self._parser.get(obj.getId(), 'contents')
+        except (NoSectionError, NoOptionError):
+            return children
+        children = [child.strip() for child in value.split(self.sep)]
+        children = filter(None, children)
+        children = [self._dummyfy(child) for child in children]
+        if no_leaves:
+            children = [child for child in children if self.isNode(child)]
+        if no_nodes:
+            children = [child for child in children if not self.isNode(child)]
+
+        return children
+
+    def getParent(self, obj):
+        sections = self._parser.sections()
+        for section in sections:
+            for child in self.getChildren(DummyClass(section), no_leaves=0):
+                if child == obj:
+                    return self._dummyfy(section)
+        if obj.getId() not in sections:
+            raise KeyError, obj.getId()
+        return None
+
+    ### Private
+    def _dummyfy(self, id):
+        """Turn an id into a Dummy object with properties."""
+        # find a section
+        kw = {}
+        if id in self._parser.sections():
+            options = self._parser.options(id)
+            for option in options:
+                if option not in ('id',):
+                    kw[option] = self._parser.get(id, option)
+        return DummyClass(id=id, **kw)
 
 
 class DummyClass:
@@ -47,104 +141,4 @@ class DummyClass:
 
     def getId(self):
         return self.id
-
-
-class ConfFinder:
-    """Implement Finder interface for a Conf/Ini file.
-
-    example of conf file is:
-    [root]
-    contents=foo|bar|pom
-    [foo]
-    contents=bla|blah
-    ...
-    """
-    __implements__ = (IFinder, )  # See Finder interface for method docstring
-
-    sep = '|'
-
-    def __init__(self, file_name=None, file_content=None):
-        """Initialize the Finder.
-
-        Either a filename or a file content is expected."""
-        file_fd = None
-        if file_name:
-            file_fd = open(file_name, 'r')
-        elif file_content:
-            file_fd = StringIO(file_content)
-        else:
-            raise KeyError, "No file_content or file_name provided."
-        parser = ConfigParser()
-        parser.readfp(file_fd)
-        file_fd.close()
-        self.parser = parser
-
-
-    ### Finder interface
-    def setParams(self, **kw):
-        self._param_ids = kw.keys()
-        assert('root' in self._param_ids)
-        for k, v in kw.items():
-            setattr(self, k, v)
-
-    def getObject(self, uid):
-        if uid in self.parser.sections():
-            return self._dummyfy(uid)
-        return None
-
-    def getUid(self, obj):
-        return obj.getId()
-
-    def isNode(self, obj):
-        # support dump_tree export
-        if getattr(obj, 'type', '') in ('Section', 'Workspace'):
-            return 1
-        try:
-            self.parser.get(obj.getId(), 'contents')
-        except (NoSectionError, NoOptionError):
-            return 0
-
-        return 1
-
-    def hasChildren(self, obj, no_nodes=0, no_leaves=0):
-        # Such an ineficient way
-        return not not len(self.getChildren(obj, no_nodes, no_leaves))
-
-    def getChildren(self, obj, no_nodes=0, no_leaves=0):
-        children = []
-        try:
-            value = self.parser.get(obj.getId(), 'contents')
-        except (NoSectionError, NoOptionError):
-            return children
-        children = [child.strip() for child in value.split(self.sep)]
-        children = filter(None, children)
-        children = [self._dummyfy(child) for child in children]
-        if no_leaves:
-            children = [child for child in children if self.isNode(child)]
-        if no_nodes:
-            children = [child for child in children if not self.isNode(child)]
-
-        return children
-
-    def getParent(self, obj):
-        sections = self.parser.sections()
-        for section in sections:
-            for child in self.getChildren(DummyClass(section), no_leaves=0):
-                if child == obj:
-                    return self._dummyfy(section)
-        if obj.getId() not in sections:
-            raise KeyError, obj.getId()
-        return None
-
-    ### Private
-    def _dummyfy(self, id):
-        """Turn an id into a Dummy object with properties."""
-        # find a section
-        kw = {}
-        if id in self.parser.sections():
-            options = self.parser.options(id)
-            for option in options:
-                if option not in ('id',):
-                    kw[option] = self.parser.get(id, option)
-        return DummyClass(id=id, **kw)
 
