@@ -37,6 +37,7 @@ class CatalogNavigation(BaseNavigation):
 
     sort_limit = 100
     find_root_depth_max = 4
+    node_depth_max = 0
 
     def __init__(self, **kw):
         if not kw.get('context'):
@@ -232,6 +233,11 @@ class CatalogNavigation(BaseNavigation):
                 if 'filter_tree_language' in self._param_ids and (
                         self.filter_tree_language):
                     query['Language'] = self.filter_tree_language
+                if self.node_depth_max and \
+                       not query.has_key('relative_path_depth'):
+                    query['relative_path_depth'] = {
+                        'query': self.node_depth_max,
+                        'range': 'max'}
 
         # handle sorting
         if not query.has_key('sort-on'):
