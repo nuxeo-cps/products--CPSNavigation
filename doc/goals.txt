@@ -27,3 +27,9 @@ Goals
       - the right part display a listing of the content of the selected node
         it may display either nodes and leaves, only nodes or only leaves.
         this part should handle filtering, sorting and batching
+
+  This should be easy to do:
+
+    We don't want any processing from zpt or python scripts
+
+    Writing a new explorer should be simple
