@@ -103,7 +103,7 @@
 <!-- ldap -->
 <metal:block define-macro="render_node_ldap">
   <tal:block replace="python:
-here.truncate(node['object'].get(display_attr, ['%s not found!'% display_attr])[0])" />
+here.truncString(node['object'].get(display_attr, ['%s not found!'% display_attr])[0])" />
 </metal:block>
 
 <metal:block define-macro="render_listing_header_ldap"
