@@ -96,10 +96,33 @@ class CPSNavigation(ZODBNavigation):
         return uid
 
     def _isNode(self, obj):
+
+        # XXX comment please
         if type(obj) is DictType:
             return 1
-        # XXX check portal types for display_as_document_in_listing
-        # ret obj.isPrincipiaFolderish and not display_as_document_in_listing
+
+        # If we defined a filter explicitly
+        if 'filter_listing_ptypes' in self._param_ids and \
+               self.filter_listing_ptypes:
+            if obj.portal_type in self.filter_listing_ptypes:
+                return 1
+            else:
+                return 0
+
+        # Otherweise, check the proxy_type (folder / folderishdocument)
+        if getattr(obj, 'portal_type'):
+            ti = getattr(obj.portal_types, obj.portal_type)
+            if ti.meta_type == 'CPS Flexible Type Information':
+                display = getattr(ti,
+                                  'cps_display_as_document_in_listing',
+                                  0)
+                proxy_type = getattr(ti,
+                                     'cps_proxy_type',
+                                     'document')
+                return proxy_type in ['folder',
+                                      'folderishdocument'] and not display
+
+        # Not a CPS Flexible Type Information
         return obj.isPrincipiaFolderish
 
     def _hasChildren(self, obj, no_nodes=0, no_leaves=0):
