@@ -45,11 +45,16 @@ elif finder == 'zodb':
                          )
 elif finder == 'cpsdirectory':
     current_uid = REQUEST.get('current_uid')
-    dir_name = root_uid
+    dir_name = REQUEST.get('dir_name')
+    if not dir_name:
+        dir_name = root_uid
     dir = getattr(context.portal_directories, dir_name)
     if hasattr(dir, 'ldap_base'):
         type = 'ldap'
-        root_uid = dir.ldap_base
+        include_root = 1
+        if not root_uid.endswith(','+dir.ldap_base):
+            root_uid = dir.ldap_base
+            include_root = 0
         if not current_uid:
             current_uid = REQUEST.get('current_uid', root_uid)
         nav = LDAPDirectoryNavigation(
@@ -57,7 +62,7 @@ elif finder == 'cpsdirectory':
             current_uid=current_uid,
             context=context,
             dir_name=dir_name,
-            include_root=0,
+            include_root=include_root,
             batch_size=15,
             request_form=REQUEST.form,
             )
