@@ -48,6 +48,7 @@ class CPSNavigationInstaller(BaseInstaller):
     def install(self):
         self.log("Starting CPSNavigation install")
         self.setupSkins(self.SKINS)
+        self.setupTranslations()
         self.log("End of specific CPSNavigation install")
 
 def install(self):
