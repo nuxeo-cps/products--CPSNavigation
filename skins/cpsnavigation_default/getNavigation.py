@@ -40,7 +40,7 @@ elif finder == 'zodb':
                          sort_tree_direction='asc',
                          sort_listing_by='title',
                          sort_listing_direction='desc',
-                         batch_size=5,
+                         batch_size=15,
                          request_form=REQUEST.form,
                          )
 elif finder == 'cpsdirectory':
