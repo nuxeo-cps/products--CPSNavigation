@@ -1,4 +1,4 @@
-##parameters=finder='cps', REQUEST=None
+##parameters=finder='cps', root_uid=None, REQUEST=None
 # $Id$
 from Products.CPSNavigation.ConfNavigation import ConfNavigation
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
@@ -9,8 +9,11 @@ from Products.CPSNavigation.LDAPDirectoryNavigation import \
 b_start = REQUEST.get('b_start', 0)
 
 if finder == 'cps':
-    root_uid = 'sections'
-    current_uid = REQUEST.get('current_uid', root_uid)
+    if not root_uid:
+        root_uid = 'sections'
+    current_uid = REQUEST.get('current_uid')
+    if not current_uid:
+        current_uid = root_uid
     # current_uid = context.portal_url.getRelativeContentURL(context)
     nav = CPSNavigation(root_uid=root_uid,
                         current_uid=current_uid,
