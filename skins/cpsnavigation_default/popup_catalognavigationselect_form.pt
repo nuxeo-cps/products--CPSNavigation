@@ -24,24 +24,22 @@ example</div>
 example</div>
 </tal:block>
 
-<div class="tabs">
-  <a tal:attributes="href python:'%s?%s' % (
-    request['URL'], mq(display_mode='tree'));
-    class python:test(res['display_mode'] == 'tree', 'selected', nothing);"
+<ul class="menuTabs">
+  <li tal:attributes="class python:test(res['display_mode'] == 'tree',
+    'selected', nothing)"><a
+    tal:attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='tree'))"
     i18n:translate="cpsnav_tree"
-    >Navigation</a>
-  <a tal:attributes="href python:'%s?%s' % (
-    request['URL'], mq(display_mode='search'));
-    class python:test(res['display_mode'] == 'search', 'selected', nothing);"
-    i18n:translate="cpsnav_search"
-    >Search</a>
-  <a tal:condition="res/is_editable_option"
-    tal:attributes="href python:'%s?%s' % (
-    request['URL'], mq(display_mode='option'));
-    class python:test(res['display_mode'] == 'option', 'selected', nothing);"
+    >Navigation</a></li>
+  <li tal:attributes="class python:test(res['display_mode'] == 'search',
+    'selected', nothing)">
+    <a tal:attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='search'))"
+      i18n:translate="cpsnav_search"
+    >Search</a></li>
+  <li tal:condition="res/is_editable_option" tal:attributes="class python:test(res['display_mode'] == 'option', 'selected', nothing)"><a
+    tal:attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='option'))"
     i18n:translate="cpsnav_option"
-  >Options</a>
-</div>
+  >Options</a></li>
+</ul>
 
 <div class="pathBar">
   <span i18n:translate="cpsnav_current_uid">here</span>:
