@@ -1,4 +1,22 @@
 *******************************************
+** CPSNavigation V0.10.2 [R1 build 2004/09/08-11:54 by anahide]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- fix: listing is wrong if current_uid == root_uid
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- installer setup indexes and metadata used by catalognavigation
+- i18n title and description popup if widget is_i18n
+- xhtmlize a bit navigation_lib
+
+*******************************************
 ** CPSNavigation V0.10.1 [R1 build 2004/09/06-13:43 by anahide]
 
 Requires:
