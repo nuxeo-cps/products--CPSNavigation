@@ -140,7 +140,8 @@ class BaseNavigation:
                 res.append(parent_uid)
         res.reverse()
         if self.debug:
-            LOG('BaseNavigation._getParentUids', DEBUG, 'return : ' + str(res))
+            LOG('BaseNavigation._getParentUids(%s)' % uid,
+                DEBUG, 'return : ' + str(res))
 
         return res
 
