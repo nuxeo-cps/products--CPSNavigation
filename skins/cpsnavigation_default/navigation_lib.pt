@@ -248,7 +248,7 @@ not found' % display_attr)" />
               type=type);
               dir_name request/dir_name|nothing;
 ">
-<h1 tal:content="title" />
+<h1 tal:content="title" i18n:translate="" />
 <form action="" method="post">
 <br />
 <table bgcolor="#333333" width="100%" cellspacing="0" cellpadding="0"><tr><td>
