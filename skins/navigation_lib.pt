@@ -78,11 +78,13 @@
 <!-- ============================================================ -->
 <!-- ldap -->
 <metal:block define-macro="render_node_ldap">
-  <tal:block replace="python: node['object'].get('ou',['!No ou!'])[0]" />
+  <tal:block replace="python: node['object'].get(display_attr, ['%s not
+found!'% display_attr])[0]" />
 </metal:block>
 
 <metal:block define-macro="render_listing_header_ldap">
-  <tal:block replace="python: listing_info['current'].get('ou',['!No ou!'])[0]" />
+  <tal:block replace="python: listing_info['current'].get(display_attr, ['%s
+not found' % display_attr])[0]" />
 </metal:block>
 
 
@@ -93,7 +95,7 @@
   <a href="" tal:attributes="title item_uid;
     href python:'%s?%s'%(request.URL0,
     mq(request.form, current_uid=item_uid));">
-    <tal:block replace="python: item.get('ou',['!No ou!'])[0]" />
+    <tal:block replace="python: item.get(display_attr,['%s not found!' % display_attr])[0]" />
   </a>
 </metal:block>
 
@@ -110,6 +112,8 @@
   tal:define="root_uid root_uid|request/root_uid;
               input_id request/input_id|nothing;
               title request/title|nothing;
+              display_attr request/display_attr|nothing;
+              vocabulary request/vocabulary|nothing;
               tree python:res[0];
               listing python:res[1];
               batch_info python:res[2];
@@ -198,5 +202,8 @@
   <input type="hidden" name="type" tal:attributes="value type">
   <input type="hidden" name="input_id" tal:attributes="value input_id">
   <input type="hidden" name="title" tal:attributes="value title">
+  <input type="hidden" name="display_attr" tal:attributes="value
+display_attr">
+  <input type="hidden" name="vocabulary" tal:attributes="value vocabulary">
 </form>
 </metal:block>
