@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.2.0 [R1 build 2004/01/21-11:42 by ben]
+
+ZODB Requires:
+~~~~~~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- truncate ldap and folder title
+
+*******************************************
 ** CPSNavigation V0.1.0 [R1 build 2004/01/21-10:33 by ben]
 
 ZODB Requires:
