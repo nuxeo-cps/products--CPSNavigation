@@ -3,10 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Added a clear_selection parameter to manageSelections. This clears the 
-  session variable. Useful to use when you display something for editing, 
-  to make sure you don't have any cruft in the session variable
-- CPSNavigation search refactoring
+-
 Bug fixes:
 ~~~~~~~~~~
 -

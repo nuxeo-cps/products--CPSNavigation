@@ -1,4 +1,23 @@
 *******************************************
+** CPSNavigation V0.7.0 [R1 build 2004/05/24-10:11 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Added a clear_selection parameter to manageSelections. This clears the 
+  session variable. Useful to use when you display something for editing, 
+  to make sure you don't have any cruft in the session variable
+- CPSNavigation search refactoring
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSNavigation V0.6.0 [R1 build 2004/05/07-14:18 by ben]
 
 Requires:
