@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- fix: missing __implements__ IFinder in Catalog and CPS Navigation
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
