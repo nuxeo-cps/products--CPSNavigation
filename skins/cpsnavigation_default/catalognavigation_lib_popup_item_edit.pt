@@ -1,0 +1,12 @@
+<!-- a catalognavigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- item is a brain input_id is the widget id in parent window --&gt;
+-->
+
+<metal:block define-macro="popup_item_edit">
+  <input type="hidden"
+         tal:attributes="name input_id; value item/relative_path" />
+  <em tal:content="item/relative_path" />
+</metal:block>

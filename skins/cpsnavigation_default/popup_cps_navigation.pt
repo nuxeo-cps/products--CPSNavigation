@@ -1,7 +1,7 @@
 <tal:block define="emptybody python:1">
 <metal:block use-macro="here/main_template/macros/master">
 <metal:block fill-slot="body" tal:define="root_uid string:sections">
-  <metal:block use-macro="here/navigation_lib/macros/cps_navigation">
+  <metal:block use-macro="here/navigation_lib_cps_navigation/macros/cps_navigation">
     <metal:block fill-slot="action">
 
  <script type="text/javascript"

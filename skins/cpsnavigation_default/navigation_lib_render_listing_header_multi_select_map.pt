@@ -1,0 +1,13 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="render_listing_header_multi_select_map">
+  <input name="uids:list" type="checkbox" class="noborder"
+        tal:attributes="value listing_info/current_uid" />
+  <tal:block replace="python: listing_info['current'].get(display_attr, '%s
+not found' % display_attr)" />
+</metal:block>

@@ -1,0 +1,11 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- ============================================================ --&gt;
+&lt;!-- cps --&gt;
+-->
+
+<metal:block define-macro="render_node_cps">
+  <tal:block replace="structure node/object/short_title" />
+</metal:block>

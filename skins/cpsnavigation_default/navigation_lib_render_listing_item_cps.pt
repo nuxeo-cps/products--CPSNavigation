@@ -1,0 +1,22 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="render_listing_item_cps"
+  tal:define="doc item/getContent;
+  item_desc doc/description;
+  item_uid python: utool.getRelativeUrl(item);">
+  <input name="uid" type="radio" class="noborder"
+        tal:attributes="value item_uid;
+                        id item_desc;" />
+  <img tal:replace="structure python:here.getImgTag(item.getIcon(),
+    base_url=base_url)">&nbsp;
+  <a href="" tal:attributes="title item_desc;
+    href python:'%s?%s'%(request.URL0,
+    mq(request.form, current_uid=item_uid));">
+    <tal:block replace="item/title_or_id" />
+  </a>
+</metal:block>

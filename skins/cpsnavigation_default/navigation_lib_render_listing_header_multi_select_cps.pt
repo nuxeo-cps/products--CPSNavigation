@@ -1,0 +1,13 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="render_listing_header_multi_select_cps">
+  <input name="uids:list" type="checkbox" class="noborder"
+    tal:condition="not:hide_current|python:0"
+    tal:attributes="value listing_info/current_uid" />
+  <tal:block replace="listing_info/current/title_or_id|nothing" />
+</metal:block>

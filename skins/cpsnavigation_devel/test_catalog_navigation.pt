@@ -54,7 +54,7 @@
   <div class="group">
   <span class="legend" i18n:translate="cpsnav_tree">navigation</span>
   <div tal:repeat="node res/tree">
-    <metal:block use-macro="here/navigation_lib/macros/render_lines_text" />
+    <metal:block use-macro="here/navigation_lib_render_lines_text/macros/render_lines_text" />
     <a tal:define="title_or_id node/object/Title|node/object/getId"
       tal:attributes="
       class python:test(node['is_current'], 'selected', nothing);
@@ -96,7 +96,7 @@
   <span class="legend" tal:content="python:test(res['status_form'] ==
     'valid', 'cpsnav_search_result', 'cpsnav_content')"
     i18n:translate="">Search result</span>
-  <metal:block use-macro="here/navigation_lib/macros/batch_info" />
+  <metal:block use-macro="here/navigation_lib_batch_info/macros/batch_info" />
   <tal:block repeat="item res/listing">
     <div><span tal:content="item/Title" /> <br /><span
       tal:content="item/Description" /></div>
@@ -104,11 +104,11 @@
       tal:define="info python:here.getContentInfo(item, level=1,
         cpsmcat=cpsmcat); format string:compact;">
       <metal:block
-        use-macro="python:path('here/content_lib/macros/info_%s'%format)" />
+        use-macro="python:path('here/content_lib_info_%s/macros/info_%s'%(format,format))" />
     </div -->
   </tal:block>
   <div  style="clear: both">&nbsp;</div>
-  <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
+  <metal:block use-macro="here/navigation_lib_batch_nav/macros/batch_nav" />
   </div>
 </div>
 </tal:block>

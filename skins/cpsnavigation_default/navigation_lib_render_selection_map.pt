@@ -1,0 +1,10 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="render_selection_map">
+  <tal:block replace="item/title" />
+</metal:block>

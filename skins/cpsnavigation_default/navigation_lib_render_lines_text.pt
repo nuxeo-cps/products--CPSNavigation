@@ -1,0 +1,14 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- ============================================================ --&gt;
+&lt;!-- this require a node from a tree from BaseNavigation.getTree --&gt;
+-->
+
+<metal:block define-macro="render_lines_text"><tal:block
+  repeat="line node/lines"
+  content="structure python:3*'&nbsp;' + test(not line, '&nbsp;',
+    test(line==1, '|', '`'))" /><tal:block
+  content="python:test(node['state'] == 'open', '>',
+    test(node['state'] == 'closed', '+', '-'))" /></metal:block>

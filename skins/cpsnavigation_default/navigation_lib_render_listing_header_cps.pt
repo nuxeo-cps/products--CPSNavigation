@@ -1,0 +1,13 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="render_listing_header_cps">
+  <input name="uid" type="radio" class="noborder" checked="checked"
+    tal:condition="not:hide_current|python:0"
+    tal:attributes="value listing_info/current_uid" />
+  <tal:block replace="listing_info/current/title_or_id|nothing" />
+</metal:block>

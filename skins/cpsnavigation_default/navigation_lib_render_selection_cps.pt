@@ -1,0 +1,11 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="render_selection_cps">
+  <img tal:replace="structure item/img_tag">&nbsp;
+  <tal:block replace="item/title_or_id" />
+</metal:block>

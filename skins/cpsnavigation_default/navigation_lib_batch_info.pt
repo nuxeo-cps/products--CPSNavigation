@@ -1,0 +1,22 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- macro library for navigation --&gt;
+&lt;!-- $Id$ --&gt;
+
+&lt;!-- ============================================================ --&gt;
+&lt;!-- this require a batch_info from BaseNavigation.getTree --&gt;
+-->
+
+<metal:block define-macro="batch_info"
+  tal:condition="python:batch_info and batch_info['nb_pages'] > 1">
+<div align="right" class="even">
+  <span i18n:translate="">
+    Objects: <tal:block replace="batch_info/start"
+    i18n:name="batch_start" /> - <tal:block replace="batch_info/stop"
+    i18n:name="batch_limit" /> of <tal:block replace="batch_info/length"
+    i18n:name="batch_length" />
+  </span>
+</div>
+</metal:block>

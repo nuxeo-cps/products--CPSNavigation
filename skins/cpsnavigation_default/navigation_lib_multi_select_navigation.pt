@@ -1,0 +1,124 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- ============================================================ --&gt;
+&lt;!-- this is a nav/detail/multi selection table you should define --&gt;
+&lt;!-- expected res (a getNavigation result) root_uid and type --&gt;
+-->
+
+<metal:block define-macro="multi_select_navigation"
+  tal:define="root_uid root_uid|request/root_uid;
+              input_id request/input_id|nothing;
+              title request/title|nothing;
+              display_attr request/display_attr|nothing;
+              vocabulary request/vocabulary|nothing;
+              tree python:res[0];
+              listing python:res[1];
+              batch_info python:res[2];
+              listing_info python:res[3];
+              type python:res[4];
+              mq nocall:modules/ZTUtils/make_query;
+              current_uid request/current_uid|nothing;
+              search request/search|nothing;
+              not_found python:search and not batch_info['length'];
+              selection python:here.manageSelection(REQUEST=request,
+              type=type);
+              dir_name request/dir_name|nothing;
+">
+<h1 tal:content="title" i18n:translate="" />
+<form action="" method="post">
+<br />
+<table bgcolor="#333333" width="100%" cellspacing="0" cellpadding="0"><tr><td>
+<table width="100%" cellspacing="1" cellpadding="5">
+<tr>
+  <th width="33%" class="even" i18n:translate="" tal:condition="not:search">label_navigation</th>
+  <th width="33%" class="even" i18n:translate="" tal:condition="search">label_search</th>
+  <th width="33%" class="even" i18n:translate="">label_detail</th>
+  <th width="33%" class="even" i18n:translate="">label_selection</th>
+</tr>
+<tr><td width="33%" valign="top" class="odd">
+<div tal:condition="search">
+  <table><tr valign="top"><td>
+  <input id="field_focus" name="query_uid"
+    tal:attributes="value request/query_uid|nothing" /></td><td>
+  <input type="submit" class="standalone" value="button_search"
+    i18n:attributes="value" /></td></tr></table>
+</div>
+<div class="box" style="white-space: nowrap;" tal:condition="not:search">
+<tal:block repeat="node tree">
+  <tal:block repeat="line node/lines"
+    content="structure python:3*'&nbsp;' + test(not line, '&nbsp;', test(line==1, '|', '`'))" />
+  <tal:block
+    content="python:test(node['state'] == 'open', '>',
+                         test(node['state'] == 'closed', '+', '-'))" />
+
+  <a tal:attributes="
+    class python:test(node['is_current'], 'selected', nothing);
+    href python:'%s?%s'%(request['URL0'],
+     mq(request.form, current_uid=node['uid']));">
+  <metal:block use-macro="python:path('here/navigation_lib_render_node_%s/macros/render_node_%s'%(type,type))" />
+  </a><br />
+</tal:block>
+</div>
+</td><td valign="top" width="33%" class="odd">
+  <div tal:condition="listing_info/current">
+  <div tal:condition="not_found">
+    <span i18n:translate="label_no_results" />
+  </div>
+  <a accesskey="U" tal:condition="listing_info/parent_uid"
+    tal:attributes="href python:'%s?%s'%(request['URL0'],
+    mq(request.form, current_uid=listing_info['parent_uid']));">
+  <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
+  base_url=base_url)"> ..<br /></a>
+  <h4 tal:condition="not:listing_info/hide_current">
+    <metal:block use-macro="python:path('here/navigation_lib_render_listing_header_multi_select_%s/macros/render_listing_header_multi_select_%s'%(type,type))" />
+  </h4>
+  <metal:block use-macro="here/navigation_lib_batch_info/macros/batch_info" />
+
+  <tal:block repeat="item listing">
+    <div>
+      &nbsp;&nbsp;<metal:block use-macro="python:path('here/navigation_lib_render_listing_item_multi_select_%s/macros/render_listing_item_multi_select_%s'%(type,type))" />
+    </div>
+  </tal:block>
+  <metal:block use-macro="here/navigation_lib_batch_nav/macros/batch_nav" />
+  <br />
+  <input type="submit" class="context"
+    name="add_items_to_selection"
+    value="button_select" i18n:attributes="value"
+    tal:condition="not:not_found" />
+  </div>
+</td><td valign="top" with="33%" class="odd">
+  <div tal:condition="selection">
+  <tal:block repeat="item selection">
+    <div>
+      <input name="selected_uids:list" type="checkbox" class="noborder"
+        checked="checked" tal:attributes="value item/uid" />
+        <metal:block use-macro="python:path('here/navigation_lib_render_selection_%s/macros/render_selection_%s'%(type,type))" />
+    </div>
+  </tal:block>
+  <br />
+  <input type="submit" class="context" value="button_delete"
+    name="del_items_from_selection"
+    i18n:attributes="value" />
+  <metal:block define-slot="action">
+  <input type="submit" class="standalone" value="button_update"
+    i18n:attributes="value" />
+  </metal:block>
+  </div>
+
+</td></tr></table>
+</td></tr></table>
+  <input type="hidden" name="root_uid" tal:attributes="value root_uid" />
+  <input type="hidden" name="current_uid" tal:attributes="value current_uid"
+/>
+  <input type="hidden" name="type" tal:attributes="value type" />
+  <input type="hidden" name="input_id" tal:attributes="value input_id" />
+  <input type="hidden" name="title" tal:attributes="value title" />
+  <input type="hidden" name="display_attr" tal:attributes="value
+    display_attr" />
+  <input type="hidden" name="vocabulary" tal:attributes="value vocabulary" />
+  <input type="hidden" name="search" tal:attributes="value search" />
+  <input type="hidden" name="dir_name" tal:attributes="value dir_name" />
+</form>
+</metal:block>

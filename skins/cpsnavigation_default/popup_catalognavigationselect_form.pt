@@ -62,7 +62,7 @@ example</div>
   <div class="group">
   <span class="legend" i18n:translate="cpsnav_tree">navigation</span>
   <div tal:repeat="node res/tree">
-    <metal:block use-macro="here/navigation_lib/macros/render_lines_text" />
+    <metal:block use-macro="here/navigation_lib_render_lines_text/macros/render_lines_text" />
     <a tal:define="title_or_id python:node['object']['Title'] or node['object']['getId']"
       tal:attributes="
       class python:test(node['is_current'], 'selected', nothing);
@@ -120,7 +120,7 @@ example</div>
     </tal:block>
   </tal:block>
 
-  <metal:block use-macro="here/navigation_lib/macros/batch_info" />
+  <metal:block use-macro="here/navigation_lib_batch_info/macros/batch_info" />
   <tal:block repeat="item res/listing">
     <div tal:define="item_number repeat/item/number">
       <input name="selectionId" type="radio" class="noborder"
@@ -137,7 +137,7 @@ example</div>
     </div>
   </tal:block>
   <div  style="clear: both">&nbsp;</div>
-  <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
+  <metal:block use-macro="here/navigation_lib_batch_nav/macros/batch_nav" />
 
  <script type="text/javascript"
   tal:content='structure string:

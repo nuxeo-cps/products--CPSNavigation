@@ -1,0 +1,17 @@
+<!-- a catalognavigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- item is a brain --&gt;
+-->
+
+<metal:block define-macro="popup_item_view">
+  <img tal:replace="structure python:here.getImgTag(item['getIcon'],
+       base_url=base_url)" />
+  <a tal:attributes="title item/Description">
+    <strong tal:condition="item/Title"
+            tal:content="item/Title" />
+    <strong tal:condition="not:item/Title"
+            tal:content="item/getId" />
+  </a>
+</metal:block>

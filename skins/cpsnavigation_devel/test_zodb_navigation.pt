@@ -32,7 +32,7 @@
 #ccc;" tal:condition="python: res['display_mode'] == 'tree'">
   <div class="group">
   <div tal:repeat="node res/tree">
-    <metal:block use-macro="here/navigation_lib/macros/render_lines_text" />
+    <metal:block use-macro="here/navigation_lib_render_lines_text/macros/render_lines_text" />
     <a tal:attributes="
       class python:test(node['is_current'], 'selected', nothing);
       href python:'%s?%s' % (request['URL'], mq(request.form,
@@ -64,11 +64,11 @@ widget__current_uid=node['object'].absolute_url(1), b_start=0));"
   tal:condition="python: res['display_mode'] != 'options'">
   <div class="message" tal:content="res/status_form"
     tal:condition="res/status_form" />
-  <metal:block use-macro="here/navigation_lib/macros/batch_info" />
+  <metal:block use-macro="here/navigation_lib_batch_info/macros/batch_info" />
   <div tal:repeat="item res/listing">
     <span tal:content="item/id" /> (<span tal:content="item/title_or_id" />)
   </div>
-  <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
+  <metal:block use-macro="here/navigation_lib_batch_nav/macros/batch_nav" />
 </div>
 
 <div  style="clear: both">&nbsp;</div>

@@ -1,0 +1,15 @@
+<!-- a navigation_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="render_listing_header_map"
+  tal:define="item_desc python: listing_info['current'].get(display_attr, '%s
+not found' % display_attr);
+              item_uid listing_info/current_uid">
+  <input name="uid" type="radio" class="noborder" checked="checked"
+    tal:attributes="value item_uid; id item_desc" />
+  <tal:block replace="item_desc" />
+</metal:block>
