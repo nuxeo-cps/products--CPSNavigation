@@ -4,6 +4,7 @@ ZODB Requires:
 New features:
 ~~~~~~~~~~~~~
 - search mode first implementation
+- adding an installer
 Bug fixes:
 ~~~~~~~~~~
 -
