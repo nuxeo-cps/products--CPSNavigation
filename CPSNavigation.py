@@ -33,14 +33,15 @@ class CPSNavigation(ZODBNavigation):
         # root and current are cps tree node object !
         if not kw.get('context'):
             raise KeyError, "No context provided."
-        ptrees = getToolByName(kw['context'], 'portal_trees')
         if not kw.get('current_uid') and not kw.get('root_uid'):
-            # get the first tree
-            kw['root_uid'] = ptrees.objectIds()[0]
+            # use the context
+            purl = getToolByName(kw['context'], 'portal_url')
+            kw['current_uid'] = purl.getRelativeUrl(kw['context'])
         if not kw.get('current_uid') and kw.get('root_uid'):
             kw['current_uid'] = kw['root_uid']
         if kw.get('current_uid') and not kw.get('root_uid'):
             kw['root_uid'] = kw['current_uid'].split('/')[0]
+        ptrees = getToolByName(kw['context'], 'portal_trees')
         self._cps_tree = ptrees[kw['root_uid']].getList(filter=1)
         ZODBNavigation.__init__(self, **kw)
         self._cps_tree_fixture()
