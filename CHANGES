@@ -13,3 +13,4 @@ New internal features:
 - _isNode() within CPSNavigation takes into consideration the portal_type filter
 s
 - CPSNavigation constructor -> prefix for the tree cache
+- navigation_lib hide_current possiblity
