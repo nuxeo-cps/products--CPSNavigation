@@ -10,7 +10,7 @@
   <tal:block condition="python: mode == 'edit'">
     <input tal:condition="python: not here.is_required and value"
            type="checkbox" tal:attributes="name string:${html_id}_set"
-           checked="checked" />
+           checked="checked" class="noborder" />
     <input tal:condition="not: value" type="hidden"
            tal:attributes="name string:${html_id}_set" value="checked" />
     <span tal:attributes="id html_id">
