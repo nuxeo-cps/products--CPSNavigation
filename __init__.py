@@ -50,3 +50,8 @@ from CPSDirectoryNavigation import CPSDirectoryNavigation
 allow_class(CPSDirectoryNavigation)
 ModuleSecurityInfo('Products.CPSNavigation').declarePublic(
     'CPSDirectoryNavigation')
+
+from CPSIndirectDirectoryNavigation import CPSIndirectDirectoryNavigation
+allow_class(CPSIndirectDirectoryNavigation)
+ModuleSecurityInfo('Products.CPSNavigation').declarePublic(
+    'CPSIndirectDirectoryNavigation')
