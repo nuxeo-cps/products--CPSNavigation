@@ -44,3 +44,105 @@
 </table>
 </metal:block>
 
+<!-- ============================================================ -->
+<!-- this is a nav/detail/selection table you should define
+  a root_uid which is a cps tree name like workspaces or sections -->
+<metal:block define-macro="folder_navigation"
+  tal:define="root_uid root_uid|nothing;
+              res python:here.getNavigation(finder='cps',
+                                            root_uid=root_uid,REQUEST=request);
+              tree python:res[0];
+              listing python:res[1];
+              batch_info python:res[2];
+              listing_info python:res[3];
+              mq nocall:modules/ZTUtils/make_query;
+              current_uid request/current_uid|nothing;
+              selection python:here.manageSelection(REQUEST=request,
+              type='folder');
+">
+<br><center>
+<table bgcolor="#333333" width="95%" cellspacing="0" cellpadding="0"><tr><td>
+<table width="100%" cellspacing="1" cellpadding="5">
+<tr><th width="33%" class="even" i18n:translate="">label_folder_navigation</th>
+  <th width="33%" class="even" i18n:translate="">label_detail</th>
+  <th width="33%" class="even" i18n:translate="">label_selection</th>
+</tr>
+<tr><td width="33%" valign="top" class="odd">
+<div class="box" style="white-space: nowrap;">
+<tal:block repeat="node tree">
+  <tal:block repeat="line node/lines"
+    content="structure python:3*'&nbsp;' + test(not line, '&nbsp;', test(line==1, '|', '`'))" />
+  <tal:block
+    content="python:test(node['state'] == 'open', '>',
+                         test(node['state'] == 'closed', '+', '-'))" />
+  <a tal:attributes="
+    class python:test(node['is_current'], 'selected', nothing);
+    href python:'%s?%s'%(request['URL0'],
+      mq(current_uid=node['object']['rpath']));"
+    tal:content="node/object/title_or_id" /><br>
+</tal:block>
+</div>
+</td><td valign="top" width="33%" class="odd">
+  <a accesskey="U" tal:condition="listing_info/parent_uid"
+    tal:attributes="href python:'%s?%s'%(request['URL0'],
+    mq(current_uid=listing_info['parent_uid']));">
+    <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
+  base_url=base_url)"> ..<br></a>
+
+  <form action="" method="post" tal:condition="listing_info/current">
+  <h4><input name="uids:list" type="checkbox" class="noborder"
+        tal:attributes="value listing_info/current_uid">
+  <tal:block content="listing_info/current/title_or_id|nothing" /></h4>
+  <metal:block use-macro="here/navigation_lib/macros/batch_info" />
+
+  <tal:block repeat="item listing">
+    <div tal:define="doc item/getContent;
+      item_desc doc/description;
+      item_uid python: utool.getRelativeUrl(item);">
+      &nbsp;&nbsp;<input name="uids:list" type="checkbox" class="noborder"
+        tal:attributes="value item_uid">
+      <img tal:replace="structure python:here.getImgTag(item.getIcon(),
+        base_url=base_url)">&nbsp;
+      <a href="" tal:attributes="title item_desc;
+        href python:'%s?%s'%(request.URL0,
+          mq(current_uid=item_uid));">
+        <tal:block replace="item/title_or_id" />
+      </a>
+    </div>
+  </tal:block>
+  <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
+  <br>
+  <input type="hidden" name="current_uid"
+    tal:attributes="value current_uid">
+  <input type="submit" class="standalone"
+    name="add_items_to_selection"
+    value="button_select" i18n:attributes="value">
+  </form>
+
+</td><td valign="top" with="33%" class="odd">
+  <form action="" method="post" tal:condition="selection">
+  <tal:block repeat="item selection">
+    <div>
+      <input name="selected_uids:list" type="checkbox" class="noborder"
+        tal:attributes="value item/uid">
+      <img tal:replace="structure item/img_tag">&nbsp;
+      <tal:block replace="item/title_or_id" />
+    </div>
+  </tal:block>
+  <br>
+  <input type="hidden" name="type" value="folder">
+  <input type="hidden" name="current_uid"
+    tal:attributes="value current_uid">
+  <input type="submit" class="destructive" value="button_delete"
+    name="del_items_from_selection"
+    i18n:attributes="value">
+  <metal:block define-slot="action">
+  <input type="submit" class="standalone" value="button_update"
+    i18n:attributes="value">
+  </metal:block>
+  </form>
+
+</td></tr></table>
+</td></tr></table>
+</center>
+</metal:block>
