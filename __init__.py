@@ -39,3 +39,8 @@ from LDAPDirectoryNavigation import LDAPDirectoryNavigation
 allow_class(LDAPDirectoryNavigation)
 ModuleSecurityInfo('Products.CPSNavigation').declarePublic(
     'LDAPDirectoryNavigation')
+
+from CPSDirectoryNavigation import CPSDirectoryNavigation
+allow_class(CPSDirectoryNavigation)
+ModuleSecurityInfo('Products.CPSNavigation').declarePublic(
+    'CPSDirectoryNavigation')
