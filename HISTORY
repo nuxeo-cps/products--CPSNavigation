@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.5.0 [R1 build 2004/05/06-15:35 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- refactoring CPSNavigation
+Bug fixes:
+~~~~~~~~~~
+- missing i18n translation
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- load i18n po file
+
+*******************************************
 ** CPSNavigation V0.4.1 [R1 build 2004/03/25-11:42 by ben]
 
 Requires:
