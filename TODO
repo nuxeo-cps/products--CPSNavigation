@@ -1,5 +1,7 @@
 - popup
    o CPS
+- FavoritesNavigation
+   o expand all folder in Favorites as level 1
 - LDAPDirectoryNavigation
    o unit test
    o more check

@@ -3,15 +3,21 @@
                    tree python:res[0];
                    listing python:res[1];
                    batch_info python:res[2];
+                   listing_info python:res[3];
                    mq nocall:modules/ZTUtils/make_query;
                    current_uid request/current_uid|string:sections;
                    ">
 <metal:block use-macro="here/main_template/macros/master">
 <metal:block fill-slot="body">
 <h1>Current Tree</h1>
-<table width="100%"><tr><td valign="top" width="70%">
-<table width="100%" border="1" cellpadding="5">
-<tr><td width="50%" valign="top">
+<br><center>
+<table bgcolor="#333333" width="95%" cellspacing="0" cellpadding="0"><tr><td>
+<table width="100%" cellspacing="1" cellpadding="5">
+<tr><th width="33%" class="even">Dossier</th>
+  <th width="33%" class="even">Detail</th>
+  <th width="33%" class="even">Selection</th>
+</tr>
+<tr><td width="33%" valign="top" class="odd">
 <div class="box" style="white-space: nowrap;">
 <tal:block repeat="node tree">
   <tal:block repeat="line node/lines"
@@ -26,16 +32,25 @@
     tal:content="node/object/title_or_id" /><br>
 </tal:block>
 </div>
-</td><td valign="top" width="50%">
-  <h3 tal:content="string:XXXX CURRENT TITLE" />
+</td><td valign="top" width="33%" class="odd">
+  <a accesskey="U" tal:condition="listing_info/parent_uid"
+    tal:attributes="href python:'%s?%s'%(base_url+'test_cps_navigation',
+    mq(current_uid=listing_info['parent_uid']));">
+    <img tal:replace="structure python:here.getImgTag('UpFolder_icon.gif',
+  base_url=base_url)"> ..<br></a>
+
+  <form action="manageSelection" method="GET" tal:condition="listing_info/current">
+  <h4><input name="uids:list" type="checkbox"
+        tal:attributes="value listing_info/current_uid">
+  <tal:block content="listing_info/current/title_or_id|nothing" /></h4>
   <metal:block use-macro="here/navigation_lib/macros/batch_info" />
 
-  <form action="manageSelection" method="GET" tal:condition="listing">
+
   <tal:block repeat="item listing">
     <div tal:define="doc item/getContent;
       item_desc doc/description;
       item_uid python: item.absolute_url(relative=1);">
-      <input name="uids:list" type="checkbox"
+      &nbsp;&nbsp;<input name="uids:list" type="checkbox"
         tal:attributes="value item_uid">
       <img tal:replace="structure python:here.getImgTag(item.getIcon(),
         base_url=base_url)">&nbsp;
@@ -46,7 +61,8 @@
       </a>
     </div>
   </tal:block>
-  <hr>
+  <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
+  <br>
   <input type="hidden" name="current_uid"
     tal:attributes="value current_uid">
   <input type="submit" class="standalone"
@@ -54,13 +70,9 @@
     value="button_select" i18n:attributes="value">
   </form>
 
-  <metal:block use-macro="here/navigation_lib/macros/batch_nav" />
-</td></tr></table>
-<td valign="top" with="30%"
+</td><td valign="top" with="33%" class="odd"
   tal:define="items python:here.manageSelection(REQUEST=request,
     mode='get', type='folder')">
-  <h3 tal:content="string:XXXX Selected" />
-
   <form action="manageSelection" method="GET" tal:condition="items">
   <tal:block repeat="item items">
     <div>
@@ -70,7 +82,7 @@
       <tal:block replace="item/title_or_id" />
     </div>
   </tal:block>
-  <hr>
+  <br>
   <input type="hidden" name="type" value="folder">
   <input type="hidden" name="current_uid"
     tal:attributes="value current_uid">
@@ -82,6 +94,8 @@
   </form>
 
 </td></tr></table>
+</td></tr></table>
+</center>
 </metal:block>
 </metal:block>
 </tal:block>

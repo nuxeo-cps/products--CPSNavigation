@@ -16,12 +16,12 @@ if finder == 'cps':
                         current_uid=current_uid,
                         context=context,
                         include_root=0,
-                        # no_nodes=1,
+                        no_leaves=1,
                         # filter_tree_ptypes=('Workspace',),
                         # filter_listing_ptypes=('Link',),
                         sort_listing_by='title',
                         sort_listing_direction='asc',
-                        batch_size=20,
+                        batch_size=15,
                         batch_start=b_start,
                         )
     # XXX try to get another tree and concatenate ?
@@ -70,8 +70,8 @@ contents=leaf_4|leaf_5
                          file_content=file_content)
 
 tree = nav.getTree()
-listing, batch_info = nav.getListing()
-return tree, listing, batch_info
+listing, listing_info, batch_info = nav.getListing()
+return tree, listing, batch_info, listing_info
 
 
 ## a goal:
