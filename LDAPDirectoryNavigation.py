@@ -25,10 +25,6 @@ from interfaces.IFinder import IFinder
 from BaseNavigation import BaseNavigation
 from zLOG import LOG, DEBUG, ERROR
 
-def uid2utf8(self, uid):
-    return unicode(text, 'iso-8859-15').encode('utf8')
-
-
 class LDAPDirectoryNavigation(BaseNavigation):
     """Implement Finder interface for a LDAPDirectory."""
     __implements__ = (IFinder, )   # See IFinder interface for method docstring
