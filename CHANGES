@@ -12,4 +12,4 @@ Bug fixes:
   to define the item (now gives the id)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- CatalogNavigationSelectWidget has empty default title/descr (#444)
