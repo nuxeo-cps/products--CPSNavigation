@@ -3,7 +3,10 @@
   <img tal:replace="structure python:here.getImgTag(item['getIcon'],
        base_url=base_url)" />
   <a tal:attributes="title item/Description">
-    <strong tal:content="item/Title" />
+    <strong tal:condition="item/Title"
+            tal:content="item/Title" />
+    <strong tal:condition="not:item/Title"
+            tal:content="item/id" />
   </a>
 </metal:block>
 
