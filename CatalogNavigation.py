@@ -28,7 +28,7 @@ from time import time
 from types import IntType
 from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.CMFCore.utils import _getAuthenticatedUser, _checkPermission
-from Products.CMFCore.CMFCorePermissions import AccessInactivePortalContent
+from Products.CMFCore.permissions import AccessInactivePortalContent
 from DateTime import DateTime
 from Products.ZCTextIndex.ParseTree import ParseError
 from interfaces.IFinder import IFinder
