@@ -366,7 +366,7 @@ not found' % display_attr)" />
               not_found python:search and not batch_info['length'];
               dir_name request/dir_name|nothing;
 ">
-<h1 tal:content="title" />
+<h1 tal:content="title" i18n:translate=""/>
 <form action="" method="post" id="navigation_form">
 <br />
 <table bgcolor="#333333" width="100%" cellspacing="0" cellpadding="0"><tr><td>
