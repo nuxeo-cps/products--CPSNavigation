@@ -34,3 +34,8 @@ ModuleSecurityInfo('Products.CPSNavigation').declarePublic('ZODBNavigation')
 from CPSNavigation import CPSNavigation
 allow_class(CPSNavigation)
 ModuleSecurityInfo('Products.CPSNavigation').declarePublic('CPSNavigation')
+
+from LDAPDirectoryNavigation import LDAPDirectoryNavigation
+allow_class(LDAPDirectoryNavigation)
+ModuleSecurityInfo('Products.CPSNavigation').declarePublic(
+    'LDAPDirectoryNavigation')
