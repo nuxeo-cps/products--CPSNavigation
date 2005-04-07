@@ -151,7 +151,7 @@ class BaseNavigation:
 
         return res
 
-    def getTree(self):        
+    def getTree(self):
         """Return a flat Tree structure easily processed in ZPT."""
 
         chrono_start = time()
@@ -171,6 +171,7 @@ class BaseNavigation:
         lv = lv_ = 0
         for node in tree:
             lv = node['level'] - shift
+            node['level'] = lv
             is_last_child = node.get('is_last_child')
             if is_last_child:
                 value = 2
