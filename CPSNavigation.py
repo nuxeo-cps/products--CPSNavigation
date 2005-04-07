@@ -49,6 +49,7 @@ class CPSNavigation(ZODBNavigation):
         if kw.get('current_uid') and not kw.get('root_uid'):
             kw['root_uid'] = kw['current_uid'].split('/')[0]
         ptrees = getToolByName(kw['context'], 'portal_trees')
+        authorized_only = kw.get('authorized_only', 1)
 
         # Prefix for the tree if specified
         prefix = kw.get('prefix')
@@ -56,7 +57,7 @@ class CPSNavigation(ZODBNavigation):
         locale = kw['context'].Localizer.get_selected_language()
         self._cps_tree = ptrees[kw['root_uid']].getList(
             prefix=prefix,
-            filter=1,
+            filter=authorized_only,
             locale_keys=['title', 'title_or_id',
                          'short_title', 'description'],
             locale_lang=locale)
@@ -141,7 +142,7 @@ class CPSNavigation(ZODBNavigation):
                         if x['rpath'] in obj['children']]
             children_prefix = obj['rpath'] + '/'
             children_depth = obj['depth'] + 1
-            return [x for x in self._cps_tree 
+            return [x for x in self._cps_tree
                     if ( x['depth'] == children_depth and
                          x['rpath'].startswith(children_prefix) )]
 
