@@ -13,7 +13,7 @@ contents = .cps_boxes_root|sections|workspaces
 [sections]
 id = sections
 type = Section
-title = Root of Sections
+title = Sections
 contents = mci/sections/sec1|mci/sections/domaines|mci/sections/sec3|mci/sections/acceuil|mci/sections/la_vie_au_mcc|mci/sections/a_la_une|mci/sections/accueil|mci/sections/zerezzr|mci/sections/plan_du_site
 
 # level 2
@@ -927,7 +927,7 @@ slot = center
 [workspaces]
 id = workspaces
 type = Workspace
-title = Root of Workspaces
+title = Workspaces
 contents = mci/workspaces/members|mci/workspaces/dssq|mci/workspaces/ggg|mci/workspaces/dev|mci/workspaces/plan_des_groupes
 
 # level 2
