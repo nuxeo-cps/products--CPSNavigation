@@ -19,19 +19,18 @@
 """
 
 from types import DictType
-from types import StringType
 from ZODBNavigation import ZODBNavigation
-from Acquisition import aq_base, aq_parent, aq_inner
+from Acquisition import aq_parent, aq_inner
 from zLOG import LOG, DEBUG
 from time import time
-from types import IntType
 from interfaces.IFinder import IFinder
-from Products.CMFCore.utils import getToolByName, _getAuthenticatedUser
+from Products.CMFCore.utils import getToolByName
 
 class CPSNavigation(ZODBNavigation):
     """Implement Finder interface for a CPS.
-    the tree contains portal_tree node,
-    the listing are normal object."""
+
+    The tree contains portal_tree node,
+    The listing are normal object."""
     __implements__ = (IFinder, )   # See IFinder interface for method docstring
 
     sort_limit = 100

@@ -20,12 +20,10 @@
 
 from types import DictType
 from Products.CMFCore.utils import getToolByName
-from types import StringType
 from BaseNavigation import BaseNavigation
 from Acquisition import aq_base, aq_parent, aq_inner
 from zLOG import LOG, DEBUG
 from time import time
-from types import IntType
 from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.CMFCore.utils import _getAuthenticatedUser, _checkPermission
 from Products.CMFCore.permissions import AccessInactivePortalContent
@@ -229,9 +227,8 @@ class CatalogNavigation(BaseNavigation):
                     now = DateTime()
                     query['effective_range'] = now
                 if self.no_nodes:
-                    query['cps_filter_sets'] = {'query' :
-                                                ('searchable', 'leaves'),
-                                                'operator' : 'and'}
+                    query['cps_filter_sets'] = {'query': ('searchable', 'leaves'),
+                                                'operator': 'and'}
                 if 'filter_listing_ptypes' in self._param_ids and \
                        self.filter_listing_ptypes:
                     query['portal_type'] = self.filter_listing_ptypes

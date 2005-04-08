@@ -24,7 +24,6 @@ from Globals import InitializeClass
 from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
 from Products.CPSSchemas.Widget import CPSWidget, CPSWidgetType
 from Products.CPSSchemas.BasicWidgets import CPSURLWidget
-from Products.CPSSchemas.BasicWidgets import renderHtmlTag, _isinstance
 
 ##################################################
 
