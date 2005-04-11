@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- #577: incorrect information about open nodes.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
