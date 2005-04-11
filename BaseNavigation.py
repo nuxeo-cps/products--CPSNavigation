@@ -115,12 +115,10 @@ class BaseNavigation:
             children = filter(None, children)
             children = self._filter(children, mode='tree')
             children = self._sort(children, mode='tree')
-            node['is_open'] = 1
-            if self.expand_all and obj_uid not in path:
-                node['is_open'] = 0
             node['children'] = children
             if len(children):
                 node['has_children'] = 1
+                node['is_open'] = 1
             else:
                 node['has_children'] = 0
             flat_tree.append(node)
