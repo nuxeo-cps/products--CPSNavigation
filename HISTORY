@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.14.1 [R1 build 2005/04/11-14:42 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- #577: incorrect information about open nodes (in expand_all mode)
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSNavigation V0.14.0 [R1 build 2005/04/08-16:30 by ben]
 
 Requires:
