@@ -117,7 +117,7 @@ msgid "label_selection"
 msgstr "Selectie"
 
 msgid "cpsnav_option_display_mode"
-msgstr "Afisare prin modul initial"
+msgstr "Afisare in modul implicit"
 
 msgid "cpsnav_option_include_root"
 msgstr "Afisare care include si radacina "
@@ -159,7 +159,7 @@ msgid "cpsnav_search_scope_current_location"
 msgstr "in dosarul curent"
 
 msgid "cpsnav_option_current_uid"
-msgstr "Dosarul curent initial"
+msgstr "Dosarul curent implicit"
 
 msgid "cpsnav_content"
 msgstr "Continutul dosarului"
