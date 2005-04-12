@@ -82,7 +82,8 @@ class ZODBNavigation(BaseNavigation):
 
     ### override Navigation
     def _filter(self, objs, mode='tree'):
-        LOG('ZODBNavigation._filter', DEBUG, 'start')
+        if self.debug:
+            LOG('ZODBNavigation._filter', DEBUG, 'start')
         res = []
         if mode == 'listing':
             now = DateTime()
@@ -130,9 +131,10 @@ class ZODBNavigation(BaseNavigation):
             res_count += 1
             res.append(obj)
         chrono_stop = time()
-        LOG('ZODBNavigation._filter', DEBUG, 'end\n'
-            '\tfilter %s return %s in %.3fs\n' % (
-            obj_count, res_count, chrono_stop - chrono_start,))
+        if self.debug:
+            LOG('ZODBNavigation._filter', DEBUG, 'end\n'
+                '\tfilter %s return %s in %.3fs\n' % (
+                obj_count, res_count, chrono_stop - chrono_start,))
 
         return res
 
