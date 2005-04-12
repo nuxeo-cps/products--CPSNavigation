@@ -17,7 +17,7 @@
 # $Id$
 """A Navigation class
 
-   Used to build Navigation screen like tree + listing
+Used to build Navigation screen like tree + listing
 """
 from ZTUtils import Batch
 from types import IntType
@@ -38,7 +38,7 @@ class BaseNavigation:
     batch_item_max = 100
     include_root = 1
     expand_all = 0
-    debug = 1
+    debug = 0
     search = 0
     allow_empty_search = 0
     query_uid = ''
@@ -74,8 +74,7 @@ class BaseNavigation:
         self._setParams(**kw)
 
     def _setParams(self, **kw):
-        """Setting navigation properties.
-        """
+        """Setting navigation properties."""
         self._param_ids = kw.keys()
         for k, v in kw.items():
             setattr(self, k, v)
@@ -194,11 +193,11 @@ class BaseNavigation:
             else:
                 node['state'] = 'node'
         chrono_stop = time()
-
-        LOG('BaseNavigation.getTree', DEBUG, 'end\n'
-            '\ttime elapsed %7.3fs\n' % (
-             chrono_stop - chrono_start))
-        if getattr(self, '_search_count', None):
+        if self.debug:
+            LOG('BaseNavigation.getTree', DEBUG, 'end\n'
+                '\ttime elapsed %7.3fs\n' % (
+                chrono_stop - chrono_start))
+        if self.debug and getattr(self, '_search_count', None):
             LOG('BaseNavigation.getTree', DEBUG, 'in %s _search' %
                 self._search_count)
         return tree
@@ -280,9 +279,10 @@ class BaseNavigation:
                         }
 
         chrono_stop = time()
-        LOG('BaseNavigation.getListing', DEBUG, 'end\n'
-            '\ttime elapsed %7.3fs\n' % (
-             chrono_stop - chrono_start))
+        if self.debug:
+            LOG('BaseNavigation.getListing', DEBUG, 'end\n'
+                '\ttime elapsed %7.3fs\n' % (
+                chrono_stop - chrono_start))
 
         return res, listing_info, batch_info
 
@@ -301,7 +301,8 @@ class BaseNavigation:
         res = self._getChildren(self.current, no_leaves=self.no_leaves,
                                 no_nodes=self.no_nodes, mode='listing')
         q_uid = self.request_form.get('query_uid')
-        LOG('BaseNavigation._search', DEBUG, 'searching %s' % q_uid)
+        if self.debug:
+            LOG('BaseNavigation._search', DEBUG, 'searching %s' % q_uid)
         if q_uid:
             res = [r for r in res if self._getUid(r).find(q_uid) >= 0]
 
