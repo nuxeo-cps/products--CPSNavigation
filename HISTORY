@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.15.1 [R1 build 2005/04/13-16:12 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Updated i18n with new version of update_pos.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSNavigation V0.15.0 [R1 build 2005/04/13-08:25 by ben]
 
 Requires:
