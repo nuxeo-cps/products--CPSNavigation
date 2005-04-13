@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-04-29 11:12default\n"
+"POT-Creation-Date: 2005-04-13 18:11default\n"
 "PO-Revision-Date: 2004-04-29 11:15+0200\n"
 "Last-Translator: ben <ben@nuxeo.com>\n"
 "Language-Team: ben\n"
@@ -19,70 +19,104 @@ msgstr ""
 "Domain: default\n"
 "X-Generator: KBabel 1.0.1\n"
 
-#.   <span content="python:test(res['status_form'] ==
-#.       'valid', 'cpsnav_search_result', 'cpsnav_content')" class="legend">Search result</span>
-#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#.   <div class="description" content="res/description">A Catalog Navigation
+#.   example</div>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+msgid "A Catalog Navigation example"
+msgstr ""
+
+#.   <h1 content="res/title">CatalogNavigation</h1>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#, fuzzy
+msgid "CatalogNavigation"
+msgstr "Navigation"
+
+#.   <span class="legend" content="python:test(res['status_form'] ==
+#.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "Search result"
 msgstr ""
 
-#.   <input value="button_reset" class="context" name="search_reset" type="submit" />
-#.   <input value="button_reset" class="context" name="option_reset" type="submit" />
-#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#.   <input name="option_reset" type="submit" class="context" value="button_reset" />
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
 msgstr "Reset"
 
 #.   <span>here</span>
-#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_current_uid"
 msgstr "Current folder"
 
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='option'))">Options</a>
+#.   <span class="legend">option</span>
 #.   <a attributes="href python:'%s?%s' % (
 #.       request['URL'], mq(display_mode='option'));
 #.       class python:test(res['display_mode'] == 'option', 'selected', nothing);">Options</a>
-#.   <span class="legend">option</span>
-#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_option"
 msgstr "Options"
 
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='search'))">Search</a>
+#.   <span class="legend">Search</span>
 #.   <a attributes="href python:'%s?%s' % (
 #.       request['URL'], mq(display_mode='search'));
 #.       class python:test(res['display_mode'] == 'search', 'selected', nothing);">Search</a>
-#.   <span class="legend">Search</span>
-#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search"
 msgstr "Search"
 
-#.   <div condition="python:res['status_form'] == 'invalid'" class="message">invalid search</div>
-#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#.   <div class="message" condition="python:res['status_form'] == 'invalid'">invalid search</div>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
 msgstr "Invalid query !"
 
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='tree'))">Navigation</a>
+#.   <span class="legend">navigation</span>
 #.   <a attributes="href python:'%s?%s' % (
 #.       request['URL'], mq(request.form, display_mode='tree'));
 #.       class python:test(res['display_mode'] == 'tree', 'selected', nothing);">Navigation</a>
-#.   <span class="legend">navigation</span>
-#: from ../skins/cpsnavigation_devel/test_cps_navigation.pt
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_tree"
 msgstr "Navigation"
 
 #.   <th width="33%" class="even">label_detail</th>
-#: from ../skins/cpsnavigation_default/navigation_lib.pt
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 msgid "label_detail"
 msgstr "Content"
 
-#.   <th condition="not:search" width="33%" class="even">label_navigation</th>
-#: from ../skins/cpsnavigation_default/navigation_lib.pt
+#.   <th width="33%" class="even" condition="not:search">label_navigation</th>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
 msgstr "Navigation"
 
 #.   <span />
-#: from ../skins/cpsnavigation_default/navigation_lib.pt
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_no_results"
 msgstr "No results."
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
-#: from ../skins/cpsnavigation_default/navigation_lib.pt
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_selection"
 msgstr "Selected"
 

@@ -5,6 +5,7 @@
 # ben <ben@nuxeo.com>, 2005.
 # 
 # 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSNavigation-de CPS-3.2.4\n"
@@ -16,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #.   <span content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')" class="legend">Search result</span>
@@ -135,4 +136,3 @@ msgstr "Folder Inhalt"
 
 msgid "cpsnav_search_result"
 msgstr "Such Ergebnis"
-
