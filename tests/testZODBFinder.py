@@ -10,6 +10,7 @@ from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
 installProduct('CMFCore', quiet=1)
 installProduct('CMFDefault', quiet=1)
 installProduct('MailHost', quiet=1)
+installProduct('ZCTextIndex', quiet=1)
 
 class TestZODBFinder(ZopeTestCase):
 
