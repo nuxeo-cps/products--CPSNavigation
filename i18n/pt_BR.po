@@ -2,7 +2,7 @@
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # ben <ben@nuxeo.com>, 2004
-#, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
@@ -13,6 +13,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language-Code: pt_BR\n"
+"Language-Name: Portuguese Brazilian\n"
+"Domain: default\n"
 
 #.   <div class="description" content="res/description">A Catalog Navigation
 #.   example</div>

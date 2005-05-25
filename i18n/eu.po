@@ -15,6 +15,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language-Code: eu\n"
+"Language-Name: Basque\n"
+"Domain: default\n"
 
 #.   <div class="description" content="res/description">A Catalog Navigation
 #.   example</div>
