@@ -1,6 +1,6 @@
 # translation of ro.po to 
 # Gettext Message File for default.
-# Your Name <your@email>, Year
+# Alin Voinea <avoinea@nuxeo.com>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
@@ -23,13 +23,13 @@ msgstr ""
 #.   example</div>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "A Catalog Navigation example"
-msgstr ""
+msgstr "Un exemplu de Catalog de Navigare"
 
 #.   <h1 content="res/title">CatalogNavigation</h1>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 #, fuzzy
 msgid "CatalogNavigation"
-msgstr "Navigation"
+msgstr "Navigare"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -37,7 +37,7 @@ msgstr "Navigation"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "Search result"
-msgstr ""
+msgstr "Rezultatele Cautarii"
 
 #.   <input name="option_reset" type="submit" class="context" value="button_reset" />
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
@@ -124,7 +124,7 @@ msgid "cpsnav_option_display_mode"
 msgstr "Afisare in modul implicit"
 
 msgid "cpsnav_option_include_root"
-msgstr "Afisare care include si radacina "
+msgstr "Afisare care include si radacina"
 
 msgid "cpsnav_option_sort_tree_by"
 msgstr "Navigare ordonata prin"
