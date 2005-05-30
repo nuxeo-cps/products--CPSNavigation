@@ -28,9 +28,9 @@ class CPSDirectoryNavigation(BaseNavigation):
     __implements__ = (IFinder, )   # See IFinder interface for method docstring
 
     def __init__(self, **kw):
-        if not kw.get('context'):
+        if kw.get('context') is None:
             raise KeyError, 'No context provided.'
-        if not kw.get('dir_name'):
+        if kw.get('dir_name') is None:
             raise KeyError, 'No dir_name provided.'
 
         self._dir = getToolByName(kw['context'],

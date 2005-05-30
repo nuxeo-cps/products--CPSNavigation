@@ -11,6 +11,8 @@ CPSNavigation
 - query must use portal types set in option
 - handle root = root of all tree ?
 - status line displaying current sort/filter link to option ?
+- test keywords using "if kw.get('toto') is not None" instead of "if not
+  kw.get('toto')"
 
 # ------------------------------------------------------------
 - CPSNavigation
