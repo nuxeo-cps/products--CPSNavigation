@@ -14,7 +14,7 @@ def cmp_type(a, b):
     return cmp(aa, bb)
 
 def l10n(s):
-    cpsmcat = context.Localizer.default
+    cpsmcat = context.translation_service
     ret = cpsmcat(s)
     if same_type(ret, u''):
         return ret.encode('iso-8859-15', 'ignore')

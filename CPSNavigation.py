@@ -52,8 +52,7 @@ class CPSNavigation(ZODBNavigation):
 
         # Prefix for the tree if specified
         prefix = kw.get('prefix')
-        # XXX: use TranlsationService instead of Localizer?
-        locale = kw['context'].Localizer.get_selected_language()
+        locale = kw['context'].translation_service.getSelectedLanguage()
         self._cps_tree = ptrees[kw['root_uid']].getList(
             prefix=prefix,
             filter=authorized_only,
