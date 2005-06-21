@@ -17,22 +17,25 @@
 # $Id$
 """A CPS Navigation using the catalog
 """
-
 from types import DictType
-from Products.CMFCore.utils import getToolByName
-from BaseNavigation import BaseNavigation
-from Acquisition import aq_base, aq_parent, aq_inner
-from zLOG import LOG, DEBUG
 from time import time
+
+from zLOG import LOG, DEBUG
+from DateTime import DateTime
+from Acquisition import aq_base, aq_parent, aq_inner
 from Products.ZCatalog.ZCatalog import ZCatalog
+from Products.ZCTextIndex.ParseTree import ParseError
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _getAuthenticatedUser, _checkPermission
 from Products.CMFCore.permissions import AccessInactivePortalContent
-from DateTime import DateTime
-from Products.ZCTextIndex.ParseTree import ParseError
+
 from interfaces.IFinder import IFinder
+from BaseNavigation import BaseNavigation
+
 
 class CatalogNavigation(BaseNavigation):
     """Implement Finder interface using the portal_catalog."""
+
     __implements__ = (IFinder, )   # See IFinder interface for method docstring
 
     sort_limit = 100
@@ -56,12 +59,18 @@ class CatalogNavigation(BaseNavigation):
         self.portal_path_len = len(self.portal_path)
         BaseNavigation.__init__(self, **kw)
 
-    ### Finder interface
-    # uid for catalogNavigation is a getRelativeUrl like sections/foo
-    # the object is a brain or a catalog metadata mapping
-    # note that uid for catalog is the physicalPath /cps/sections/foo
-    # rid is a catalog record id
+
+    #
+    # Finder interface
+    #
     def _getObject(self, uid):
+        """Return an object using uid.
+
+        uid is a getRelativeUrl like sections/foo
+        the object is a brain or a catalog metadata mapping
+        note that uid for catalog is the physical path like /cps/sections/foo
+        rid is a catalog record id
+        """
         rid = self.ctool._catalog.uids.get(self.portal_path+uid)
         if not rid:
             return None
@@ -81,8 +90,9 @@ class CatalogNavigation(BaseNavigation):
         return uid
 
     def _isNode(self, obj):
-        # do nothing as we use search filter for nodes and leaves
-        # this is only used by BaseNavigation explore nodes so return 1
+        """Do nothing as we use search filter for nodes and leaves
+        this is only used by BaseNavigation explore nodes so return 1
+        """
         return 1
 
     def _hasChildren(self, obj, no_nodes=0, no_leaves=0):
@@ -109,14 +119,49 @@ class CatalogNavigation(BaseNavigation):
         return self._search(mode=mode)
 
     def _getParentUid(self, uid):
-        obj = self._getObject(uid)
         return '/'.join(uid.split('/')[:-1])
 
-    ###
-    def _findRoots(self):
-        # the goal is to dicover roots that are not direct children
-        # of root_uid
 
+    #
+    # override Navigation
+    #
+    def _search(self, mode='listing'):
+        """Search repository.
+        """
+        self._search_count += 1
+        if not hasattr(self, 'query'):
+            return []
+
+        portal = aq_parent(aq_inner(self.ctool))
+        portal_path = '/' + self.ctool.getPhysicalPath()[1] + '/'
+
+        query = self._buildQuery(getattr(self, 'query', {}),
+                                 portal_path, mode)
+        LOG('CatalogNavigation._search', DEBUG, 'start\n'
+            '\tquery = %s\n' % (query))
+        if not query:
+            return []
+
+        chrono_start = time()
+        try:
+            brains = ZCatalog.searchResults(self.ctool, None, **query)
+        except ParseError:
+            brains = []
+        chrono_stop = time()
+
+        LOG('CatalogNavigation._search', DEBUG, 'end\n'
+            '\tcatalog found %s document brains in %7.3fs\n' % (
+            len(brains), chrono_stop - chrono_start))
+
+        return brains
+
+
+    #
+    # Private
+    #
+    def _findRoots(self):
+        """Discover roots that are not direct children of root_uid.
+        """
         # first get visible children
         children = self._search(mode='tree')
 
@@ -171,10 +216,10 @@ class CatalogNavigation(BaseNavigation):
 
         return items
 
-
-    ### override Navigation
     def _buildQuery(self, query_in, portal_path, mode='listing',
                     viewable=1):
+        """Query builder.
+        """
         query = {}
         date_suffix = '_usage'
 
@@ -281,31 +326,3 @@ class CatalogNavigation(BaseNavigation):
         return query
 
 
-    def _search(self, mode='listing'):
-        """Search repository."""
-        self._search_count += 1
-        if not hasattr(self, 'query'):
-            return []
-
-        portal = aq_parent(aq_inner(self.ctool))
-        portal_path = '/' + self.ctool.getPhysicalPath()[1] + '/'
-
-        query = self._buildQuery(getattr(self, 'query', {}),
-                                 portal_path, mode)
-        LOG('CatalogNavigation._search', DEBUG, 'start\n'
-            '\tquery = %s\n' % (query))
-        if not query:
-            return []
-
-        chrono_start = time()
-        try:
-            brains = ZCatalog.searchResults(self.ctool, None, **query)
-        except ParseError:
-            brains = []
-        chrono_stop = time()
-
-        LOG('CatalogNavigation._search', DEBUG, 'end\n'
-            '\tcatalog found %s document brains in %7.3fs\n' % (
-            len(brains), chrono_stop - chrono_start))
-
-        return brains
