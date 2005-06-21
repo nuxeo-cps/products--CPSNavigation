@@ -93,7 +93,8 @@ kw = option_pref.copy()
 kw.update({'display_mode': display_mode,
            'current_uid': current_uid,
            'context': context,
-           'request_form': form})
+           'request_form': form,
+           'expand_all': 0})
 
 # build query
 if display_mode == 'search':
