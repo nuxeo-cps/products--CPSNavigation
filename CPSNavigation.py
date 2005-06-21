@@ -15,9 +15,7 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""A CPS Navigation using portal_tree
-"""
-
+"""A CPS Navigation using portal_tree"""
 from types import DictType
 from ZODBNavigation import ZODBNavigation
 from Acquisition import aq_parent, aq_inner
@@ -27,10 +25,10 @@ from interfaces.IFinder import IFinder
 from Products.CMFCore.utils import getToolByName
 
 class CPSNavigation(ZODBNavigation):
-    """Implement Finder interface for a CPS.
+    """Implement Finder interface for a CPS using the portal_tree.
 
     The tree contains portal_tree node,
-    The listing are normal object."""
+    the listing are normal object."""
     __implements__ = (IFinder, )   # See IFinder interface for method docstring
 
     sort_limit = 100
@@ -65,9 +63,9 @@ class CPSNavigation(ZODBNavigation):
 
 
     def _cps_tree_fixture(self):
+        """Make a fixture in the case we don't have access to the root_uid."""
         if self.root is None:
-            # you don't have access to root_uid:
-            # build a fake root object linking to available children
+            # here we build a fake root object linking to accessible children
             items = self._cps_tree
             if not items or len(items) == 0:
                 return
@@ -86,7 +84,9 @@ class CPSNavigation(ZODBNavigation):
             # force root hidding
             self.include_root = 0
 
-    ### Finder interface
+    #
+    # Finder interface
+    #
     def _getObject(self, uid):
         """uid is an rpath, return a portal_tree node."""
         for n in self._cps_tree:
@@ -153,7 +153,9 @@ class CPSNavigation(ZODBNavigation):
     def _getParentUid(self, uid):
         return '/'.join(uid.split('/')[:-1])
 
-    ### override Navigation
+    #
+    # override Navigation
+    #
     def _filter(self, objs, mode='tree'):
         if mode == 'listing' and not self.search:
             return ZODBNavigation._filter(self, objs, mode)
@@ -236,7 +238,6 @@ class CPSNavigation(ZODBNavigation):
                     query['sort-limit'] = self.sort_limit
 
         return query
-
 
     def _search(self):
         """Search repository."""

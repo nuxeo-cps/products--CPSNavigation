@@ -52,7 +52,6 @@ class BaseNavigation:
           root or root_uid       - the root object
           current or current_uid - the current position
         """
-        kw_keys = kw.keys()
         if kw.get('root'):
             kw['root_uid'] = self._getUid(kw['root'])
         elif kw.get('root_uid'):
@@ -322,6 +321,7 @@ class BaseNavigation:
         return objs
 
     def _strNode(self, node, show_obj=1):
+        """Return a string representation of a node."""
         text = ''
         lines = node['lines']
         for l in lines:
@@ -358,6 +358,7 @@ class BaseNavigation:
 
     # dumping
     def _exploreNodeForDump(self, obj, level, dump):
+        """Recursive exploration to produce a dump."""
         if not obj:
             return
         obj_uid = self._getUid(obj)
