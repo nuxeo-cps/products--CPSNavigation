@@ -2,11 +2,10 @@
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # ben <ben@nuxeo.com>, 2004
-
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2005-04-13 18:11default\n"
+"POT-Creation-Date: 2005-06-23 14:09default\n"
 "PO-Revision-Date: 2004-08-26 10:59-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@curiango.ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -110,6 +109,14 @@ msgstr "Navegação"
 msgid "label_no_results"
 msgstr "Nenhum resultado."
 
+#.   <th width="33%" class="even" condition="search">label_search</th>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+#, fuzzy
+msgid "label_search"
+msgstr "Selecionado"
+
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
 #: from
@@ -168,3 +175,6 @@ msgstr "Conteúdo da pasta"
 
 msgid "cpsnav_search_result"
 msgstr "Resultado da busca"
+
+msgid "choose"
+msgstr ""

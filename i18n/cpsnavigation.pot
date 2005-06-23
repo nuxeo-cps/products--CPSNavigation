@@ -1,9 +1,12 @@
+# ##########################################################
+# ################# DON'T EDIT THIS FILE! ##################
+# ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-13 18:11default\n"
+"POT-Creation-Date: 2005-06-23 14:09default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -108,6 +111,13 @@ msgstr ""
 msgid "label_no_results"
 msgstr ""
 
+#.   <th width="33%" class="even" condition="search">label_search</th>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_search"
+msgstr ""
+
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
 #: from
@@ -165,4 +175,7 @@ msgid "cpsnav_content"
 msgstr ""
 
 msgid "cpsnav_search_result"
+msgstr ""
+
+msgid "choose"
 msgstr ""

@@ -1,20 +1,22 @@
+# translation of fr.po to English
 # translation of fr.po to ben
 # Gettext Message File for default.
 # Your Name <your@email>, Year
-# ben <ben@nuxeo.com>, 2004
+# ben <ben@nuxeo.com>, 2004.
+# Ruslan Spivak <rspivak@nuxeo.com>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2005-04-13 18:11default\n"
-"PO-Revision-Date: 2004-04-29 11:20+0200\n"
-"Last-Translator: ben <ben@nuxeo.com>\n"
-"Language-Team: ben\n"
+"POT-Creation-Date: 2005-06-23 14:09default\n"
+"PO-Revision-Date: 2005-06-23 16:01+0300\n"
+"Last-Translator: Ruslan Spivak <rspivak@nuxeo.com>\n"
+"Language-Team: English <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Preferred-encodings: utf-8 latin1\n"
-"X-Generator: KBabel 1.0.1\n"
+"X-Generator: KBabel 1.9\n"
 "Language-Code: fr\n"
 "Language-Name: French\n"
 "Domain: default\n"
@@ -112,6 +114,14 @@ msgstr "Navigation"
 msgid "label_no_results"
 msgstr "Aucun résultat."
 
+#.   <th width="33%" class="even" condition="search">label_search</th>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+#, fuzzy
+msgid "label_search"
+msgstr "Sélection"
+
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
 #: from
@@ -170,3 +180,7 @@ msgstr "Contenu du dossier"
 
 msgid "cpsnav_search_result"
 msgstr "Résultat de la recherche"
+
+msgid "choose"
+msgstr "Choisissez..."
+

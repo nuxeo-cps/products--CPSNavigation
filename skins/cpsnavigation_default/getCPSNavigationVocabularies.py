@@ -44,9 +44,10 @@ vocabularies = {
         },
     'navigation_filter_review_state': {
         'type': 'CPS Vocabulary',
-        'data': {'tuples': (('work', "Work"),
-                            ('pending', "Pending"),
-                            ('published', "Published"),)
+        'data': {'tuples': (('', "choose", 'choose'),
+                            ('work', "Work", 'work'),
+                            ('pending', "Pending", 'pending'),
+                            ('published', "Published", 'published'),)
                  },
         },
     'navigation_display_mode': {

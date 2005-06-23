@@ -71,3 +71,5 @@ msgstr ""
 msgid "cpsnav_search_result"
 msgstr ""
 
+msgid "choose"
+msgstr ""
