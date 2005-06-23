@@ -118,7 +118,7 @@ msgstr "Kein Ergebnis."
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Ausgewählt"
+msgstr "Selected"
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>

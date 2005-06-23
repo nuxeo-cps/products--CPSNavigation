@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSNavigation\n"
-"POT-Creation-Date: 2005-06-23 14:09default\n"
+"POT-Creation-Date: 2005-06-23 17:31default\n"
 "PO-Revision-Date: 2004-09-30 16:21+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: Fabio Nosari <fabnos@fastwebnet.it>\n"
@@ -117,7 +117,7 @@ msgstr "Nessun risultato."
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Selezionati:"
+msgstr "Sélection"
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>

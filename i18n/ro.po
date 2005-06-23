@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
-"POT-Creation-Date: 2005-06-23 14:09default\n"
+"POT-Creation-Date: 2005-06-23 17:31default\n"
 "PO-Revision-Date: 2005-03-30 11:25+0300\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Un exemplu de Catalog de Navigare"
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 #, fuzzy
 msgid "CatalogNavigation"
-msgstr "Navigare"
+msgstr "Navigation"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -117,7 +117,7 @@ msgstr "Nici un rezultat."
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Selectie"
+msgstr "Sélection"
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>

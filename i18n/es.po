@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSNavigation\n"
-"POT-Creation-Date: 2005-06-23 14:09default\n"
+"POT-Creation-Date: 2005-06-23 17:31default\n"
 "PO-Revision-Date: 2005-05-18 17:30+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -119,7 +119,7 @@ msgstr "Ningún resultado"
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Selección"
+msgstr "Selected"
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
