@@ -9,6 +9,7 @@ Bug fixes:
 - Taking advantage of the new centralized CPSI18n.tests.translations module.
 - #515: All methods of CPSNavigation.py should have docstrings.
 - #786: Added empty key 'choose' to navigation_filter_review_state vocabulary.
+- Fixed translation files through the CPSI18n/bin/fix_pos script.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
