@@ -25,10 +25,11 @@
               dir_name request/dir_name|nothing;
 ">
 <h1 tal:content="title" i18n:translate=""/>
-<form action="" method="post" id="navigation_form">
+<form action="" method="post" id="navigation_form"
+      tal:attributes="action python:request['URL0']">
 <br />
-<table bgcolor="#333333" width="100%" cellspacing="0" cellpadding="0"><tr><td>
-<table width="100%" cellspacing="1" cellpadding="5">
+<table bgcolor="#333333" width="100%" cellspacing="0" cellpadding="0" summary="presentation"><tr><td>
+<table width="100%" cellspacing="1" cellpadding="5" summary="presentation">
 <tr>
   <th width="33%" class="even" i18n:translate="" tal:condition="not:search">label_navigation</th>
   <th width="33%" class="even" i18n:translate="" tal:condition="search">label_search</th>
@@ -36,7 +37,7 @@
 </tr>
 <tr><td width="40%" valign="top" class="odd">
 <div tal:condition="search">
-  <table><tr valign="top"><td>
+  <table summary="presentation"><tr valign="top"><td>
   <input id="field_focus" name="query_uid"
     tal:attributes="value request/query_uid|nothing" /></td><td>
   <input type="submit" class="standalone" value="button_search"
@@ -63,7 +64,7 @@
 </td><td valign="top" width="60%" class="odd">
   <div tal:condition="listing_info/current">
   <div tal:condition="not_found">
-    <span i18n:translate="label_no_results" />
+    <span i18n:translate="">label_no_results</span>
   </div>
   <a accesskey="U" tal:condition="listing_info/parent_uid"
     tal:attributes="href python:'%s?%s'%(request['URL0'],
