@@ -9,7 +9,7 @@
 <metal:block define-macro="batch_nav"
   tal:condition="python:batch_info and batch_info['nb_pages'] > 1">
 <div align="center" class="even">
-  <span i18:translate="label_page">Pages</span>:
+  <span i18n:translate="label_page">Pages</span>:
   <a tal:define="previous batch_info/previous"
     tal:condition="python:previous is not None"
     tal:attributes="href python:'%s?%s'%(request['URL'],
