@@ -10,6 +10,8 @@ Bug fixes:
 - #515: All methods of CPSNavigation.py should have docstrings.
 - #786: Added empty key 'choose' to navigation_filter_review_state vocabulary.
 - Fixed translation files through the CPSI18n/bin/fix_pos script.
+- #397: CPSNavigation checkboxes should have labels
+- Fix some html warnings
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
