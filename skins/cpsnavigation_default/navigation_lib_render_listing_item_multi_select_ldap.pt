@@ -1,19 +1,15 @@
 <!-- a navigation_lib macro -->
 <!-- $Id$ -->
 
-<!--
-
--->
-
 <metal:block define-macro="render_listing_item_multi_select_ldap"
-  tal:define="item_uid python: item['dn'];
-    item_desc python: item.get(display_attr,['%s not found!' % display_attr])[0]">
+             tal:define="item_uid python: item['dn'];
+                         item_desc python: item.get(display_attr,['%s not found!' % display_attr])[0]">
   <input name="uids:list" type="checkbox" class="noborder"
-        tal:attributes="value item_uid" />
+         tal:attributes="value item_uid;id item_desc" />
   <a href="" tal:attributes="title item_uid;
-    href python:'%s?%s'%(request.URL0,
-    mq(request.form, current_uid=item_uid));"
-    tal:omit-tag="search">
-    <tal:block replace="item_desc" />
+                             href python:'%s?%s'%(request.URL0,
+                             mq(request.form, current_uid=item_uid));"
+     tal:omit-tag="search">
+    <label tal:attributes="for item_desc" tal:content="item_desc" />
   </a>
 </metal:block>

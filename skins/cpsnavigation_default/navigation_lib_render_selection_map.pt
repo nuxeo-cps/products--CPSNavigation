@@ -1,10 +1,6 @@
 <!-- a navigation_lib macro -->
 <!-- $Id$ -->
 
-<!--
-
--->
-
 <metal:block define-macro="render_selection_map">
-  <tal:block replace="item/title" />
+  <label tal:attributes="for item/uid" tal:content="item/title" />
 </metal:block>

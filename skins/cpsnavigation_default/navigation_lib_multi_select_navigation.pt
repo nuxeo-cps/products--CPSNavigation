@@ -27,23 +27,21 @@
               dir_name request/dir_name|nothing;
 ">
 <h1 tal:content="title" i18n:translate="" />
-<form action="" method="post">
+<form method="post" tal:attributes="action python:request['URL0']">
 <br />
-<table bgcolor="#333333" width="100%" cellspacing="0" cellpadding="0"><tr><td>
-<table width="100%" cellspacing="1" cellpadding="5">
+<table width="100%" cellspacing="1" cellpadding="5" summary="presentation">
 <tr>
-  <th width="33%" class="even" i18n:translate="" tal:condition="not:search">label_navigation</th>
-  <th width="33%" class="even" i18n:translate="" tal:condition="search">label_search</th>
-  <th width="33%" class="even" i18n:translate="">label_detail</th>
-  <th width="33%" class="even" i18n:translate="">label_selection</th>
+  <th width="33%" i18n:translate="" tal:condition="not:search">label_navigation</th>
+  <th width="33%" i18n:translate="" tal:condition="search">label_search</th>
+  <th width="33%" i18n:translate="">label_detail</th>
+  <th width="33%" i18n:translate="">label_selection</th>
 </tr>
 <tr><td width="33%" valign="top" class="odd">
 <div tal:condition="search">
-  <table><tr valign="top"><td>
   <input id="field_focus" name="query_uid"
-    tal:attributes="value request/query_uid|nothing" /></td><td>
+         tal:attributes="value request/query_uid|nothing" />
   <input type="submit" class="standalone" value="button_search"
-    i18n:attributes="value" /></td></tr></table>
+    i18n:attributes="value" />
 </div>
 <div class="box" style="white-space: nowrap;" tal:condition="not:search">
 <tal:block repeat="node tree">
@@ -64,7 +62,7 @@
 </td><td valign="top" width="33%" class="odd">
   <div tal:condition="listing_info/current">
   <div tal:condition="not_found">
-    <span i18n:translate="label_no_results" />
+    <span i18n:translate="">label_no_results</span>
   </div>
   <a accesskey="U" tal:condition="listing_info/parent_uid"
     tal:attributes="href python:'%s?%s'%(request['URL0'],
@@ -88,12 +86,12 @@
     value="button_select" i18n:attributes="value"
     tal:condition="not:not_found" />
   </div>
-</td><td valign="top" with="33%" class="odd">
+</td><td valign="top" width="33%" class="odd">
   <div tal:condition="selection">
   <tal:block repeat="item selection">
     <div>
       <input name="selected_uids:list" type="checkbox" class="noborder"
-        checked="checked" tal:attributes="value item/uid" />
+        checked="checked" tal:attributes="value item/uid; id item/uid" />
         <metal:block use-macro="python:path('here/navigation_lib_render_selection_%s/macros/render_selection_%s'%(type,type))" />
     </div>
   </tal:block>
@@ -106,9 +104,8 @@
     i18n:attributes="value" />
   </metal:block>
   </div>
+</td></tr></table>
 
-</td></tr></table>
-</td></tr></table>
   <input type="hidden" name="root_uid" tal:attributes="value root_uid" />
   <input type="hidden" name="current_uid" tal:attributes="value current_uid"
 />

@@ -28,20 +28,18 @@
 <form action="" method="post" id="navigation_form"
       tal:attributes="action python:request['URL0']">
 <br />
-<table bgcolor="#333333" width="100%" cellspacing="0" cellpadding="0" summary="presentation"><tr><td>
 <table width="100%" cellspacing="1" cellpadding="5" summary="presentation">
 <tr>
-  <th width="33%" class="even" i18n:translate="" tal:condition="not:search">label_navigation</th>
-  <th width="33%" class="even" i18n:translate="" tal:condition="search">label_search</th>
-  <th width="60%" class="even" i18n:translate="">label_selection</th>
+  <th width="33%" i18n:translate="" tal:condition="not:search">label_navigation</th>
+  <th width="33%" i18n:translate="" tal:condition="search">label_search</th>
+  <th width="60%" i18n:translate="">label_selection</th>
 </tr>
 <tr><td width="40%" valign="top" class="odd">
 <div tal:condition="search">
-  <table summary="presentation"><tr valign="top"><td>
   <input id="field_focus" name="query_uid"
-    tal:attributes="value request/query_uid|nothing" /></td><td>
+    tal:attributes="value request/query_uid|nothing" />
   <input type="submit" class="standalone" value="button_search"
-    i18n:attributes="value" /></td></tr></table>
+    i18n:attributes="value" />
 </div>
 <div class="box" style="white-space: nowrap;" tal:condition="not:search">
 <tal:block repeat="node tree">
@@ -50,7 +48,6 @@
   <tal:block
     content="python:test(node['state'] == 'open', '>',
                          test(node['state'] == 'closed', '+', '-'))" />
-
   <a tal:attributes="
     class python:test(node['is_current'], 'selected', nothing);
     href python:'%s?%s'%(request['URL0'],
@@ -59,7 +56,6 @@
   </a><br />
 </tal:block>
 </div>
-
 
 </td><td valign="top" width="60%" class="odd">
   <div tal:condition="listing_info/current">
@@ -90,7 +86,6 @@
   </metal:block>
   </div>
   </div>
-</td></tr></table>
 </td></tr></table>
   <input type="hidden" name="root_uid" tal:attributes="value root_uid" />
   <input type="hidden" name="current_uid" tal:attributes="value current_uid"
