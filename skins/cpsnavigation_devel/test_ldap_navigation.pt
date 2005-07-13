@@ -1,5 +1,5 @@
 <tal:block define="emptybody python:1;
-                   res python:here.getNavigation(finder='ldap', REQUEST=request);
+                   res python:here.getNavigation(finder='ldap', root_uid='members', REQUEST=request);
                    tree python:res[0];
                    listing python:res[1];
                    batch_info python:res[2];
