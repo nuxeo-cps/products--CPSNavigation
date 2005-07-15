@@ -3,4 +3,4 @@
 # CPS --------------------
 CPSCore
 CPSSchemas
-CPSDirectory > 1.25.0
+CPSDirectory > 1.26.0
