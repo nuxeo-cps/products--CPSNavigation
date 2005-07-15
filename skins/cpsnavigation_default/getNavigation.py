@@ -10,6 +10,7 @@ from Products.CPSNavigation.CPSDirectoryNavigation import \
 from Products.CPSNavigation.CPSIndirectDirectoryNavigation import \
      CPSIndirectDirectoryNavigation
 
+
 type = finder
 if finder == 'cps':
     current_uid = REQUEST.get('current_uid')
@@ -88,14 +89,19 @@ elif finder == 'cpsdirectory':
             )
     else:
         type = 'map'
+        if root_uid and root_uid != dir_name:
+            include_root = 1
+        else:
+            include_root = 0
         nav = CPSDirectoryNavigation(
-            root_uid=dir_name,
-            current_uid=dir_name,
+            root_uid=root_uid,
+            current_uid=current_uid,
             context=context,
             dir_name=dir_name,
-            include_root=0,
+            include_root=include_root,
             batch_size=batch_size,
             request_form=REQUEST.form,
+            debug=1,
             )
 
 
