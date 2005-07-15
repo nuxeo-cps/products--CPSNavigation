@@ -1,12 +1,12 @@
 Requires:
 ~~~~~~~~~
--
+- CPSDirectroy > 1.25.0 with hierarchical support
 New features:
 ~~~~~~~~~~~~~
--
+- CPSDirectoryNavigation handle hierarchical directory
 Bug fixes:
 ~~~~~~~~~~
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- improve html for navigation_lib_render*
