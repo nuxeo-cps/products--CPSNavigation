@@ -1,6 +1,6 @@
 Requires:
 ~~~~~~~~~
-- CPSDirectroy > 1.25.0 with hierarchical support
+- CPSDirectroy > 1.26.0 with hierarchical support
 New features:
 ~~~~~~~~~~~~~
 - CPSDirectoryNavigation handle hierarchical directory
