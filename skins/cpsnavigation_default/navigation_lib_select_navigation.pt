@@ -27,21 +27,18 @@
 <h1 tal:content="title" i18n:translate=""/>
 <form action="" method="post" id="navigation_form"
       tal:attributes="action python:request['URL0']">
-<br />
 <table width="100%" cellspacing="1" cellpadding="5" summary="presentation">
-<tr>
-  <th width="33%" i18n:translate="" tal:condition="not:search">label_navigation</th>
-  <th width="33%" i18n:translate="" tal:condition="search">label_search</th>
-  <th width="60%" i18n:translate="">label_selection</th>
-</tr>
-<tr><td width="40%" valign="top" class="odd">
-<div tal:condition="search">
+<tr><td width="40%" valign="top">
+<div class="group" tal:condition="search">
+  <h2 i18n:translate="">label_search</h2>
   <input id="field_focus" name="query_uid"
-    tal:attributes="value request/query_uid|nothing" />
+         tal:attributes="value request/query_uid|nothing" />
   <input type="submit" class="standalone" value="button_search"
-    i18n:attributes="value" />
+         i18n:attributes="value" />
 </div>
-<div class="box" style="white-space: nowrap;" tal:condition="not:search">
+<div class="group" tal:condition="not:search">
+  <h2 i18n:translate="">label_navigation</h2>
+  <div class="box" style="white-space: nowrap;">
 <tal:block repeat="node tree">
   <tal:block repeat="line node/lines"
     content="structure python:3*'&nbsp;' + test(not line, '&nbsp;', test(line==1, '|', '`'))" />
@@ -55,10 +52,12 @@
   <metal:block use-macro="python:path('here/navigation_lib_render_node_%s/macros/render_node_%s'%(type,type))" />
   </a><br />
 </tal:block>
+  </div>
 </div>
 
-</td><td valign="top" width="60%" class="odd">
-  <div tal:condition="listing_info/current">
+</td><td valign="top" width="60%">
+  <div class="group" tal:condition="listing_info/current">
+    <h2 i18n:translate="">label_detail</h2>
   <div tal:condition="not_found">
     <span i18n:translate="">label_no_results</span>
   </div>

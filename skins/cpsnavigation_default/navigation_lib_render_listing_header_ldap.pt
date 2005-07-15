@@ -1,10 +1,6 @@
 <!-- a navigation_lib macro -->
 <!-- $Id$ -->
 
-<!--
-
--->
-
 <metal:block define-macro="render_listing_header_ldap"
   tal:define="item_desc python: listing_info['current'].get(display_attr, ['%s
 not found' % display_attr])[0];
