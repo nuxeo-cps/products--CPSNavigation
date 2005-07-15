@@ -17,11 +17,12 @@
 # $Id$
 """A CPSDirectory Navigation
 """
+from zLOG import LOG, DEBUG, ERROR
 
 from Products.CMFCore.utils import getToolByName
-from interfaces.IFinder import IFinder
-from BaseNavigation import BaseNavigation
-from zLOG import LOG, DEBUG, ERROR
+from Products.CPSNavigation.interfaces.IFinder import IFinder
+from Products.CPSNavigation.BaseNavigation import BaseNavigation
+
 
 class CPSDirectoryNavigation(BaseNavigation):
     """Implement Finder interface for a CPSDirectory."""
@@ -35,12 +36,19 @@ class CPSDirectoryNavigation(BaseNavigation):
 
         self._dir = getToolByName(kw['context'],
                                   'portal_directories')[kw['dir_name']]
+        # if root is not specified use directory as root
+        if not kw.get('root_uid') or kw['root_uid'] == kw['dir_name']:
+            kw['root_uid'] = kw['dir_name']
+            self.root_uid = kw['dir_name']
+            self.root = {'is_root':1, 'uid':self.root_uid}
+            self.use_a_fake_root = True
+        else:
+            self.use_a_fake_root = False
         self._attrs = self._getAttrs(kw['context'])
         BaseNavigation.__init__(self, **kw)
 
-
     def _getAttrs(self, context):
-        # return list of attributes
+        """Return list of attributes that is used in the result list."""
         attrs = [x['id'] for x in
                  context.getDirectoryResultFields(self._dir.getId(),
                                                   self._dir.title_field)]
@@ -50,39 +58,59 @@ class CPSDirectoryNavigation(BaseNavigation):
             attrs.append(self._dir.title_field)
         return attrs
 
-    ### Finder interface
+
+    # ------------------------------------------------------------
+    # Finder interface
+    #
     def _getObject(self, uid):
-        if not hasattr(self, 'root_uid') or uid == self.root_uid:
-            return {'is_root':1, 'uid':uid}
+        if not uid:
+            return None
+        if self.use_a_fake_root and uid == self.root_uid:
+            # return the fake root object
+            return self.root
         obj = self._dir._getEntry(uid)
         obj['the_uid'] = uid
         return obj
 
     def _getUid(self, obj):
-        if not hasattr(self, 'root') or obj == self.root:
+        if self.use_a_fake_root and obj is self.root:
+            # return the fake root_uid
             return self.root_uid
         return obj.get(self._dir.id_field)
 
     def _isNode(self, obj):
-        if obj == self.root:
-            return 1
-        return 0
+        return 1
 
     def _hasChildren(self, obj, no_nodes=0, no_leaves=0):
-        if obj == self.root:
+        if obj is self.root:
             return 1
-        return 0
+        return len(self._getChildren(obj, no_nodes, no_leaves))
 
     def _getChildren(self, obj, no_nodes=0, no_leaves=0, mode='tree'):
-        if obj == self.root:
+        if self.use_a_fake_root and obj is self.root:
+            # list all entries for fake root
             uids = self._dir.listEntryIds()
             return [self._getObject(uid) for uid in uids]
-        return []
+        if not self._dir._isHierarchical():
+            return []
+        children = self._dir._listChildrenEntryIds(self._getUid(obj))
+        LOG('CPSDirectoryNavigation._search', DEBUG,
+            'getchildren %s = \n%s' % (self._getUid(obj), children))
+        return [self._getObject(uid) for uid in children]
 
     def _getParentUid(self, uid):
-        return None
+        ret = None
+        if uid == self.root_uid:
+            return ret
+        if self._dir._isHierarchical():
+            ret = self._dir._getParentEntryId(uid)
+        if self.use_a_fake_root and ret is None:
+            # return the fake root_uid
+            return self.root_uid
+        return ret
 
-    ### override Navigation
+    # ------------------------------------------------------------
+    # override Navigation
     def _search(self):
         key = self._dir.id_field
         query_pattern = self.request_form.get('query_uid', '').strip()
