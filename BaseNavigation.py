@@ -22,7 +22,7 @@ Used to build Navigation screen like tree + listing
 from ZTUtils import Batch
 from types import IntType
 from time import time
-from zLOG import LOG, DEBUG
+from zLOG import LOG, DEBUG, WARNING
 
 
 class BaseNavigation:
@@ -138,6 +138,10 @@ class BaseNavigation:
         parent_uid = uid
         while parent_uid and parent_uid != self.root_uid:
             parent_uid = self._getParentUid(parent_uid)
+            if parent_uid in res:
+                LOG('BaseNavigation', WARNING,
+                    'getParentUids discover loop for [%s]' % parent_uid)
+                break
             if parent_uid:
                 res.append(parent_uid)
         res.reverse()
