@@ -13,3 +13,4 @@ New internal features:
 - BaseNavigation can handle tree with cycle in it
 - BaseNavigation new option expand_from_current_uid
 - BaseNavigation new method getParents (like getParentUids but return objects)
+- New cpsnavigation_images skin
