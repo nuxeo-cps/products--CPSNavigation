@@ -2,5 +2,5 @@
 <!-- $Id$ -->
 
 <metal:block define-macro="render_selection_map">
-  <label tal:attributes="for item/uid" tal:content="item/title" />
+  <label tal:attributes="for item_id" tal:content="item/title" />
 </metal:block>

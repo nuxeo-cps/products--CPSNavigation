@@ -3,9 +3,10 @@
 
 <metal:block
     define-macro="render_listing_item_multi_select_map"
-    tal:define="item_uid python: item['the_uid'];
-                item_desc python: item.get(display_attr,'%s not found!' % display_attr)">
+    tal:define="item_uid python:item['the_uid'];
+                item_desc python:item.get(display_attr,'%s not found!' % display_attr);
+                item_html_id python:'listing'+str(repeat['item'].number())">
   <input name="uids:list" type="checkbox" class="noborder"
-         tal:attributes="value item_uid;id item_uid" />
-  <label tal:attributes="for item_uid" tal:content="item_desc" />
+         tal:attributes="value item_uid;id item_html_id" />
+  <label tal:attributes="for item_html_id" tal:content="item_desc" />
 </metal:block>

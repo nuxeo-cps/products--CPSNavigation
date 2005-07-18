@@ -3,15 +3,16 @@
 
 <metal:block
     define-macro="render_listing_item_map"
-    tal:define="item_uid python: item['the_uid'];
-                item_desc python: item.get(display_attr,'%s not found!' % display_attr);">
+    tal:define="item_uid python:item['the_uid'];
+                item_desc python:item.get(display_attr,'%s not found!' % display_attr);
+                item_id python:'listing'+str(repeat['item'].number())">
   <input name="uid" type="radio" class="noborder"
-         tal:attributes="value item_uid;id item_desc;
+         tal:attributes="value item_uid;id item_id;
                          checked python:search and repeat['item'].start" />
   <a tal:attributes="title item_uid;
                      href python:'%s?%s'%(request.URL0,
                      mq(request.form, current_uid=item_uid));"
      tal:omit-tag="search">
-    <label tal:attributes="for item_desc" tal:content="item_desc" />
+    <label tal:attributes="for item_id" tal:content="item_desc" />
   </a>
 </metal:block>

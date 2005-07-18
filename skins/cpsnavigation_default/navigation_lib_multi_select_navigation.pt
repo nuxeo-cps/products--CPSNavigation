@@ -89,9 +89,9 @@
   <div class="group" tal:condition="selection">
   <h2 i18n:translate="">label_selection</h2>
   <tal:block repeat="item selection">
-    <div>
+    <div tal:define="item_id python:'selection'+str(repeat['item'].number())">
       <input name="selected_uids:list" type="checkbox" class="noborder"
-        checked="checked" tal:attributes="value item/uid; id item/uid" />
+        checked="checked" tal:attributes="value item/uid; id item_id" />
         <metal:block use-macro="python:path('here/navigation_lib_render_selection_%s/macros/render_selection_%s'%(type,type))" />
     </div>
   </tal:block>
