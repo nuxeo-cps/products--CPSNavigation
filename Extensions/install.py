@@ -39,6 +39,7 @@ class CPSNavigationInstaller(CPSInstaller):
 
     SKINS = {'cpsnavigation_default': 'Products/CPSNavigation/skins/cpsnavigation_default',
              'cpsnavigation_devel': 'Products/CPSNavigation/skins/cpsnavigation_devel',
+             'cpsnavigation_images': 'Products/CPSNavigation/skins/cpsnavigation_images',
              }
 
 
