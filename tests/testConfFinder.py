@@ -124,8 +124,57 @@ contents=leaf_4|leaf_5
                                                  no_leaves=1),
                          [DC('node_1'), DC('node_2')])
 
-def test_suite():
-    return unittest.makeSuite(TestConfFinder)
 
-if __name__ == "__main__":
-    unittest.main(defaultTest='test_suite')
+
+class TestBaseNavigation(unittest.TestCase):
+    def setUp(self):
+        # define a tree with a cycle node_3 -> node_1
+        file_content = """
+[root]
+contents=node_1|node_2|leaf_1
+[node_1]
+contents=node_3|leaf_2
+[node_2]
+contents=leaf_3
+[node_3]
+contents=node_1|leaf_5
+        """
+        self.nav = ConfNavigation(root_uid='root',
+                                  current_uid='root',
+                                  file_content=file_content)
+        # print self.nav._strTree(self.nav.getTree())
+
+    def test_getObject_01(self):
+        node_ = DC('node_1')
+        node = self.nav._getObject('node_1')
+        self.assertEqual(node, node_, node)
+
+    def test_getParentUid_01(self):
+        current_uid = 'node_1'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assert_(parent_uid in ['root', 'node_3'])
+
+    def test_getParentUid_02(self):
+        current_uid = 'node_3'
+        parent_uid = self.nav._getParentUid(current_uid)
+        self.assertEqual(parent_uid, 'node_1')
+
+    def test_getChildren_01(self):
+        self.assertEqual(self.nav._getChildren(DC('node_1')),
+                          [DC('node_3'),
+                           DC('leaf_2')])
+
+    def test_getChildren_02(self):
+        self.assertEqual(self.nav._getChildren(DC('node_3')),
+                         [DC('node_1'), DC('leaf_5')])
+
+def test_suite():
+    suite = unittest.TestSuite()
+#    suite.addTest(unittest.makeSuite(TestConfFinder))
+    suite.addTest(unittest.makeSuite(TestBaseNavigation))
+    return suite
+
+
+if __name__ == '__main__':
+    TestRunner().run(test_suite())
+
