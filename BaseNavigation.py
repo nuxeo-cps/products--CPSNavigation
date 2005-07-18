@@ -37,7 +37,8 @@ class BaseNavigation:
     batch_orphan = 0
     batch_item_max = 100
     include_root = 1
-    expand_all = 0
+    expand_all = False
+    expand_all_from_current_uid = False
     debug = 0
     search = 0
     allow_empty_search = 0
@@ -88,7 +89,7 @@ class BaseNavigation:
         return res
 
     def _exploreNode(self, obj, level, is_last_child, path, flat_tree,
-                     processed_ids=None):
+                     processed_ids=None, parent_uid=None):
         if not obj:
             return
         obj_uid = self._getUid(obj)
@@ -106,10 +107,15 @@ class BaseNavigation:
                 'level': level,
                 'is_current': obj_uid == self.current_uid,
                 'is_last_child': is_last_child,
+                'parent_uid': parent_uid,
                 }
         if self.debug > 1:
             LOG('BaseNavigation._exploreNode', DEBUG, str(node))
-        if not self.expand_all and obj_uid not in path:
+
+        expand_all = self.expand_all or (self.expand_all_from_current_uid and
+                                         obj_uid.endswith(self.current_uid))
+
+        if not expand_all and obj_uid not in path:
             if self._isNode(obj) and \
                self._hasChildren(obj, no_leaves=1):
                 node['has_children'] = 1
@@ -134,7 +140,8 @@ class BaseNavigation:
                 else:
                     is_last_child = 0
                 self._exploreNode(child, level+1, is_last_child,
-                                  path, flat_tree, processed_ids)
+                                  path, flat_tree, processed_ids,
+                                  parent_uid=obj_uid)
 
     def _getParentUids(self, uid, include_uid=1):
         """Return a list of parents uids from root to uid.
@@ -158,6 +165,11 @@ class BaseNavigation:
                 DEBUG, 'return : ' + str(res))
 
         return res
+
+    def getParents(self, uid, include_uid=1):
+        """Same as getParentUids but return object instead of uids."""
+        return [self._getObject(x) for x in self._getParentUids(uid,
+                                                                include_uid)]
 
     def getTree(self):
         """Return a flat Tree structure easily processed in ZPT."""
