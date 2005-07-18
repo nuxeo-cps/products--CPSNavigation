@@ -87,10 +87,18 @@ class BaseNavigation:
             res[k] = getattr(self, k)
         return res
 
-    def _exploreNode(self, obj, level, is_last_child, path, flat_tree):
+    def _exploreNode(self, obj, level, is_last_child, path, flat_tree,
+                     processed_ids=None):
         if not obj:
             return
         obj_uid = self._getUid(obj)
+        if processed_ids is None:
+            processed_ids = []
+        if obj_uid in processed_ids:
+            LOG('BaseNavigation._exploreNode', WARNING,
+                'Find cycle in a tree node %s' % obj_uid)
+            return
+        processed_ids.append(obj_uid)
         if not obj_uid:
             return
         node = {'uid': obj_uid,
@@ -126,7 +134,7 @@ class BaseNavigation:
                 else:
                     is_last_child = 0
                 self._exploreNode(child, level+1, is_last_child,
-                                  path, flat_tree)
+                                  path, flat_tree, processed_ids)
 
     def _getParentUids(self, uid, include_uid=1):
         """Return a list of parents uids from root to uid.
