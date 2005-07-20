@@ -89,17 +89,16 @@ class BaseNavigation:
         return res
 
     def _exploreNode(self, obj, level, is_last_child, path, flat_tree,
-                     processed_ids=None, parent_uid=None):
+                     parent_uids=None):
         if not obj:
             return
         obj_uid = self._getUid(obj)
-        if processed_ids is None:
-            processed_ids = []
-        if obj_uid in processed_ids:
+        if parent_uids is None:
+            parent_uids = []
+        if obj_uid in parent_uids:
             LOG('BaseNavigation._exploreNode', WARNING,
                 'Find cycle in a tree node %s' % obj_uid)
             return
-        processed_ids.append(obj_uid)
         if not obj_uid:
             return
         node = {'uid': obj_uid,
@@ -107,14 +106,13 @@ class BaseNavigation:
                 'level': level,
                 'is_current': obj_uid == self.current_uid,
                 'is_last_child': is_last_child,
-                'parent_uid': parent_uid,
+                'parent_uid': parent_uids and parent_uids[-1] or None,
                 }
         if self.debug > 1:
             LOG('BaseNavigation._exploreNode', DEBUG, str(node))
 
         expand_all = self.expand_all or (self.expand_all_from_current_uid and
-                                         obj_uid.endswith(self.current_uid))
-
+                                         self.current_uid in parent_uids)
         if not expand_all and obj_uid not in path:
             if self._isNode(obj) and \
                self._hasChildren(obj, no_leaves=1):
@@ -139,9 +137,9 @@ class BaseNavigation:
                     is_last_child = 1
                 else:
                     is_last_child = 0
+                parent_uids.append(obj_uid)
                 self._exploreNode(child, level+1, is_last_child,
-                                  path, flat_tree, processed_ids,
-                                  parent_uid=obj_uid)
+                                  path, flat_tree, parent_uids)
 
     def _getParentUids(self, uid, include_uid=1):
         """Return a list of parents uids from root to uid.
