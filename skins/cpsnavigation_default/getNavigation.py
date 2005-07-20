@@ -59,7 +59,7 @@ elif finder == 'cpsdirectory':
     elif dir.meta_type == 'CPS Local Directory':
         if dir.directory_type == 'CPS Indirect Directory':
             indirect = 1
-    if hasattr(dir, 'ldap_base'):
+    if dir.meta_type == 'CPS LDAP Directory':
         type = 'ldap'
         include_root = 1
         if not root_uid.endswith(','+dir.ldap_base):
