@@ -113,10 +113,12 @@ class CPSDirectoryNavigation(BaseNavigation):
     # override Navigation
     def _search(self):
         key = self._dir.id_field
+        title = self._dir.title_field
         query_pattern = self.request_form.get('query_uid', '').strip()
         if not query_pattern:
             return []
-        query = {key:query_pattern}
+        query = {key:query_pattern,
+                 title:query_pattern}
 
         if self.debug:
             LOG('CPSDirectoryNavigation._search', DEBUG,
