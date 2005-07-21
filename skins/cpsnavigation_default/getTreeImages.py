@@ -2,6 +2,7 @@
 # $Id$
 """return a list of png representing the tree lines."""
 # XXXX TODO i18n and l10n
+# XXXX Move this function into non restricted code
 from ZTUtils import make_query
 from cgi import escape
 
@@ -37,10 +38,10 @@ if state in ('closed', 'open'):
     # add link to open/close node
     if state == 'closed':
         current_uid = node['uid']
-        title = 'déplier'
+        title = 'Déplier'
     else:
         current_uid = node['parent_uid']
-        title = 'plier'
+        title = 'Plier'
     link = '%s?%s#entity_selected'%(REQUEST['URL0'],
                                     make_query(REQUEST.form,
                                                current_uid=current_uid,
@@ -52,5 +53,5 @@ if state in ('closed', 'open'):
                                         current_uid=current_uid,
                                         expand_all_from_current_uid=1))
         img = img_src % 'tree_expand'
-        imgs[-1] = imgs[-1] + '<a href="%s" title="déplier tout" class="bigstar">%s</a>' % (escape(link), img)
+        imgs[-1] = imgs[-1] + '<a href="%s" title="Déplier tout">%s</a>' % (escape(link), img)
 return ''.join(imgs)
