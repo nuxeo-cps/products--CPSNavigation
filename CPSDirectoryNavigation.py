@@ -117,8 +117,7 @@ class CPSDirectoryNavigation(BaseNavigation):
         query_pattern = self.request_form.get('query_uid', '').strip()
         if not query_pattern:
             return []
-        query = {key:query_pattern,
-                 title:query_pattern}
+        query = {title:query_pattern}
 
         if self.debug:
             LOG('CPSDirectoryNavigation._search', DEBUG,
