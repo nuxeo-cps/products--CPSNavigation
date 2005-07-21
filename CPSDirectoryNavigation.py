@@ -129,3 +129,10 @@ class CPSDirectoryNavigation(BaseNavigation):
             r[1].update({'the_uid': r[0]})
         res = [r[1] for r in res]
         return res
+
+    def _sort(self, objs, mode='tree'):
+        """Sort entry by  directory title field."""
+        title_field = self._dir.title_field
+        items = [(item.get(title_field), item) for item in objs]
+        items.sort()
+        return [item[1] for item  in items]
