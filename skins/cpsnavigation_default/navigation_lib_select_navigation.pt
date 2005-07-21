@@ -31,7 +31,7 @@
 <tr><td width="40%" valign="top">
 <div class="group" tal:condition="search">
   <h2 i18n:translate="">label_search</h2>
-  <input id="field_focus" name="query_uid"
+  <input class="focus" name="query_uid"
          tal:attributes="value request/query_uid|nothing" />
   <input type="submit" class="standalone" value="button_search"
          i18n:attributes="value" />
