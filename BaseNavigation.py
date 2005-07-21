@@ -90,23 +90,29 @@ class BaseNavigation:
 
     def _exploreNode(self, obj, level, is_last_child, path, flat_tree,
                      parent_uids=None):
-        if not obj:
-            return
-        obj_uid = self._getUid(obj)
+        """Recursive exploration
+
+        path is the path of the self.current_uid,
+        flat_tree is the built recursively,
+        parent_uids is the obj parent_uids.
+        """
         if parent_uids is None:
-            parent_uids = []
-        if obj_uid in parent_uids:
-            LOG('BaseNavigation._exploreNode', WARNING,
-                'Find cycle in a tree node %s' % obj_uid)
+            parent_uids = [None]
+        obj_uid = obj and self._getUid(obj) or None
+        if not obj_uid or obj_uid in parent_uids:
+            if obj_uid:
+                LOG('BaseNavigation._exploreNode', WARNING,
+                    'Find cycle in a tree node %s' % obj_uid)
+            # need to pop last parent each time we return
+            parent_uids.pop()
             return
-        if not obj_uid:
-            return
+
         node = {'uid': obj_uid,
                 'object': obj,
                 'level': level,
                 'is_current': obj_uid == self.current_uid,
                 'is_last_child': is_last_child,
-                'parent_uid': parent_uids and parent_uids[-1] or None,
+                'parent_uid': parent_uids[-1],
                 }
         if self.debug > 1:
             LOG('BaseNavigation._exploreNode', DEBUG, str(node))
@@ -140,6 +146,8 @@ class BaseNavigation:
                 parent_uids.append(obj_uid)
                 self._exploreNode(child, level+1, is_last_child,
                                   path, flat_tree, parent_uids)
+        parent_uids.pop()
+        return
 
     def _getParentUids(self, uid, include_uid=1):
         """Return a list of parents uids from root to uid.
