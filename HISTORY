@@ -1,4 +1,24 @@
 *******************************************
+** CPSNavigation V0.16.0 [R1 build 2005/07/29-10:09 by ben]
+** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 25306
+Requires:
+~~~~~~~~~
+- CPSDirectroy > 1.26.0 with hierarchical support
+New features:
+~~~~~~~~~~~~~
+- CPSDirectoryNavigation handle hierarchical directory
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- improve html for navigation_lib_render*
+- BaseNavigation can handle tree with cycle in it
+- BaseNavigation new option expand_from_current_uid
+- BaseNavigation new method getParents (like getParentUids but return objects)
+- New cpsnavigation_images skin
+
+*******************************************
 ** CPSNavigation V0.15.3 [R1 build 2005/07/13-16:04 by ben]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 24890
 Requires:
