@@ -1,6 +1,6 @@
 Requires:
 ~~~~~~~~~
--
+- CPSCore > 3.27.0
 New features:
 ~~~~~~~~~~~~~
 -
@@ -9,4 +9,4 @@ Bug fixes:
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- try to use new URLTool for getBaseUrl

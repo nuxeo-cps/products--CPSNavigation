@@ -1,6 +1,6 @@
 # $Id$
 
 # CPS --------------------
-CPSCore
+CPSCore > 3.27.0
 CPSSchemas
 CPSDirectory > 1.26.0

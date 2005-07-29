@@ -31,7 +31,7 @@ state = node['state']
 imgs[-1] = imgs[-1] + img[state]
 
 img_src = '<img src="%s%%s.png" alt="" border="0" height="23" width="19" />'
-img_src = img_src % context.getBaseUrl()
+img_src = img_src % context.portal_url.getBaseUrl()
 imgs = [img_src % x for x in imgs]
 
 if state in ('closed', 'open'):
