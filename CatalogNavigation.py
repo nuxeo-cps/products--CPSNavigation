@@ -16,6 +16,10 @@
 #
 # $Id$
 """A CPS Navigation using the catalog
+
+XXXX Warning this code is not uptodate with CPS Core > 3.18.0
+This means that it does not support i18n document.
+Do not use this navigation class with translated folder or document.
 """
 from types import DictType
 from time import time

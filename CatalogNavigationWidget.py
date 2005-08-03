@@ -16,6 +16,9 @@
 #
 # $Id$
 """Catalog Navigation widget types.
+
+XXXX Warning this code use CatalogNavigation which is not uptodate with CPS
+Core > 3.18.0. This means that it does not support i18n document.
 """
 
 from zLOG import LOG, DEBUG, TRACE
