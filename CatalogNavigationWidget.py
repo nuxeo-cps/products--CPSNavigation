@@ -106,7 +106,8 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
             raise RuntimeError("Unknown Render Method %s for widget type %s"
                                % (render_method, self.getId()))
         value = datastructure[self.getWidgetId()]
-        return meth(mode=mode, value=value)
+        proxy = datastructure.getDataModel().getProxy()
+        return meth(mode=mode, proxy=proxy, value=value)
 
 InitializeClass(CatalogNavigationSelectWidget)
 

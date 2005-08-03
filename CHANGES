@@ -12,3 +12,5 @@ New internal features:
 - try to use new URLTool for getBaseUrl
 - Add a warning about the fact that CatalogNavigation do not handle
   i18n document (i18n done in CPSCore > 3.18.0)
+- CatalogNavigationWidget: proxy is now available in options given to render
+  method
