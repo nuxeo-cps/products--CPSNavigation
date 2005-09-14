@@ -28,7 +28,7 @@ msgstr "Un exemplu de Catalog de Navigare"
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 #, fuzzy
 msgid "CatalogNavigation"
-msgstr "Navigation"
+msgstr "Navigare"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -117,7 +117,7 @@ msgstr "Nici un rezultat."
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Sélection"
+msgstr "Selectie"
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
