@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.18.0 [R1 build 2005/09/21-15:16 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 27367
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Updated translations.
+
+*******************************************
 ** CPSNavigation V0.17.0 [R1 build 2005/08/05-13:56 by ben]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 25426
 Requires:
