@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
 "POT-Creation-Date: 2005-06-23 17:31default\n"
-"PO-Revision-Date: 2005-06-15 14:17-0300\n"
+"PO-Revision-Date: 2005-09-29 15:06-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -112,9 +112,8 @@ msgstr "Nenhum resultado."
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-#, fuzzy
 msgid "label_search"
-msgstr "Selected"
+msgstr "Buscar"
 
 #.   <th width="33%" class="even">label_selection</th>
 #.   <th width="60%" class="even">label_selection</th>
@@ -176,4 +175,4 @@ msgid "cpsnav_search_result"
 msgstr "Resultado da busca"
 
 msgid "choose"
-msgstr ""
+msgstr "Escolher"
