@@ -61,7 +61,6 @@ class CPSNavigationInstaller(CPSInstaller):
         self.log("Starting CPSNavigation install")
         self.verifySkins(self.SKINS)
         self.resetSkinCache()
-        self.verifyWidgets(self.portal.getCPSNavigationWidgets())
         self.verifySchemas(self.portal.getCPSNavigationSchemas())
         self.verifyLayouts(self.portal.getCPSNavigationLayouts())
         self.verifyVocabularies(self.portal.getCPSNavigationVocabularies())

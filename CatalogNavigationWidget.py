@@ -24,8 +24,8 @@ Core > 3.18.0. This means that it does not support i18n document.
 from zLOG import LOG, DEBUG, TRACE
 from Globals import InitializeClass
 
-from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
-from Products.CPSSchemas.Widget import CPSWidget, CPSWidgetType
+from Products.CPSSchemas.Widget import CPSWidget
+from Products.CPSSchemas.Widget import widgetRegistry
 from Products.CPSSchemas.BasicWidgets import CPSURLWidget
 
 ##################################################
@@ -33,7 +33,7 @@ from Products.CPSSchemas.BasicWidgets import CPSURLWidget
 class CatalogNavigationSelectWidget(CPSURLWidget):
     """This enable to peek a cps zodb object in edit mode using
     a catalog nav popup and display it as a link.in view mode."""
-    meta_type = "CPS Catalog Navigation Select Widget"
+    meta_type = 'CPS Catalog Navigation Select Widget'
 
     _properties = CPSURLWidget._properties + (
         {'id': 'render_method', 'type': 'string', 'mode': 'w',
@@ -111,13 +111,7 @@ class CatalogNavigationSelectWidget(CPSURLWidget):
 
 InitializeClass(CatalogNavigationSelectWidget)
 
-
-class CatalogNavigationSelectWidgetType(CPSWidgetType):
-    """CatlogNavigationSelectwidget type."""
-    meta_type = "CPS Catalog Navigation Select Widget Type"
-    cls = CatalogNavigationSelectWidget
-
-InitializeClass(CatalogNavigationSelectWidgetType)
+widgetRegistry.register(CatalogNavigationSelectWidget)
 
 ##################################################
 
@@ -125,22 +119,6 @@ class CatalogNavigationMultiSelectWidget(CPSWidget):
     """ """
     meta_type = "CPS Catalog Navigation MultiSelect Widget"
 
+    # XXX not implemented
 
 InitializeClass(CatalogNavigationMultiSelectWidget)
-
-
-class CatalogNavigationMultiSelectWidgetType(CPSWidgetType):
-    """ """
-    meta_type = "CPS Catalog Navigation MultiSelect Widget Type"
-    cls = CatalogNavigationMultiSelectWidget
-
-InitializeClass(CatalogNavigationMultiSelectWidgetType)
-
-##################################################
-
-WidgetTypeRegistry.register(CatalogNavigationSelectWidgetType,
-                            CatalogNavigationSelectWidget)
-
-# XXX: not yet impl
-#WidgetTypeRegistry.register(CatalogNavigationMultiSelectWidgetType,
-#                            CatalogNavigationMultiSelectWidget)
