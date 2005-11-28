@@ -44,8 +44,7 @@ class CPSNavigationInstaller(CPSInstaller):
 
 
     def verifyCatalogNavigationIndexes(self):
-        indexes = (('container_path', 'FieldIndex', None),
-                   ('relative_path_depth', 'FieldIndex', None),
+        indexes = (('relative_path_depth', 'FieldIndex', None),
                    ('relative_path', 'FieldIndex', None),
                    )
         metadata = ('relative_path',)
