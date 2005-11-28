@@ -10,3 +10,4 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Removed obsolete widget types registration.
+- container_path index is now define in CPSDefault
