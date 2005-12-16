@@ -1,35 +1,64 @@
-Goals
+===================
+CPSNavigation Goals
+===================
 
-  Revision: $Id$
+:Revision: $Id$
 
-  Make it very easy to create a kind of Explorer for:
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
-    - Documents
-      - using portal_tree for folders and documents
 
-    - All Vocabularies
-      - Hierarchy vocabulary
+Easy Creation of an Explorer
+============================
 
-    - Directories
-      - acl_users
-      - ldap
+Make it very easy to create a kind of Explorer for each of the
+following:
 
-  What is an explorer ?
+- Documents
 
-    Assuming that a node is a container and a leaf is not.
+  - using portal_tree for folders and documents
 
-    An Explorer contains 2 part:
+- All Vocabularies
 
-      - the left part display hierarchy of node using a tree, the
-        path to the selected node is expanded (display all children of
-        parents of the selected node)
+  - Hierarchy vocabulary
 
-      - the right part display a listing of the content of the selected node
-        it may display either nodes and leaves, only nodes or only leaves.
-        this part should handle filtering, sorting and batching
+- Directories
 
-  This should be easy to do:
+  - acl_users
 
-    We don't want any processing from zpt or python scripts
+  - ldap
 
-    Writing a new explorer should be simple
+
+What is an explorer?
+====================
+
+Assuming that a node is a container and a leaf is not.
+
+An Explorer contains 2 parts:
+
+- The left part displays the hierarchy of node using a tree; the path
+  to the selected node is expanded (display all children of
+  parents of the selected node).
+
+- The right part displays a listing of the content of the selected
+  node; it may display either nodes and leaves, only nodes, or only
+  leaves. This part should handle filtering, sorting and batching.
+
+
+Make These Tasks Easy
+=====================
+
+The following should be easy to do:
+
+- We don't want any processing from ZPT or Python scripts.
+
+- Writing a new explorer should be simple.
+
+
+.. Emacs
+.. Local Variables:
+.. mode: rst
+.. End:
+.. Vim
+.. vim: set filetype=rst:
+
