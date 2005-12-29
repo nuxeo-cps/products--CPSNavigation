@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2005-06-23 17:31default\n"
+"POT-Creation-Date: 2005-12-29 16:18default\n"
 "PO-Revision-Date: 2005-09-29 15:06-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -88,38 +88,37 @@ msgstr "Consulta inválida !"
 msgid "cpsnav_tree"
 msgstr "Navegação"
 
-#.   <th width="33%" class="even">label_detail</th>
+#.   <h2>label_detail</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_detail"
 msgstr "Conteúdo"
 
-#.   <th width="33%" class="even" condition="not:search">label_navigation</th>
+#.   <h2>label_navigation</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
 msgstr "Navegação"
 
-#.   <span />
+#.   <span>label_no_results</span>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_no_results"
 msgstr "Nenhum resultado."
 
-#.   <th width="33%" class="even" condition="search">label_search</th>
+#.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_search"
 msgstr "Buscar"
 
-#.   <th width="33%" class="even">label_selection</th>
-#.   <th width="60%" class="even">label_selection</th>
+#.   <h2>label_selection</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_selection"
 msgstr "Selecionado"
 

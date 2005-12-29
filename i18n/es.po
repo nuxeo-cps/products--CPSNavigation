@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSNavigation\n"
-"POT-Creation-Date: 2005-06-23 17:31default\n"
+"POT-Creation-Date: 2005-12-29 16:18default\n"
 "PO-Revision-Date: 2005-05-18 17:30+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -93,27 +93,28 @@ msgstr "Solicitud no válida"
 msgid "cpsnav_tree"
 msgstr "Navegación"
 
-#.   <th width="33%" class="even">label_detail</th>
+#.   <h2>label_detail</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_detail"
 msgstr "Detalle"
 
-#.   <th width="33%" class="even" condition="not:search">label_navigation</th>
+#.   <h2>label_navigation</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
 msgstr "Navegación"
 
-#.   <span />
+#.   <span>label_no_results</span>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_no_results"
 msgstr "Ningún resultado"
 
-#.   <th width="33%" class="even" condition="search">label_search</th>
+#.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
@@ -121,11 +122,9 @@ msgstr "Ningún resultado"
 msgid "label_search"
 msgstr "Selected"
 
-#.   <th width="33%" class="even">label_selection</th>
-#.   <th width="60%" class="even">label_selection</th>
+#.   <h2>label_selection</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_selection"
 msgstr "Selección"
 

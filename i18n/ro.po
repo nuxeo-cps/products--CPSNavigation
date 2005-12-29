@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
-"POT-Creation-Date: 2005-06-23 17:31default\n"
+"POT-Creation-Date: 2005-12-29 16:18default\n"
 "PO-Revision-Date: 2005-03-30 11:25+0300\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Un exemplu de Catalog de Navigare"
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 #, fuzzy
 msgid "CatalogNavigation"
-msgstr "Navigare"
+msgstr "Navigation"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -91,39 +91,38 @@ msgstr "Cerere invalida"
 msgid "cpsnav_tree"
 msgstr "Navigare"
 
-#.   <th width="33%" class="even">label_detail</th>
+#.   <h2>label_detail</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_detail"
 msgstr "Continut"
 
-#.   <th width="33%" class="even" condition="not:search">label_navigation</th>
+#.   <h2>label_navigation</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
 msgstr "Navigare"
 
-#.   <span />
+#.   <span>label_no_results</span>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_no_results"
 msgstr "Nici un rezultat."
 
-#.   <th width="33%" class="even" condition="search">label_search</th>
+#.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Selectie"
+msgstr "Sélection"
 
-#.   <th width="33%" class="even">label_selection</th>
-#.   <th width="60%" class="even">label_selection</th>
+#.   <h2>label_selection</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_selection"
 msgstr "Selectie"
 

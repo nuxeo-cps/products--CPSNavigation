@@ -2,15 +2,14 @@
 # Your Name <your@email>, Year
 msgid ""
 msgstr ""
-"Project-Id-Version: CPSNavigation\n"
-"POT-Creation-Date: 2005-06-23 17:31default\n"
-"PO-Revision-Date: 2004-09-30 16:21+0100\n"
-"Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
-"Language-Team: Fabio Nosari <fabnos@fastwebnet.it>\n"
+"Project-Id-Version: CPSNavigation Italian Translation\n"
+"POT-Creation-Date: 2005-12-29 16:18default\n"
+"PO-Revision-Date: 2005-11-10 09:10+0100\n"
+"Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
+"Language-Team: CPS Italian <schintu@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Preferred-encodings: utf-8 latin1\n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
@@ -22,13 +21,12 @@ msgstr ""
 #.   example</div>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "A Catalog Navigation example"
-msgstr ""
+msgstr "Un esempio di navigazione nel catalogo"
 
 #.   <h1 content="res/title">CatalogNavigation</h1>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
-#, fuzzy
 msgid "CatalogNavigation"
-msgstr "Navigation"
+msgstr "Navigazione"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -78,7 +76,7 @@ msgstr "Ricerca"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
-msgstr "Richiesta non valida !"
+msgstr "Richiesta non valida"
 
 #.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='tree'))">Navigation</a>
 #.   <span class="legend">navigation</span>
@@ -91,39 +89,37 @@ msgstr "Richiesta non valida !"
 msgid "cpsnav_tree"
 msgstr "Percorso di navigazione"
 
-#.   <th width="33%" class="even">label_detail</th>
+#.   <h2>label_detail</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_detail"
 msgstr "Contenuto"
 
-#.   <th width="33%" class="even" condition="not:search">label_navigation</th>
+#.   <h2>label_navigation</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
 msgstr "Percorso di navigazione:"
 
-#.   <span />
+#.   <span>label_no_results</span>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_no_results"
 msgstr "Nessun risultato."
 
-#.   <th width="33%" class="even" condition="search">label_search</th>
+#.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-#, fuzzy
 msgid "label_search"
-msgstr "Sélection"
+msgstr "Seleziona"
 
-#.   <th width="33%" class="even">label_selection</th>
-#.   <th width="60%" class="even">label_selection</th>
+#.   <h2>label_selection</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_selection"
 msgstr "Selezionati:"
 
@@ -179,4 +175,4 @@ msgid "cpsnav_search_result"
 msgstr "Risultato della ricerca"
 
 msgid "choose"
-msgstr ""
+msgstr "seleziona"
