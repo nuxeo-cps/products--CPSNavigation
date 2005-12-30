@@ -1,6 +1,6 @@
 <tal:block define="emptybody python:1;">
 <metal:block use-macro="here/main_template/macros/master">
-<metal:block fill-slot="css_slot">
+<metal:block fill-slot="style_slot">
   <metal:block
     use-macro="here/cpsdocument_edit_form/macros/widgets_javascript" />
 </metal:block>
