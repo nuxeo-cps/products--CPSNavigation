@@ -1,14 +1,10 @@
-# translation of en.po to ben
-# Gettext Message File for default.
-# Your Name <your@email>, Year
-# ben <ben@nuxeo.com>, 2004
-# ben <ben@nuxeo.com>, 2005.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSNavigation-de CPS-3.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-29 16:18default\n"
-"PO-Revision-Date: 2005-03-16 09:59+0100\n"
+"POT-Creation-Date: 2006-01-03 16:03default\n"
+"PO-Revision-Date: 2005-10-06 15:28+0200\n"
 "Last-Translator: gh <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,13 +19,12 @@ msgstr ""
 #.   example</div>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "A Catalog Navigation example"
-msgstr ""
+msgstr "Ein Katalog Navigations Beispiel"
 
 #.   <h1 content="res/title">CatalogNavigation</h1>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
-#, fuzzy
 msgid "CatalogNavigation"
-msgstr "Navigation"
+msgstr "Katalog Navigation"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -44,7 +39,7 @@ msgstr "Such Ergebnis"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
-msgstr "Reset"
+msgstr "Zurücksetzen"
 
 #.   <span>here</span>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
@@ -117,9 +112,8 @@ msgstr "Kein Ergebnis."
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-#, fuzzy
 msgid "label_search"
-msgstr "Selected"
+msgstr "Suche"
 
 #.   <h2>label_selection</h2>
 #: from
@@ -131,7 +125,7 @@ msgid "cpsnav_option_display_mode"
 msgstr "Anzeige Modus"
 
 msgid "cpsnav_option_include_root"
-msgstr "Mit Root-Verzeichnis"
+msgstr "Mit Basis-Verzeichnis"
 
 msgid "cpsnav_option_sort_tree_by"
 msgstr "Baum sortiert nach"
@@ -140,31 +134,31 @@ msgid "cpsnav_option_sort_listing_by"
 msgstr "Liste sortiert nach"
 
 msgid "cpsnav_option_batch_size"
-msgstr "Batch Grösse"
+msgstr "Stapel Grösse"
 
 msgid "cpsnav_option_no_node"
 msgstr "Verbergen von Folder Typen in der Liste"
 
 msgid "cpsnav_option_filter_tree_ptypes"
-msgstr "Baum Filter für  Folder Typen"
+msgstr "Navigationsbaum Filter für Folder Typen"
 
 msgid "cpsnav_option_sort_tree_direction"
-msgstr "Baum Sortier Richtung"
+msgstr "Navigationsbaum Sortier Richtung"
 
 msgid "cpsnav_option_sort_listing_direction"
 msgstr "Listen Sortier Richtung"
 
 msgid "cpsnav_option_filter_listing_ptypes"
-msgstr "Liste Filter Dokument Typen"
+msgstr "Listen Filter für Dokument Typen"
 
 msgid "cpsnav_search_expand_all"
-msgstr "Expandieren Gesamtbaum zur Navigation"
+msgstr "Expandieren des gesamten Baums zur Navigation"
 
 msgid "cpsnav_search_scope"
 msgstr "Such Umfang"
 
 msgid "cpsnav_search_scope_entire_site"
-msgstr "gesamtes Portal"
+msgstr "portalweit"
 
 msgid "cpsnav_search_scope_current_location"
 msgstr "aktueller Folder"
@@ -179,4 +173,4 @@ msgid "cpsnav_search_result"
 msgstr "Such Ergebnis"
 
 msgid "choose"
-msgstr ""
+msgstr "Wähle"
