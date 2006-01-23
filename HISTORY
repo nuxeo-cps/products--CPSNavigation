@@ -1,4 +1,22 @@
 *******************************************
+** CPSNavigation V0.19.0 [R1 build 2006/01/23-17:29 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 31976
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Removed obsolete widget types registration.
+- container_path index is now define in CPSDefault
+- CPS css_slot was renamed style_slot to comply with later CMF/Zope 3 standard.
+
+*******************************************
 ** CPSNavigation V0.18.1 [R1 build 2005/11/07-15:22 by fguillaume]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 29058
 Requires:
