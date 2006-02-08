@@ -111,6 +111,12 @@ class CPSNavigation(ZODBNavigation):
             # here obj is portal_tree node, assume it's a node
             return 1
 
+        # If we defined a filter explicitly
+        if ('filter_listing_ptypes' in self._param_ids and
+            self.filter_listing_ptypes):
+            if obj.portal_type in self.filter_listing_ptypes:
+                return 1
+
         # here we handle object the same way as cpsdefault filterContents
         display_in_listing = 0
         if getattr(obj, 'portal_type'):
