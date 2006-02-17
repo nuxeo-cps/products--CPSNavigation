@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.19.1 [R1 build 2006/02/17-20:20 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 32986
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Fix case using filter_listing_ptypes
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSNavigation V0.19.0 [R1 build 2006/01/23-17:29 by fermigier]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 31976
 Requires:
