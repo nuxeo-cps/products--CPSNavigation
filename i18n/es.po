@@ -1,13 +1,9 @@
-# translation of fr.po to ben
-# Gettext Message File for default.
-# Your Name <your@email>, Year
-# ben <ben@nuxeo.com>, 2004
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSNavigation\n"
-"POT-Creation-Date: 2006-01-03 16:03default\n"
-"PO-Revision-Date: 2005-05-18 17:30+0100\n"
-"Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
+"POT-Creation-Date: 2005-06-23 17:31default\n"
+"PO-Revision-Date: 2006-02-22 18:25+0100\n"
+"Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
@@ -93,38 +89,38 @@ msgstr "Solicitud no válida"
 msgid "cpsnav_tree"
 msgstr "Navegación"
 
-#.   <h2>label_detail</h2>
+#.   <th width="33%" class="even">label_detail</th>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_detail"
-msgstr "Detalle"
+msgstr "Pormenor"
 
-#.   <h2>label_navigation</h2>
+#.   <th width="33%" class="even" condition="not:search">label_navigation</th>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
 msgstr "Navegación"
 
-#.   <span>label_no_results</span>
+#.   <span />
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_no_results"
 msgstr "Ningún resultado"
 
-#.   <h2>label_search</h2>
+#.   <th width="33%" class="even" condition="search">label_search</th>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-#, fuzzy
 msgid "label_search"
-msgstr "Selected"
+msgstr "Buscar"
 
-#.   <h2>label_selection</h2>
+#.   <th width="33%" class="even">label_selection</th>
+#.   <th width="60%" class="even">label_selection</th>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_selection"
 msgstr "Selección"
 
@@ -180,4 +176,5 @@ msgid "cpsnav_search_result"
 msgstr "resultado de la búsqueda"
 
 msgid "choose"
-msgstr ""
+msgstr "Seleccionar"
+
