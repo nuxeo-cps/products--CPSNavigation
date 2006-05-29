@@ -75,6 +75,7 @@ class CatalogNavigation(BaseNavigation):
         note that uid for catalog is the physical path like /cps/sections/foo
         rid is a catalog record id
         """
+        # XXX AT: this does not work using the Lucene catalog
         rid = self.ctool._catalog.uids.get(self.portal_path+uid)
         if not rid:
             return None
