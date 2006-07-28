@@ -1,0 +1,177 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CPSNavigation\n"
+"POT-Creation-Date: 2006-01-03 16:03default\n"
+"PO-Revision-Date: 2006-07-14 09:26+0100\n"
+"Last-Translator: Domenec Arcalis <darcalis@gmail.com>\n"
+"Language-Team: catala\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: ca\n"
+"Language-Name: Catalan\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+"X-Poedit-Language: Catalan\n"
+"X-Poedit-Country: SPAIN\n"
+
+#.   <div class="description" content="res/description">A Catalog Navigation
+#.   example</div>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+msgid "A Catalog Navigation example"
+msgstr "Exemple de catàleg de navegació"
+
+#.   <h1 content="res/title">CatalogNavigation</h1>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+msgid "CatalogNavigation"
+msgstr "Navegació"
+
+#.   <span class="legend" content="python:test(res['status_form'] ==
+#.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "Search result"
+msgstr "Resultat de la recerca"
+
+#.   <input name="option_reset" type="submit" class="context" value="button_reset" />
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "button_reset"
+msgstr "Tormar a la configuració per defecte"
+
+msgid "choose"
+msgstr "Triar"
+
+msgid "cpsnav_content"
+msgstr "contingut del dossier"
+
+#.   <span>here</span>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_current_uid"
+msgstr "Dossier actual"
+
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='option'))">Options</a>
+#.   <span class="legend">option</span>
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='option'));
+#.       class python:test(res['display_mode'] == 'option', 'selected', nothing);">Options</a>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_option"
+msgstr "Configuració"
+
+msgid "cpsnav_option_batch_size"
+msgstr "Número de documents per pàgina"
+
+msgid "cpsnav_option_current_uid"
+msgstr "dossier actual per defecte"
+
+msgid "cpsnav_option_display_mode"
+msgstr "Visualització per defecte"
+
+msgid "cpsnav_option_filter_listing_ptypes"
+msgstr "Filtrar els tipus de documents del llistat"
+
+msgid "cpsnav_option_filter_tree_ptypes"
+msgstr "Filtrar els tipus de dossier a la navegació"
+
+msgid "cpsnav_option_include_root"
+msgstr "Mostrar el directori arrel"
+
+msgid "cpsnav_option_no_node"
+msgstr "Ocultar els dossiers del llistat"
+
+msgid "cpsnav_option_sort_listing_by"
+msgstr "Llistat classificat prr"
+
+msgid "cpsnav_option_sort_listing_direction"
+msgstr "Direcció de la classificació per al llistat"
+
+msgid "cpsnav_option_sort_tree_by"
+msgstr "Navegació classificada per"
+
+msgid "cpsnav_option_sort_tree_direction"
+msgstr "Direcció de la classificació per a la navegació"
+
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='search'))">Search</a>
+#.   <span class="legend">Search</span>
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='search'));
+#.       class python:test(res['display_mode'] == 'search', 'selected', nothing);">Search</a>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search"
+msgstr "Recerca"
+
+msgid "cpsnav_search_expand_all"
+msgstr "Expandir tot l'arbre de navegació"
+
+#.   <div class="message" condition="python:res['status_form'] == 'invalid'">invalid search</div>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search_invalid"
+msgstr "Sol·licitud no vàlida"
+
+msgid "cpsnav_search_result"
+msgstr "resultat de la recerca"
+
+msgid "cpsnav_search_scope"
+msgstr "Àmbit de la recerca"
+
+msgid "cpsnav_search_scope_current_location"
+msgstr "El dossier actual"
+
+msgid "cpsnav_search_scope_entire_site"
+msgstr "El lloc web sencer"
+
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='tree'))">Navigation</a>
+#.   <span class="legend">navigation</span>
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(request.form, display_mode='tree'));
+#.       class python:test(res['display_mode'] == 'tree', 'selected', nothing);">Navigation</a>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_tree"
+msgstr "Navegació"
+
+#.   <h2>label_detail</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_detail"
+msgstr "Detall"
+
+#.   <h2>label_navigation</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_navigation"
+msgstr "Navegació"
+
+#.   <span>label_no_results</span>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_no_results"
+msgstr "No hi ha resultats"
+
+#.   <h2>label_search</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_search"
+msgstr "Cercar"
+
+#.   <h2>label_selection</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+msgid "label_selection"
+msgstr "Selecció"
