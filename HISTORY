@@ -1,4 +1,20 @@
 *******************************************
+** CPSNavigation V0.20.1 [R1 build 2006/07/31-11:07 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/trunk Revision: 47588
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- #1702: Added new Catalan translation thanks to Santi Camps.
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSNavigation V0.20.0 [R1 build 2006/03/03-17:45 by ben]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSNavigation/trunk Revision: 33914
 Requires:
