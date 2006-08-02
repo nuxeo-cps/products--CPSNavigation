@@ -6,7 +6,9 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- When checking if a listing was current, the object could be called, which
+  rendered it, which takes loads of time.
+- Objects that didn't have a short_title would break the cps navigation.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

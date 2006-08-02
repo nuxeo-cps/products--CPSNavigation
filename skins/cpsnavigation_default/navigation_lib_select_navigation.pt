@@ -56,7 +56,7 @@
 </div>
 
 </td><td valign="top" width="60%">
-  <div class="group" tal:condition="listing_info/current">
+  <div class="group" tal:condition="nocall:listing_info/current">
     <h2 i18n:translate="">label_detail</h2>
   <div tal:condition="not_found">
     <span i18n:translate="">label_no_results</span>
