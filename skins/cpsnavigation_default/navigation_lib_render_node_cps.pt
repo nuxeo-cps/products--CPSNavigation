@@ -7,5 +7,5 @@
 -->
 
 <metal:block define-macro="render_node_cps">
-  <tal:block replace="structure node/object/short_title|node/object/Title" />
+  <tal:block replace="structure node/object/short_title|node/object/title_or_id" />
 </metal:block>
