@@ -1,15 +1,16 @@
-===================
-CPSNavigation Goals
-===================
+======
+README
+======
 
+:Author: Benoit Delbosc
 :Revision: $Id$
 
 .. sectnum::    :depth: 4
 .. contents::   :depth: 4
 
 
-Easy Creation of an Explorer
-============================
+Goal
+====
 
 Make it very easy to create a kind of Explorer for each of the
 following:
@@ -53,6 +54,16 @@ The following should be easy to do:
 - We don't want any processing from ZPT or Python scripts.
 
 - Writing a new explorer should be simple.
+
+
+Howto write a new explorer
+==========================
+
+You have to write a new navigation class.
+
+To write your navigation class you have to inherit from BaseNavigation and
+implement the IFinder interface.
+
 
 
 .. Emacs
