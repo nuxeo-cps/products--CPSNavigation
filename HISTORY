@@ -1,3 +1,23 @@
+===========================================================
+Package: CPSNavigation 0.21.0
+===========================================================
+First release built by: ogrisel at: 2006-10-04T21:18:00
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/tags/0.21.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/trunk@49317
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Added a little more information in the doc.
+
 *******************************************
 ** CPSNavigation V0.20.3 [R1 build 2006/08/03-09:35 by fermigier]
 ** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/trunk Revision: 47867
