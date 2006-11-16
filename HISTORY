@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSNavigation 0.21.1
+===========================================================
+First release built by: gracinet at: 2006-11-16T18:16:27
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/tags/0.21.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/trunk@50008
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- [packaging] bundleman svn property
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSNavigation 0.21.0
 ===========================================================
 First release built by: ogrisel at: 2006-10-04T21:18:00
