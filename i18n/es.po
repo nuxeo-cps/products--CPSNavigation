@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSNavigation\n"
-"POT-Creation-Date: 2005-06-23 17:31default\n"
+"POT-Creation-Date: 2007-05-04 11:23default\n"
 "PO-Revision-Date: 2006-02-22 18:25+0100\n"
 "Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -27,6 +27,17 @@ msgstr "Ejemplo de catálogo de navegación"
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "CatalogNavigation"
 msgstr "Navegación"
+
+#.   <span>
+#.       Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.     </span>
+#.   <span>
+#.             Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.           </span>
+#: from ../skins/cpsnavigation_default/navigation_lib_batch_info.pt
+#: ../skins/cpsnavigation_devel/test_ldap_navigation.pt
+msgid "Objects: ${batch_start} - ${batch_limit} of ${batch_length}"
+msgstr ""
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -89,40 +100,26 @@ msgstr "Solicitud no válida"
 msgid "cpsnav_tree"
 msgstr "Navegación"
 
-#.   <th width="33%" class="even">label_detail</th>
+#.   <h2>label_detail</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_detail"
 msgstr "Pormenor"
 
-#.   <th width="33%" class="even" condition="not:search">label_navigation</th>
+#.   <h2>label_navigation</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
 msgstr "Navegación"
 
-#.   <span />
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-msgid "label_no_results"
-msgstr "Ningún resultado"
-
-#.   <th width="33%" class="even" condition="search">label_search</th>
+#.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_search"
 msgstr "Buscar"
-
-#.   <th width="33%" class="even">label_selection</th>
-#.   <th width="60%" class="even">label_selection</th>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-msgid "label_selection"
-msgstr "Selección"
 
 msgid "cpsnav_option_display_mode"
 msgstr "Muestra por defecto"
@@ -178,3 +175,8 @@ msgstr "resultado de la búsqueda"
 msgid "choose"
 msgstr "Seleccionar"
 
+#~ msgid "label_no_results"
+#~ msgstr "Ningún resultado"
+
+#~ msgid "label_selection"
+#~ msgstr "Selección"

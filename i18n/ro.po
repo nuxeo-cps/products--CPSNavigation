@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
-"POT-Creation-Date: 2006-01-03 16:03default\n"
+"POT-Creation-Date: 2007-05-04 11:23default\n"
 "PO-Revision-Date: 2005-03-30 11:25+0300\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -29,6 +29,17 @@ msgstr "Un exemplu de Catalog de Navigare"
 #, fuzzy
 msgid "CatalogNavigation"
 msgstr "Navigation"
+
+#.   <span>
+#.       Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.     </span>
+#.   <span>
+#.             Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.           </span>
+#: from ../skins/cpsnavigation_default/navigation_lib_batch_info.pt
+#: ../skins/cpsnavigation_devel/test_ldap_navigation.pt
+msgid "Objects: ${batch_start} - ${batch_limit} of ${batch_length}"
+msgstr ""
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -105,26 +116,13 @@ msgstr "Continut"
 msgid "label_navigation"
 msgstr "Navigare"
 
-#.   <span>label_no_results</span>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-msgid "label_no_results"
-msgstr "Nici un rezultat."
-
 #.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Sélection"
-
-#.   <h2>label_selection</h2>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-msgid "label_selection"
-msgstr "Selectie"
+msgstr "Selected"
 
 msgid "cpsnav_option_display_mode"
 msgstr "Afisare in modul implicit"
@@ -179,3 +177,9 @@ msgstr "Rezultatul cautarii"
 
 msgid "choose"
 msgstr ""
+
+msgid "label_no_results"
+msgstr "Nici un rezultat."
+
+msgid "label_selection"
+msgstr "Selectie"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2006-01-03 16:03default\n"
+"POT-Creation-Date: 2007-05-04 11:23default\n"
 "PO-Revision-Date: 2005-06-23 16:01+0300\n"
 "Last-Translator: Ruslan Spivak <rspivak@nuxeo.com>\n"
 "Language-Team: English <en@li.org>\n"
@@ -32,6 +32,17 @@ msgstr ""
 #, fuzzy
 msgid "CatalogNavigation"
 msgstr "Navigation"
+
+#.   <span>
+#.       Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.     </span>
+#.   <span>
+#.             Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.           </span>
+#: from ../skins/cpsnavigation_default/navigation_lib_batch_info.pt
+#: ../skins/cpsnavigation_devel/test_ldap_navigation.pt
+msgid "Objects: ${batch_start} - ${batch_limit} of ${batch_length}"
+msgstr ""
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -108,25 +119,12 @@ msgstr "Content"
 msgid "label_navigation"
 msgstr "Navigation"
 
-#.   <span>label_no_results</span>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-msgid "label_no_results"
-msgstr "No results."
-
 #.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 #, fuzzy
 msgid "label_search"
-msgstr "Selected"
-
-#.   <h2>label_selection</h2>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-msgid "label_selection"
 msgstr "Selected"
 
 msgid "cpsnav_option_display_mode"
@@ -182,3 +180,9 @@ msgstr "Search result"
 
 msgid "choose"
 msgstr "Choose..."
+
+#~ msgid "label_no_results"
+#~ msgstr "No results."
+
+#~ msgid "label_selection"
+#~ msgstr "Selected"

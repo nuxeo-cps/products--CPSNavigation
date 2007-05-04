@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2006-01-03 16:03default\n"
+"POT-Creation-Date: 2007-05-04 11:23default\n"
 "PO-Revision-Date: 2005-09-29 15:06-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -26,6 +26,17 @@ msgstr "Um exemplo de navegação de catálogo."
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "CatalogNavigation"
 msgstr "Navegação"
+
+#.   <span>
+#.       Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.     </span>
+#.   <span>
+#.             Objects: ${batch_start (tal replace="batch_info/start")} - ${batch_limit (tal replace="batch_info/stop")} of ${batch_length (tal replace="batch_info/length")}
+#.           </span>
+#: from ../skins/cpsnavigation_default/navigation_lib_batch_info.pt
+#: ../skins/cpsnavigation_devel/test_ldap_navigation.pt
+msgid "Objects: ${batch_start} - ${batch_limit} of ${batch_length}"
+msgstr ""
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -102,25 +113,12 @@ msgstr "Conteúdo"
 msgid "label_navigation"
 msgstr "Navegação"
 
-#.   <span>label_no_results</span>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
-msgid "label_no_results"
-msgstr "Nenhum resultado."
-
 #.   <h2>label_search</h2>
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_search"
 msgstr "Buscar"
-
-#.   <h2>label_selection</h2>
-#: from
-#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
-msgid "label_selection"
-msgstr "Selecionado"
 
 msgid "cpsnav_option_display_mode"
 msgstr "Mode de mostra"
@@ -175,3 +173,9 @@ msgstr "Resultado da busca"
 
 msgid "choose"
 msgstr "Escolher"
+
+#~ msgid "label_no_results"
+#~ msgstr "Nenhum resultado."
+
+#~ msgid "label_selection"
+#~ msgstr "Selecionado"
