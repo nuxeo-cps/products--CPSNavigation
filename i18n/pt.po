@@ -1,0 +1,178 @@
+# translation of en.po to ben
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+# ben <ben@nuxeo.com>, 2004
+msgid ""
+msgstr ""
+"Project-Id-Version: CPSNavigation\n"
+"POT-Creation-Date: 2006-01-03 16:03default\n"
+"PO-Revision-Date: 2007-05-01 16:28+0100\n"
+"Last-Translator: \n"
+"Language-Team: Português <luis727@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Code: pt_BR\n"
+"Language-Name: Portuguese Brazilian\n"
+"Domain: default\n"
+
+#.   <div class="description" content="res/description">A Catalog Navigation
+#.   example</div>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+msgid "A Catalog Navigation example"
+msgstr "Um exemplo de navegação de catálogo."
+
+#.   <h1 content="res/title">CatalogNavigation</h1>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+msgid "CatalogNavigation"
+msgstr "Navegação"
+
+#.   <span class="legend" content="python:test(res['status_form'] ==
+#.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "Search result"
+msgstr "Resultado da busca"
+
+#.   <input name="option_reset" type="submit" class="context" value="button_reset" />
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "button_reset"
+msgstr "Limpar"
+
+#.   <span>here</span>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_current_uid"
+msgstr "Pasta corrente"
+
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='option'))">Options</a>
+#.   <span class="legend">option</span>
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='option'));
+#.       class python:test(res['display_mode'] == 'option', 'selected', nothing);">Options</a>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_option"
+msgstr "Opções"
+
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='search'))">Search</a>
+#.   <span class="legend">Search</span>
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(display_mode='search'));
+#.       class python:test(res['display_mode'] == 'search', 'selected', nothing);">Search</a>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search"
+msgstr "Busca"
+
+#.   <div class="message" condition="python:res['status_form'] == 'invalid'">invalid search</div>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_search_invalid"
+msgstr "Consulta inválida !"
+
+#.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='tree'))">Navigation</a>
+#.   <span class="legend">navigation</span>
+#.   <a attributes="href python:'%s?%s' % (
+#.       request['URL'], mq(request.form, display_mode='tree'));
+#.       class python:test(res['display_mode'] == 'tree', 'selected', nothing);">Navigation</a>
+#: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
+#: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
+#: ../skins/cpsnavigation_devel/test_cps_navigation.pt
+msgid "cpsnav_tree"
+msgstr "Navegação"
+
+#.   <h2>label_detail</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_detail"
+msgstr "Conteúdo"
+
+#.   <h2>label_navigation</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_navigation"
+msgstr "Navegação"
+
+#.   <span>label_no_results</span>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_no_results"
+msgstr "Nenhum resultado."
+
+#.   <h2>label_search</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+#: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
+msgid "label_search"
+msgstr "Buscar"
+
+#.   <h2>label_selection</h2>
+#: from
+#: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
+msgid "label_selection"
+msgstr "Seleccionado"
+
+msgid "cpsnav_option_display_mode"
+msgstr "Modo de exposição"
+
+msgid "cpsnav_option_include_root"
+msgstr "Incluir raiz"
+
+msgid "cpsnav_option_sort_tree_by"
+msgstr "Árvore ordenada por"
+
+msgid "cpsnav_option_sort_listing_by"
+msgstr "Listagem ordenada por"
+
+msgid "cpsnav_option_batch_size"
+msgstr "Tamanho do lote"
+
+msgid "cpsnav_option_no_node"
+msgstr "Ocultar pasta na listagem"
+
+msgid "cpsnav_option_filter_tree_ptypes"
+msgstr "Tipos de pastas a filtrar na árvore"
+
+msgid "cpsnav_option_sort_tree_direction"
+msgstr "Direcção de ordenação da árvore"
+
+msgid "cpsnav_option_sort_listing_direction"
+msgstr "Direcção de ordenação da listagem"
+
+msgid "cpsnav_option_filter_listing_ptypes"
+msgstr "Tipos de documentos a filtrar na listagem"
+
+msgid "cpsnav_search_expand_all"
+msgstr "Expandir toda a árvore para navegação"
+
+msgid "cpsnav_search_scope"
+msgstr "Lente de busca"
+
+msgid "cpsnav_search_scope_entire_site"
+msgstr "todo o site"
+
+msgid "cpsnav_search_scope_current_location"
+msgstr "pasta corrente"
+
+msgid "cpsnav_option_current_uid"
+msgstr "Pasta corrente padrão"
+
+msgid "cpsnav_content"
+msgstr "Conteúdo da pasta"
+
+msgid "cpsnav_search_result"
+msgstr "Resultado da busca"
+
+msgid "choose"
+msgstr "Escolher"
+
