@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSNavigation 0.22.0
+===========================================================
+First release built by: madarche at: 2007-10-19T12:20:00
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/tags/0.22.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/trunk@52013
+
+Requires
+~~~~~~~~
+- CPSI18n >= 1.0.0
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+-
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSNavigation 0.21.2
 ===========================================================
 First release built by: gracinet at: 2006-11-17T18:33:04
