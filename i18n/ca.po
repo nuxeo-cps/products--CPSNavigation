@@ -3,28 +3,28 @@ msgstr ""
 "Project-Id-Version: CPSNavigation\n"
 "POT-Creation-Date: 2006-01-03 16:03default\n"
 "PO-Revision-Date: 2007-05-31 10:04+0100\n"
-"Language-Team: valenci‡/catal‡. <juangus@lasalle.es>\n"
+"Language-Team: valenci√†/catal√†. <juangus@lasalle.es>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Preferred-encodings: latin9 utf-8\n"
-"Domain: default\n"
-"Language-Code: ca\n"
-"Language-Name: valenci‡/catal‡\n"
 "X-Poedit-Language: Catalan\n"
 "X-Poedit-Country: SPAIN\n"
+"Language-Code: ca\n"
+"Language-Name: ca\n"
+"Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <div class="description" content="res/description">A Catalog Navigation
 #.   example</div>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "A Catalog Navigation example"
-msgstr "Exemple de cat‡leg de navegaciÛ"
+msgstr "Exemple de cat√†leg de navegaci√≥"
 
 #.   <h1 content="res/title">CatalogNavigation</h1>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "CatalogNavigation"
-msgstr "NavegaciÛ"
+msgstr "Navegaci√≥"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -39,7 +39,7 @@ msgstr "Resultat de la recerca"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
-msgstr "Tormar a la configuraciÛ per defecte"
+msgstr "Tormar a la configuraci√≥ per defecte"
 
 msgid "choose"
 msgstr "Triar"
@@ -62,22 +62,22 @@ msgstr "Dossier actual"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_option"
-msgstr "ConfiguraciÛ"
+msgstr "Configuraci√≥"
 
 msgid "cpsnav_option_batch_size"
-msgstr "N˙mero de documents per p‡gina"
+msgstr "N√∫mero de documents per p√†gina"
 
 msgid "cpsnav_option_current_uid"
 msgstr "dossier actual per defecte"
 
 msgid "cpsnav_option_display_mode"
-msgstr "VisualitzaciÛ per defecte"
+msgstr "Visualitzaci√≥ per defecte"
 
 msgid "cpsnav_option_filter_listing_ptypes"
 msgstr "Filtrar els tipus de documents del llistat"
 
 msgid "cpsnav_option_filter_tree_ptypes"
-msgstr "Filtrar els tipus de dossier a la navegaciÛ"
+msgstr "Filtrar els tipus de dossier a la navegaci√≥"
 
 msgid "cpsnav_option_include_root"
 msgstr "Mostrar el directori arrel"
@@ -89,13 +89,13 @@ msgid "cpsnav_option_sort_listing_by"
 msgstr "Llistat classificat per"
 
 msgid "cpsnav_option_sort_listing_direction"
-msgstr "AdreÁa de la classificaciÛ per al llistat"
+msgstr "Adre√ßa de la classificaci√≥ per al llistat"
 
 msgid "cpsnav_option_sort_tree_by"
-msgstr "NavegaciÛ classificada per"
+msgstr "Navegaci√≥ classificada per"
 
 msgid "cpsnav_option_sort_tree_direction"
-msgstr "AdreÁa de la classificaciÛ per a la navegaciÛ"
+msgstr "Adre√ßa de la classificaci√≥ per a la navegaci√≥"
 
 #.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='search'))">Search</a>
 #.   <span class="legend">Search</span>
@@ -109,20 +109,20 @@ msgid "cpsnav_search"
 msgstr "Recerca"
 
 msgid "cpsnav_search_expand_all"
-msgstr "Expandir tot l'arbre de navegaciÛ"
+msgstr "Expandir tot l'arbre de navegaci√≥"
 
 #.   <div class="message" condition="python:res['status_form'] == 'invalid'">invalid search</div>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
-msgstr "Sol∑licitud no v‡lida"
+msgstr "Sol¬∑licitud no v√†lida"
 
 msgid "cpsnav_search_result"
 msgstr "resultat de la recerca"
 
 msgid "cpsnav_search_scope"
-msgstr "¿mbit de la recerca"
+msgstr "√Ämbit de la recerca"
 
 msgid "cpsnav_search_scope_current_location"
 msgstr "El dossier actual"
@@ -139,7 +139,7 @@ msgstr "El lloc web sencer"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_tree"
-msgstr "NavegaciÛ"
+msgstr "Navegaci√≥"
 
 #.   <h2>label_detail</h2>
 #: from
@@ -153,7 +153,7 @@ msgstr "Detall"
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
-msgstr "NavegaciÛ"
+msgstr "Navegaci√≥"
 
 #.   <span>label_no_results</span>
 #: from
@@ -173,5 +173,5 @@ msgstr "Cercar"
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 msgid "label_selection"
-msgstr "SelecciÛ"
+msgstr "Selecci√≥"
 

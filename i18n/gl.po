@@ -3,30 +3,30 @@ msgstr ""
 "Project-Id-Version: CPSNavigation\n"
 "POT-Creation-Date: 2005-06-23 17:31default\n"
 "PO-Revision-Date: 2007-05-11 19:27+0100\n"
-"Last-Translator: xosÈ francisco martÌnez reboiras <xosereboiras@lasalle.es>\n"
-"Language-Team: espaÒol <jesusmartin@lasalle.es>\n"
+"Last-Translator: xos√© francisco mart√≠nez reboiras <xosereboiras@lasalle.es>\n"
+"Language-Team: espa√±ol <jesusmartin@lasalle.es>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: gl\n"
-"Language-Name: Spanish\n"
-"Preferred-encodings: utf-8 latin1\n"
-"Domain: default\n"
 "X-Generator: KBabel 1.0.1\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: SPAIN\n"
+"Language-Code: gl\n"
+"Language-Name: Galician\n"
+"Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <div class="description" content="res/description">A Catalog Navigation
 #.   example</div>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "A Catalog Navigation example"
-msgstr "Exemplo de cat·logo de navegaciÛn"
+msgstr "Exemplo de cat√°logo de navegaci√≥n"
 
 #.   <h1 content="res/title">CatalogNavigation</h1>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
 msgid "CatalogNavigation"
-msgstr "NavegaciÛn"
+msgstr "Navegaci√≥n"
 
 #.   <span class="legend" content="python:test(res['status_form'] ==
 #.       'valid', 'cpsnav_search_result', 'cpsnav_content')">Search result</span>
@@ -41,7 +41,7 @@ msgstr "Resultado da busca"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
-msgstr "Volver · configuraciÛn por defecto"
+msgstr "Volver √° configuraci√≥n por defecto"
 
 #.   <span>here</span>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
@@ -58,7 +58,7 @@ msgstr "Dossier actual"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_option"
-msgstr "ConfiguraciÛn"
+msgstr "Configuraci√≥n"
 
 #.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='search'))">Search</a>
 #.   <span class="legend">Search</span>
@@ -76,7 +76,7 @@ msgstr "Busca"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
-msgstr "Solicitude non v·lida"
+msgstr "Solicitude non v√°lida"
 
 #.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='tree'))">Navigation</a>
 #.   <span class="legend">navigation</span>
@@ -87,7 +87,7 @@ msgstr "Solicitude non v·lida"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_tree"
-msgstr "NavegaciÛn"
+msgstr "Navegaci√≥n"
 
 #.   <th width="33%" class="even">label_detail</th>
 #: from
@@ -100,14 +100,14 @@ msgstr "Pormenor"
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_navigation"
-msgstr "NavegaciÛn"
+msgstr "Navegaci√≥n"
 
 #.   <span />
 #: from
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_no_results"
-msgstr "Ning˙n resultado"
+msgstr "Ning√∫n resultado"
 
 #.   <th width="33%" class="even" condition="search">label_search</th>
 #: from
@@ -122,43 +122,43 @@ msgstr "Buscar"
 #: ../skins/cpsnavigation_default/navigation_lib_multi_select_navigation.pt
 #: ../skins/cpsnavigation_default/navigation_lib_select_navigation.pt
 msgid "label_selection"
-msgstr "SelecciÛn"
+msgstr "Selecci√≥n"
 
 msgid "cpsnav_option_display_mode"
 msgstr "Mostra por defecto"
 
 msgid "cpsnav_option_include_root"
-msgstr "Amosar o directorio raÌz"
+msgstr "Amosar o directorio ra√≠z"
 
 msgid "cpsnav_option_sort_tree_by"
-msgstr "NavegaciÛn clasificada por"
+msgstr "Navegaci√≥n clasificada por"
 
 msgid "cpsnav_option_sort_listing_by"
 msgstr "Listado clasificado por"
 
 msgid "cpsnav_option_batch_size"
-msgstr "N˙mero de documentos por p·xina"
+msgstr "N√∫mero de documentos por p√°xina"
 
 msgid "cpsnav_option_no_node"
 msgstr "Ocultar os dossier do listado"
 
 msgid "cpsnav_option_filter_tree_ptypes"
-msgstr "Filtrar os tipos de dossier na navegaciÛn"
+msgstr "Filtrar os tipos de dossier na navegaci√≥n"
 
 msgid "cpsnav_option_sort_tree_direction"
-msgstr "DirecciÛn da clasificaciÛn para a navegaciÛn"
+msgstr "Direcci√≥n da clasificaci√≥n para a navegaci√≥n"
 
 msgid "cpsnav_option_sort_listing_direction"
-msgstr "DirecciÛn da clasificaciÛn para o listado"
+msgstr "Direcci√≥n da clasificaci√≥n para o listado"
 
 msgid "cpsnav_option_filter_listing_ptypes"
 msgstr "Filtrar os tipos de documentos do listado"
 
 msgid "cpsnav_search_expand_all"
-msgstr "Expandir toda a ·rbore para a navegaciÛn"
+msgstr "Expandir toda a √°rbore para a navegaci√≥n"
 
 msgid "cpsnav_search_scope"
-msgstr "¡mbito da busca"
+msgstr "√Åmbito da busca"
 
 msgid "cpsnav_search_scope_entire_site"
 msgstr "o sitio enteiro"

@@ -8,12 +8,13 @@ msgstr ""
 "Last-Translator: gh <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: de\n"
 "Language-Name: German\n"
 "Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <div class="description" content="res/description">A Catalog Navigation
 #.   example</div>
@@ -50,7 +51,7 @@ msgstr "Such Ergebnis"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "button_reset"
-msgstr "Zurücksetzen"
+msgstr "ZurÃ¼cksetzen"
 
 #.   <span>here</span>
 #: from ../skins/cpsnavigation_default/popup_catalognavigationselect_form.pt
@@ -85,7 +86,7 @@ msgstr "Suchen"
 #: ../skins/cpsnavigation_devel/test_catalog_navigation.pt
 #: ../skins/cpsnavigation_devel/test_cps_navigation.pt
 msgid "cpsnav_search_invalid"
-msgstr "Ungültige Suche !"
+msgstr "UngÃ¼ltige Suche !"
 
 #.   <a attributes="href python:'%s?%s' % (request['URL'], mq(display_mode='tree'))">Navigation</a>
 #.   <span class="legend">navigation</span>
@@ -132,13 +133,13 @@ msgid "cpsnav_option_sort_listing_by"
 msgstr "Liste sortiert nach"
 
 msgid "cpsnav_option_batch_size"
-msgstr "Stapel Grösse"
+msgstr "Stapel GrÃ¶sse"
 
 msgid "cpsnav_option_no_node"
 msgstr "Verbergen von Folder Typen in der Liste"
 
 msgid "cpsnav_option_filter_tree_ptypes"
-msgstr "Navigationsbaum Filter für Folder Typen"
+msgstr "Navigationsbaum Filter fÃ¼r Folder Typen"
 
 msgid "cpsnav_option_sort_tree_direction"
 msgstr "Navigationsbaum Sortier Richtung"
@@ -147,7 +148,7 @@ msgid "cpsnav_option_sort_listing_direction"
 msgstr "Listen Sortier Richtung"
 
 msgid "cpsnav_option_filter_listing_ptypes"
-msgstr "Listen Filter für Dokument Typen"
+msgstr "Listen Filter fÃ¼r Dokument Typen"
 
 msgid "cpsnav_search_expand_all"
 msgstr "Expandieren des gesamten Baums zur Navigation"
@@ -171,10 +172,10 @@ msgid "cpsnav_search_result"
 msgstr "Such Ergebnis"
 
 msgid "choose"
-msgstr "Wähle"
+msgstr "WÃ¤hle"
 
 #~ msgid "label_no_results"
 #~ msgstr "Kein Ergebnis."
 
 #~ msgid "label_selection"
-#~ msgstr "Ausgewählt"
+#~ msgstr "AusgewÃ¤hlt"
