@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSNavigation 0.22.1
+===========================================================
+First release built by: madarche at: 2008-11-23T22:12:48
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/tags/0.22.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSNavigation/trunk@53051
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1916: Switch all the .po files to UTF-8
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSNavigation 0.22.0
 ===========================================================
 First release built by: madarche at: 2007-10-19T12:20:00
