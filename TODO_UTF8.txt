@@ -1,0 +1,4 @@
+There are a few explicit encodes to latin9 in this product, although it's been unmodified in previous branch
+Probably LDAPDirectoryNavigation, getVocabularyListingFilterTypes and getVocabularyTreeFilterTypes have problems
+The latter probably don't see much non-ascii, though
+the former not that common
