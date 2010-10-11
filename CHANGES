@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2260: restored LDAPDirectoryNavigation
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
