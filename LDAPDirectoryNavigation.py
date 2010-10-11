@@ -18,13 +18,17 @@
 """A LDAPBackingDirectory Navigation
 """
 import logging
-import ldap
+logger = logging.getLogger(__name__)
+try:
+    import ldap
+except ImportError:
+    logger.warn("Python ldap module not available")
+
 from Products.CMFCore.utils import getToolByName
 from Products.CPSUtil.text import get_final_encoding
 from BaseNavigation import BaseNavigation
 from interfaces.IFinder import IFinder
 
-logger = logging.getLogger(__name__)
 
 class LDAPDirectoryNavigation(BaseNavigation):
     """Implement Finder interface for a LDAPDirectory."""
@@ -112,7 +116,7 @@ class LDAPDirectoryNavigation(BaseNavigation):
         uid = self._getUid(obj)
         uid_utf8 = self.toUtf8(uid)
         try:
-            res = self._dir._delegate.search(
+            res = self._dir.searchLDAP(
                 base=uid_utf8,
                 scope=1,
                 filter=self._dir.objectClassFilter(),
