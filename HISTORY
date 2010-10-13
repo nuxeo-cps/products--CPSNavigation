@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSNavigation 0.23.1
+===========================================================
+First release built by: gracinet at: 2010-10-13T11:36:09
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2260: restored LDAPDirectoryNavigation
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSNavigation 0.23.0
 ===========================================================
 First release built by: gracinet at: 2010-07-26T22:51:15
