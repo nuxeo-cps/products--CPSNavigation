@@ -18,11 +18,13 @@
 """A CPSDirectory Navigation
 """
 from zLOG import LOG, DEBUG, ERROR
+import logging
 
 from Products.CMFCore.utils import getToolByName
 from Products.CPSNavigation.interfaces.IFinder import IFinder
 from Products.CPSNavigation.BaseNavigation import BaseNavigation
 
+logger = logging.getLogger(__name__)
 
 class CPSDirectoryNavigation(BaseNavigation):
     """Implement Finder interface for a CPSDirectory."""
@@ -68,7 +70,14 @@ class CPSDirectoryNavigation(BaseNavigation):
         if self.use_a_fake_root and uid == self.root_uid:
             # return the fake root object
             return self.root
-        obj = self._dir._getEntry(uid)
+        try:
+            obj = self._dir._getEntry(uid)
+        except KeyError:
+            logger.warn("Could not find entry %r in directory %r "
+                        "(probably obsolete, and may occur while precisely "
+                        "cleaning the obsolete entry).", uid, self._dir.getId())
+        return None
+
         obj['the_uid'] = uid
         return obj
 
