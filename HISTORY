@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSNavigation 0.23.4
+===========================================================
+First release built by: gracinet at: 2011-07-07T17:47:15
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2387: Directory Entry Widget with popup and obsolete entries
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSNavigation 0.23.3
 ===========================================================
 First release built by: gracinet at: 2011-01-03T01:12:50
