@@ -4,6 +4,7 @@ import unittest
 from Testing.ZopeTestCase import ZopeLite, ZopeTestCase, installProduct, app
 
 from Interface.Verify import verifyClass
+from Products.CMFDefault.testing import FunctionalLayer as CMFDefaultLayer
 from Products.CPSNavigation.interfaces.IFinder import IFinder
 from Products.CPSNavigation.ZODBNavigation import ZODBNavigation
 
@@ -14,11 +15,10 @@ installProduct('ZCTextIndex', quiet=1)
 
 class TestZODBFinder(ZopeTestCase):
 
+    layer = CMFDefaultLayer
+
     def afterSetUp(self):
-        from Products.CMFDefault.Portal import manage_addCMFSite
-        id = 'testsite'
-        manage_addCMFSite(self.app, id)
-        self.portal = self.app[id]
+        self.portal = self.app.site
         self.nav = ZODBNavigation(
             context=self.portal, root=self.portal, current=self.portal)
 
@@ -26,7 +26,7 @@ class TestZODBFinder(ZopeTestCase):
         verifyClass(IFinder, ZODBNavigation)
 
     def test_getObject_01(self):
-        node = self.nav._getObject('testsite/Members')
+        node = self.nav._getObject('/site/Members')
         self.assertEqual(node, self.portal.Members, node)
 
     def test_getObject_02(self):
@@ -34,7 +34,7 @@ class TestZODBFinder(ZopeTestCase):
         self.assertEqual(node, None, node)
 
     def test_getUid_01(self):
-        uid_ = 'testsite/Members'
+        uid_ = 'site/Members'
         node = self.nav._getObject(uid_)
         uid = self.nav._getUid(node)
         self.assertEqual(uid, uid_, uid)
@@ -55,7 +55,7 @@ class TestZODBFinder(ZopeTestCase):
     def test_getParentUid_01(self):
         current_uid = self.nav._getUid(self.portal.Members)
         parent_uid = self.nav._getParentUid(current_uid)
-        self.assertEqual(parent_uid, 'testsite', parent_uid)
+        self.assertEqual(parent_uid, 'site', parent_uid)
 
 def test_suite():
     return unittest.makeSuite(TestZODBFinder)
