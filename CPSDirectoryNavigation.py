@@ -76,7 +76,7 @@ class CPSDirectoryNavigation(BaseNavigation):
             logger.warn("Could not find entry %r in directory %r "
                         "(probably obsolete, and may occur while precisely "
                         "cleaning the obsolete entry).", uid, self._dir.getId())
-        return None
+            return None
 
         obj['the_uid'] = uid
         return obj
